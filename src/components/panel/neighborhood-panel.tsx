@@ -47,6 +47,7 @@ interface NeighborhoodPanelProps {
   cityAverage: Record<string, number> | null
   services: Record<string, ServiceFacility[]>
   onClose: () => void
+  onStartCompare?: () => void
 }
 
 function PanelContent({
@@ -54,6 +55,7 @@ function PanelContent({
   score,
   cityAverage,
   services,
+  onStartCompare,
 }: Omit<NeighborhoodPanelProps, 'onClose'>) {
   return (
     <div className="space-y-5 p-4">
@@ -101,6 +103,18 @@ function PanelContent({
         </h3>
         <NearbyServices centroid={bairro.centroid} services={services} />
       </div>
+
+      {onStartCompare && (
+        <div className="pt-2 pb-4">
+          <button
+            type="button"
+            onClick={onStartCompare}
+            className="w-full rounded-lg border border-emerald-700 bg-emerald-900/30 px-4 py-2.5 text-sm font-medium text-emerald-400 transition-colors hover:bg-emerald-900/50"
+          >
+            Comparar com outro bairro
+          </button>
+        </div>
+      )}
     </div>
   )
 }
@@ -111,6 +125,7 @@ export function NeighborhoodPanel({
   cityAverage,
   services,
   onClose,
+  onStartCompare,
 }: NeighborhoodPanelProps) {
   const [isMobile, setIsMobile] = useState(false)
 
@@ -135,6 +150,7 @@ export function NeighborhoodPanel({
               score={score}
               cityAverage={cityAverage}
               services={services}
+              onStartCompare={onStartCompare}
             />
           </ScrollArea>
         </SheetContent>
@@ -178,6 +194,7 @@ export function NeighborhoodPanel({
           score={score}
           cityAverage={cityAverage}
           services={services}
+          onStartCompare={onStartCompare}
         />
       </ScrollArea>
     </div>
