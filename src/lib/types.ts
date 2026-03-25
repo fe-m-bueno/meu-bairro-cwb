@@ -68,3 +68,13 @@ export interface BusLine {
   name: string
   coordinates: [number, number][] // array of [lat, lng] points along the route
 }
+
+export interface BairroCrimeData {
+  bairro: string
+  totalOcorrencias12m: number
+  ocorrenciasPorKm2: number
+  naturezas: Record<string, number>
+  topNaturezas: { nome: string; count: number }[]
+  tendencia: 'subindo' | 'estavel' | 'descendo'
+  scorePercentil: number // 0-100 score based on percentile ranking (higher = safer)
+}

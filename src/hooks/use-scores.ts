@@ -1,9 +1,10 @@
 'use client'
 
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { cacheGet, cacheSet } from '@/lib/cache'
+import { fetchCrimeData } from '@/lib/api/crime-data'
 import { calculateAllScores } from '@/lib/score'
-import type { BairroScore, CategoryKey } from '@/lib/types'
+import type { BairroCrimeData, BairroScore, CategoryKey } from '@/lib/types'
 import { useBairros } from './use-bairros'
 import { useServices } from './use-services'
 
@@ -21,7 +22,23 @@ export function useScores() {
     error: servicesError,
   } = useServices()
 
-  const isLoading = bairrosLoading || servicesLoading
+  const [crimeData, setCrimeData] = useState<BairroCrimeData[]>([])
+  const [crimeLoading, setCrimeLoading] = useState(true)
+
+  useEffect(() => {
+    let cancelled = false
+    fetchCrimeData().then((data) => {
+      if (!cancelled) {
+        setCrimeData(data)
+        setCrimeLoading(false)
+      }
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const isLoading = bairrosLoading || servicesLoading || crimeLoading
   const error = bairrosError || servicesError
 
   const prevFingerprintRef = useRef('')
@@ -40,6 +57,7 @@ export function useScores() {
       ...Object.entries(services).map(([k, v]) => `${k}:${v.length}`),
       `g:${greenAreas.length}`,
       `l:${busLines.length}`,
+      `c:${crimeData.length}`,
     ].join('|')
 
     // Skip recomputation if fingerprint unchanged
@@ -59,14 +77,20 @@ export function useScores() {
       return cached
     }
 
-    const computed = calculateAllScores(bairros, services, greenAreas, busLines)
+    const computed = calculateAllScores(
+      bairros,
+      services,
+      greenAreas,
+      busLines,
+      crimeData.length > 0 ? crimeData : undefined,
+    )
     cacheSet(cacheKey, computed)
     // Also save under generic key for quick navigation reads
     cacheSet('scores', computed)
     prevFingerprintRef.current = fingerprint
     prevScoresRef.current = computed
     return computed
-  }, [bairros, services, greenAreas, busLines, isLoading])
+  }, [bairros, services, greenAreas, busLines, crimeData, isLoading])
 
   const cityAverage = useMemo(() => {
     if (scores.length === 0) return null

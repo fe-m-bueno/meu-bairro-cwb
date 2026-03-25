@@ -1,5 +1,5 @@
 import { countWithinRadius, findNearest } from '@/lib/geo/nearest'
-import type { CategoryScore, ServiceFacility } from '@/lib/types'
+import type { BairroCrimeData, CategoryScore, ServiceFacility } from '@/lib/types'
 
 function scoreDistance(
   distance: number,
@@ -43,6 +43,7 @@ function scoreDensity(count: number): number {
 export function calculateSafetyScore(
   centroid: [number, number],
   facilities: ServiceFacility[],
+  crimeData?: BairroCrimeData,
 ): CategoryScore {
   const pmGuarda = facilities.filter(
     (f) =>
@@ -74,46 +75,83 @@ export function calculateSafetyScore(
   const bombeirosScore = scoreDistance(bombeirosDistance, BOMBEIROS_THRESHOLDS)
   const densityScore = scoreDensity(density)
 
-  const score =
-    pmScore * 0.35 +
-    delegaciaScore * 0.25 +
-    bombeirosScore * 0.2 +
-    densityScore * 0.2
+  // Build factors list
+  const factors = [
+    {
+      name: 'PM/Guarda mais próxima',
+      score: pmScore,
+      rawValue: nearestPm ? Math.round(pmDistance) : ('N/A' as number | string),
+      description: nearestPm
+        ? `${nearestPm.facility.name} a ${Math.round(pmDistance)}m`
+        : 'Nenhuma PM/Guarda encontrada',
+    },
+    {
+      name: 'Delegacia mais próxima',
+      score: delegaciaScore,
+      rawValue: nearestDelegacia
+        ? Math.round(delegaciaDistance)
+        : ('N/A' as number | string),
+      description: nearestDelegacia
+        ? `${nearestDelegacia.facility.name} a ${Math.round(delegaciaDistance)}m`
+        : 'Nenhuma delegacia encontrada',
+    },
+    {
+      name: 'Bombeiros mais próximo',
+      score: bombeirosScore,
+      rawValue: nearestBombeiros
+        ? Math.round(bombeirosDistance)
+        : ('N/A' as number | string),
+      description: nearestBombeiros
+        ? `${nearestBombeiros.facility.name} a ${Math.round(bombeirosDistance)}m`
+        : 'Nenhum corpo de bombeiros encontrado',
+    },
+    {
+      name: 'Densidade de segurança (2km)',
+      score: densityScore,
+      rawValue: density as number | string,
+      description: `${density} unidade(s) de segurança em 2km`,
+    },
+  ]
+
+  let score: number
+
+  if (crimeData) {
+    // With crime data: rebalanced weights
+    // Crime rate: 40%, PM/Guarda: 20%, Delegacia: 15%, Bombeiros: 10%, Density: 15%
+    const crimeScore = crimeData.scorePercentil
+
+    const tendenciaLabel =
+      crimeData.tendencia === 'subindo'
+        ? '↑ subindo'
+        : crimeData.tendencia === 'descendo'
+          ? '↓ descendo'
+          : '→ estável'
+
+    factors.unshift({
+      name: 'Taxa de ocorrências',
+      score: crimeScore,
+      rawValue: crimeData.totalOcorrencias12m as number | string,
+      description: `${crimeData.totalOcorrencias12m} ocorrências/12m (${tendenciaLabel})`,
+    })
+
+    score =
+      crimeScore * 0.4 +
+      pmScore * 0.2 +
+      delegaciaScore * 0.15 +
+      bombeirosScore * 0.1 +
+      densityScore * 0.15
+  } else {
+    // Without crime data: original weights (retrocompatible)
+    score =
+      pmScore * 0.35 +
+      delegaciaScore * 0.25 +
+      bombeirosScore * 0.2 +
+      densityScore * 0.2
+  }
 
   return {
     category: 'seguranca',
     score: Math.round(score),
-    factors: [
-      {
-        name: 'PM/Guarda mais próxima',
-        score: pmScore,
-        rawValue: nearestPm ? Math.round(pmDistance) : 'N/A',
-        description: nearestPm
-          ? `${nearestPm.facility.name} a ${Math.round(pmDistance)}m`
-          : 'Nenhuma PM/Guarda encontrada',
-      },
-      {
-        name: 'Delegacia mais próxima',
-        score: delegaciaScore,
-        rawValue: nearestDelegacia ? Math.round(delegaciaDistance) : 'N/A',
-        description: nearestDelegacia
-          ? `${nearestDelegacia.facility.name} a ${Math.round(delegaciaDistance)}m`
-          : 'Nenhuma delegacia encontrada',
-      },
-      {
-        name: 'Bombeiros mais próximo',
-        score: bombeirosScore,
-        rawValue: nearestBombeiros ? Math.round(bombeirosDistance) : 'N/A',
-        description: nearestBombeiros
-          ? `${nearestBombeiros.facility.name} a ${Math.round(bombeirosDistance)}m`
-          : 'Nenhum corpo de bombeiros encontrado',
-      },
-      {
-        name: 'Densidade de segurança (2km)',
-        score: densityScore,
-        rawValue: density,
-        description: `${density} unidade(s) de segurança em 2km`,
-      },
-    ],
+    factors,
   }
 }

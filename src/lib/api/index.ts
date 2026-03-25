@@ -1,3 +1,4 @@
+export { fetchCrimeData } from './crime-data'
 export {
   fetchAllServices,
   fetchBairros,
