@@ -21,10 +21,10 @@ const NEAREST_THRESHOLDS: [number, number][] = [
 ]
 
 function scoreCoverage(percentage: number): number {
-  if (percentage > 15) return 100
-  if (percentage > 10) return 80
-  if (percentage > 5) return 55
-  if (percentage > 1) return 30
+  if (percentage >= 15) return 100
+  if (percentage >= 10) return 80
+  if (percentage >= 5) return 55
+  if (percentage >= 1) return 30
   return 5
 }
 

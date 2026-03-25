@@ -24,54 +24,49 @@ export function useScores() {
   const isLoading = bairrosLoading || servicesLoading
   const error = bairrosError || servicesError
 
-  // Track previous inputs to avoid recomputing when references are identical
-  const prevInputsRef = useRef<{
-    bairrosLen: number
-    servicesKeys: string
-    greenAreasLen: number
-    busLinesLen: number
-  }>({ bairrosLen: 0, servicesKeys: '', greenAreasLen: 0, busLinesLen: 0 })
+  const prevFingerprintRef = useRef('')
   const prevScoresRef = useRef<BairroScore[]>([])
 
   const scores = useMemo(() => {
+    // CRITICAL: Wait for ALL data to load before computing scores.
+    // Computing with partial data (empty greenAreas/busLines) produces
+    // wrong scores that get cached and persist across navigation.
+    if (isLoading) return prevScoresRef.current
     if (bairros.length === 0 || Object.keys(services).length === 0) return []
 
-    // Build a fingerprint from data lengths to detect actual changes
-    const servicesKeys = Object.entries(services)
-      .map(([k, v]) => `${k}:${v.length}`)
-      .join(',')
-    const inputs = {
-      bairrosLen: bairros.length,
-      servicesKeys,
-      greenAreasLen: greenAreas.length,
-      busLinesLen: busLines.length,
-    }
+    // Build fingerprint that includes ALL data sources
+    const fingerprint = [
+      `b:${bairros.length}`,
+      ...Object.entries(services).map(([k, v]) => `${k}:${v.length}`),
+      `g:${greenAreas.length}`,
+      `l:${busLines.length}`,
+    ].join('|')
 
-    const prev = prevInputsRef.current
+    // Skip recomputation if fingerprint unchanged
     if (
-      prev.bairrosLen === inputs.bairrosLen &&
-      prev.servicesKeys === inputs.servicesKeys &&
-      prev.greenAreasLen === inputs.greenAreasLen &&
-      prev.busLinesLen === inputs.busLinesLen &&
+      fingerprint === prevFingerprintRef.current &&
       prevScoresRef.current.length > 0
     ) {
       return prevScoresRef.current
     }
 
-    // Try reading from localStorage cache first (survives page navigation)
-    const cached = cacheGet<BairroScore[]>('scores')
+    // Try localStorage cache with fingerprint validation
+    const cacheKey = `scores:${fingerprint}`
+    const cached = cacheGet<BairroScore[]>(cacheKey)
     if (cached && cached.length === bairros.length) {
-      prevInputsRef.current = inputs
+      prevFingerprintRef.current = fingerprint
       prevScoresRef.current = cached
       return cached
     }
 
     const computed = calculateAllScores(bairros, services, greenAreas, busLines)
+    cacheSet(cacheKey, computed)
+    // Also save under generic key for quick navigation reads
     cacheSet('scores', computed)
-    prevInputsRef.current = inputs
+    prevFingerprintRef.current = fingerprint
     prevScoresRef.current = computed
     return computed
-  }, [bairros, services, greenAreas, busLines])
+  }, [bairros, services, greenAreas, busLines, isLoading])
 
   const cityAverage = useMemo(() => {
     if (scores.length === 0) return null
