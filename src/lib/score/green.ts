@@ -67,8 +67,10 @@ function calculateCoveragePercentage(
             ? multiPolygon(green.geometry.coordinates)
             : polygon(green.geometry.coordinates)
 
-        const fc = featureCollection([bairroFeature, greenFeature])
-        const intersection = intersect(fc)
+        // biome-ignore lint/suspicious/noExplicitAny: turf type mismatch between Polygon and MultiPolygon features
+        const fc = featureCollection([bairroFeature, greenFeature] as any[])
+        // biome-ignore lint/suspicious/noExplicitAny: turf type narrowing
+        const intersection = intersect(fc as any)
 
         if (intersection) {
           greenOverlapArea += area(intersection)

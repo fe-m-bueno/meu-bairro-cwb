@@ -85,7 +85,7 @@ export function NeighborhoodLayer({
           weight: 1,
           color: '#374151',
           fillOpacity: 0.6,
-          fillColor: s ? getScoreColor(s.overall) : '#374151',
+          fillColor: s ? getScoreLabel(s.overall).color : '#374151',
         })
       },
       click: () => {

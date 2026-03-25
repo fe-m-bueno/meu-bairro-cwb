@@ -219,7 +219,10 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
           onChange={(e) => setSearch(e.target.value)}
           className="flex-1 rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:border-emerald-500 focus:outline-none"
         />
-        <Select value={regionalFilter} onValueChange={setRegionalFilter}>
+        <Select
+          value={regionalFilter}
+          onValueChange={(v) => setRegionalFilter(v ?? 'all')}
+        >
           <SelectTrigger className="w-full border-zinc-700 bg-zinc-900 text-zinc-200 sm:w-56">
             <SelectValue placeholder="Todas as regionais" />
           </SelectTrigger>
