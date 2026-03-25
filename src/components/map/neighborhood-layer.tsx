@@ -3,21 +3,13 @@
 import type { Layer, LeafletMouseEvent } from 'leaflet'
 import { useMemo } from 'react'
 import { GeoJSON } from 'react-leaflet'
+import { getScoreLabel } from '@/lib/score/weights'
 import type { Bairro, BairroScore } from '@/lib/types'
 
 interface NeighborhoodLayerProps {
   bairros: Bairro[]
   scores: BairroScore[]
   onSelectBairro: (codigo: string) => void
-}
-
-function getScoreColor(score: number): string {
-  if (score >= 85) return '#10b981'
-  if (score >= 70) return '#22c55e'
-  if (score >= 55) return '#84cc16'
-  if (score >= 40) return '#eab308'
-  if (score >= 25) return '#f97316'
-  return '#ef4444'
 }
 
 export function NeighborhoodLayer({
@@ -58,7 +50,7 @@ export function NeighborhoodLayer({
     const codigo = feature?.properties?.codigo as string | undefined
     const score = codigo ? scoreMap.get(codigo) : undefined
     return {
-      fillColor: score ? getScoreColor(score.overall) : '#374151',
+      fillColor: score ? getScoreLabel(score.overall).color : '#374151',
       fillOpacity: 0.6,
       weight: 1,
       color: '#374151',

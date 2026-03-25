@@ -1,10 +1,9 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useScores } from '@/hooks/use-scores'
 import { getScoreLabel } from '@/lib/score/weights'
-import type { BairroScore } from '@/lib/types'
 
 const CityMap = dynamic(() => import('@/components/map/city-map'), {
   ssr: false,
@@ -19,15 +18,9 @@ export default function HomePage() {
   const { scores, bairros, isLoading, error } = useScores()
   const [selectedBairro, setSelectedBairro] = useState<string | null>(null)
 
-  const scoreMap = useMemo(() => {
-    const map = new Map<string, BairroScore>()
-    for (const score of scores) {
-      map.set(score.bairroCode, score)
-    }
-    return map
-  }, [scores])
-
-  const selectedScore = selectedBairro ? scoreMap.get(selectedBairro) : null
+  const selectedScore = selectedBairro
+    ? (scores.find((s) => s.bairroCode === selectedBairro) ?? null)
+    : null
   const selectedBairroData = selectedBairro
     ? bairros.find((b) => b.codigo === selectedBairro)
     : null
