@@ -231,13 +231,31 @@ export default function MetodologiaPage() {
               Segurança <WeightBadge>17%</WeightBadge>
             </SectionTitle>
             <p className="mb-4">
-              Mede a proximidade a Polícia Militar, Guarda Municipal, delegacias
+              Combina <strong className="text-zinc-100">dados reais de ocorrências</strong>{' '}
+              da Guarda Municipal com a proximidade a Polícia Militar, delegacias
               e Corpo de Bombeiros.
             </p>
+            <div className="mb-4 rounded-lg border border-emerald-900/50 bg-emerald-950/30 px-4 py-3 text-xs text-emerald-300">
+              <strong>Fonte de dados:</strong> SiGesGuarda — Guarda Municipal de Curitiba
+              (dados abertos, licença CC BY 4.0). As ocorrências são ponderadas por gravidade:
+              crimes contra pessoa (peso 3×), contra patrimônio (2×), perturbação (1×),
+              trânsito e outros (0,5×). O score é calculado por percentil entre os 75 bairros.
+            </div>
             <ThresholdTable
               rows={[
                 {
-                  factor: 'PM / Guarda Municipal mais próximo (peso 35%)',
+                  factor: 'Taxa de ocorrências — percentil (peso 40%)',
+                  thresholds: [
+                    ['Menor 10% (mais seguro)', '100'],
+                    ['10–25%', '85'],
+                    ['25–50%', '65'],
+                    ['50–75%', '40'],
+                    ['75–90%', '20'],
+                    ['Maior 90% (mais perigoso)', '5'],
+                  ],
+                },
+                {
+                  factor: 'PM / Guarda Municipal mais próximo (peso 20%)',
                   thresholds: [
                     ['< 1 km', '100'],
                     ['< 2 km', '70'],
@@ -246,7 +264,7 @@ export default function MetodologiaPage() {
                   ],
                 },
                 {
-                  factor: 'Delegacia mais próxima (peso 25%)',
+                  factor: 'Delegacia mais próxima (peso 15%)',
                   thresholds: [
                     ['< 2 km', '100'],
                     ['< 3 km', '70'],
@@ -255,7 +273,7 @@ export default function MetodologiaPage() {
                   ],
                 },
                 {
-                  factor: 'Bombeiros mais próximos (peso 20%)',
+                  factor: 'Bombeiros mais próximos (peso 10%)',
                   thresholds: [
                     ['< 2 km', '100'],
                     ['< 3 km', '70'],
@@ -264,7 +282,7 @@ export default function MetodologiaPage() {
                   ],
                 },
                 {
-                  factor: 'Densidade — unidades em 2 km (peso 20%)',
+                  factor: 'Densidade — unidades em 2 km (peso 15%)',
                   thresholds: [
                     ['≥ 4', '100'],
                     ['3', '75'],
@@ -275,6 +293,11 @@ export default function MetodologiaPage() {
                 },
               ]}
             />
+            <p className="mt-3 text-xs text-zinc-500">
+              Limitação: os dados cobrem apenas ocorrências atendidas pela Guarda Municipal.
+              Boletins de ocorrência da Polícia Militar e Polícia Civil não estão incluídos
+              por falta de dados públicos com granularidade por bairro.
+            </p>
           </section>
 
           {/* Transporte */}
@@ -514,6 +537,20 @@ export default function MetodologiaPage() {
                 </a>
               </li>
               <li>
+                <strong className="text-zinc-100">
+                  Ocorrências — Guarda Municipal (segurança):
+                </strong>{' '}
+                SiGesGuarda — Dados Abertos de Curitiba (CC BY 4.0).{' '}
+                <a
+                  href="https://dadosabertos.curitiba.pr.gov.br/conjuntodado/detalhe?chave=b16ead9d-835e-41e8-a4d7-dcc4f2b4b627"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-emerald-400 hover:underline"
+                >
+                  Portal de Dados Abertos
+                </a>
+              </li>
+              <li>
                 <strong className="text-zinc-100">Geocodificação:</strong>{' '}
                 <a
                   href="https://nominatim.openstreetmap.org"
@@ -555,9 +592,15 @@ export default function MetodologiaPage() {
                 imediatamente.
               </li>
               <li>
+                Os dados de ocorrências do score de Segurança cobrem apenas a
+                Guarda Municipal (SiGesGuarda). Ocorrências registradas pela PM
+                e Polícia Civil não estão disponíveis publicamente com
+                granularidade por bairro.
+              </li>
+              <li>
                 Fatores subjetivos de qualidade de vida — custo do aluguel,
-                criminalidade, poluição sonora, calçadas — não são incluídos por
-                falta de dados públicos estruturados.
+                poluição sonora, calçadas — não são incluídos por falta de dados
+                públicos estruturados.
               </li>
               <li>
                 O score de <em>Diversidade</em> mede presença/ausência de

@@ -10,7 +10,8 @@
     "format": "biome format --write .",
     "check": "biome check --write .",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "update-crime-data": "tsx scripts/process-sigesguarda.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
@@ -40,6 +41,7 @@
     "@types/react-dom": "^19",
     "@vitejs/plugin-react": "^6.0.1",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5",
     "vitest": "^4.1.1"
   }

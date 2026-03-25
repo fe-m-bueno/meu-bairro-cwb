@@ -1,6 +1,7 @@
 import { calculateCentroid } from '@/lib/geo/centroid'
 import type {
   Bairro,
+  BairroCrimeData,
   BairroScore,
   BusLine,
   CategoryKey,
@@ -23,13 +24,18 @@ export function calculateBairroScore(
   greenAreas: GreenArea[],
   busLines: BusLine[],
   greenCentroids?: Map<string, [number, number]>,
+  crimeData?: BairroCrimeData,
 ): BairroScore {
   const centroid = bairro.centroid ?? calculateCentroid(bairro.geometry)
 
   const categories: Record<CategoryKey, CategoryScore> = {
     saude: calculateHealthScore(centroid, services.saude ?? []),
     educacao: calculateEducationScore(centroid, services.educacao ?? []),
-    seguranca: calculateSafetyScore(centroid, services.seguranca ?? []),
+    seguranca: calculateSafetyScore(
+      centroid,
+      services.seguranca ?? [],
+      crimeData,
+    ),
     transporte: calculateTransportScore(
       centroid,
       services.transporte ?? [],
@@ -70,13 +76,30 @@ export function calculateAllScores(
   services: Record<string, ServiceFacility[]>,
   greenAreas: GreenArea[],
   busLines: BusLine[],
+  crimeDataList?: BairroCrimeData[],
 ): BairroScore[] {
   // Pre-compute green area centroids once for all bairros
   const greenCentroids = precomputeGreenCentroids(greenAreas)
 
-  const scores = bairros.map((b) =>
-    calculateBairroScore(b, services, greenAreas, busLines, greenCentroids),
-  )
+  // Build a lookup map for crime data by bairro name (case-insensitive)
+  const crimeMap = new Map<string, BairroCrimeData>()
+  if (crimeDataList) {
+    for (const cd of crimeDataList) {
+      crimeMap.set(cd.bairro.toLowerCase(), cd)
+    }
+  }
+
+  const scores = bairros.map((b) => {
+    const crimeData = crimeMap.get(b.nome.toLowerCase())
+    return calculateBairroScore(
+      b,
+      services,
+      greenAreas,
+      busLines,
+      greenCentroids,
+      crimeData,
+    )
+  })
 
   scores.sort((a, b) => b.overall - a.overall)
 
