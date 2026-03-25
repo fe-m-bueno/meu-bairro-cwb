@@ -36,68 +36,26 @@ function scoreCount(count: number): number {
   return 0
 }
 
-function calculateCoveragePercentage(
-  bairroGeometry: GeoJSON.Polygon | GeoJSON.MultiPolygon,
+/**
+ * Estimate green coverage using a proximity heuristic instead of expensive
+ * Turf.js polygon intersections. Counts green areas whose centroid falls
+ * within 1km of the bairro centroid and scales by density. This avoids
+ * blocking the main thread with O(n²) polygon boolean operations.
+ */
+function estimateCoveragePercentage(
   bairroCentroid: [number, number],
   greenAreas: GreenArea[],
   greenCentroids: Map<string, [number, number]>,
 ): number {
-  try {
-    // Dynamic imports are not ideal in sync functions, so we use require
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const { polygon, multiPolygon, featureCollection } =
-      require('@turf/helpers') as typeof import('@turf/helpers')
-    const { default: intersect } =
-      require('@turf/intersect') as typeof import('@turf/intersect')
-    const { default: area } =
-      require('@turf/area') as typeof import('@turf/area')
-
-    const bairroFeature =
-      bairroGeometry.type === 'MultiPolygon'
-        ? multiPolygon(bairroGeometry.coordinates)
-        : polygon(bairroGeometry.coordinates)
-
-    const bairroArea = area(bairroFeature)
-    if (bairroArea === 0) return 0
-
-    let greenOverlapArea = 0
-
-    for (const green of greenAreas) {
-      try {
-        // Skip green areas whose centroid is >5km from bairro centroid (quick filter)
-        const gc = greenCentroids.get(green.id)
-        if (gc) {
-          const dist = haversine(
-            bairroCentroid[0],
-            bairroCentroid[1],
-            gc[0],
-            gc[1],
-          )
-          if (dist > 5000) continue
-        }
-
-        const greenFeature =
-          green.geometry.type === 'MultiPolygon'
-            ? multiPolygon(green.geometry.coordinates)
-            : polygon(green.geometry.coordinates)
-
-        // biome-ignore lint/suspicious/noExplicitAny: turf type mismatch between Polygon and MultiPolygon features
-        const fc = featureCollection([bairroFeature, greenFeature] as any[])
-        // biome-ignore lint/suspicious/noExplicitAny: turf type narrowing
-        const intersection = intersect(fc as any)
-
-        if (intersection) {
-          greenOverlapArea += area(intersection)
-        }
-      } catch {
-        // Skip invalid geometries
-      }
-    }
-
-    return (greenOverlapArea / bairroArea) * 100
-  } catch {
-    return 0
+  let nearbyCount = 0
+  for (const green of greenAreas) {
+    const gc = greenCentroids.get(green.id)
+    if (!gc) continue
+    const dist = haversine(bairroCentroid[0], bairroCentroid[1], gc[0], gc[1])
+    if (dist <= 1000) nearbyCount++
   }
+  // Heuristic: each nearby green area contributes ~5% coverage, capped at 25%
+  return Math.min(nearbyCount * 5, 25)
 }
 
 /**
@@ -121,7 +79,7 @@ export function precomputeGreenCentroids(
 export function calculateGreenScore(
   centroid: [number, number],
   greenAreas: GreenArea[],
-  bairroGeometry: GeoJSON.Polygon | GeoJSON.MultiPolygon,
+  _bairroGeometry?: GeoJSON.Polygon | GeoJSON.MultiPolygon,
   greenCentroids?: Map<string, [number, number]>,
 ): CategoryScore {
   // Use pre-computed centroids if available, otherwise compute on the fly
@@ -143,8 +101,7 @@ export function calculateGreenScore(
     if (dist <= 2000) countWithin2km++
   }
 
-  const coveragePercentage = calculateCoveragePercentage(
-    bairroGeometry,
+  const coveragePercentage = estimateCoveragePercentage(
     centroid,
     greenAreas,
     centroids,

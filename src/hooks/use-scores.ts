@@ -1,7 +1,7 @@
 'use client'
 
 import { useMemo, useRef } from 'react'
-import { cacheSet } from '@/lib/cache'
+import { cacheGet, cacheSet } from '@/lib/cache'
 import { calculateAllScores } from '@/lib/score'
 import type { BairroScore, CategoryKey } from '@/lib/types'
 import { useBairros } from './use-bairros'
@@ -56,6 +56,14 @@ export function useScores() {
       prevScoresRef.current.length > 0
     ) {
       return prevScoresRef.current
+    }
+
+    // Try reading from localStorage cache first (survives page navigation)
+    const cached = cacheGet<BairroScore[]>('scores')
+    if (cached && cached.length === bairros.length) {
+      prevInputsRef.current = inputs
+      prevScoresRef.current = cached
+      return cached
     }
 
     const computed = calculateAllScores(bairros, services, greenAreas, busLines)
