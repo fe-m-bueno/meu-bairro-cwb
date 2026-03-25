@@ -60,6 +60,9 @@ export default function CityMap({
       center={CURITIBA_CENTER}
       zoom={DEFAULT_ZOOM}
       zoomControl={false}
+      scrollWheelZoom={true}
+      dragging={true}
+      doubleClickZoom={true}
       className="h-full w-full"
     >
       <TileLayer
