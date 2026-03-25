@@ -128,3 +128,18 @@
     @apply font-sans;
   }
 }
+
+/* Leaflet overrides for dark theme */
+.leaflet-container {
+  background: #1a1a2e;
+}
+
+.leaflet-tooltip {
+  background: #18181b;
+  border-color: #3f3f46;
+  color: #fafafa;
+}
+
+.leaflet-tooltip-top::before {
+  border-top-color: #18181b;
+}
