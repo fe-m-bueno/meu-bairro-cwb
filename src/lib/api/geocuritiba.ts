@@ -194,21 +194,33 @@ export async function fetchAllServices(
 
   const result: Record<string, ServiceFacility[]> = {}
 
-  const categoryEntries = Object.entries(SERVICE_LAYERS)
+  // Flatten all layers across all categories into a single task list
+  const allTasks: {
+    category: string
+    task: () => Promise<ServiceFacility[]>
+  }[] = []
+  for (const [category, layers] of Object.entries(SERVICE_LAYERS)) {
+    for (const l of layers) {
+      allTasks.push({
+        category,
+        task: () => fetchCategoryLayer(category, l, signal),
+      })
+    }
+  }
 
-  // Fetch categories sequentially; within each category, batch layers in groups of 3
-  for (const [category, layers] of categoryEntries) {
-    if (signal?.aborted) break
-    const tasks = layers.map(
-      (l) => () => fetchCategoryLayer(category, l, signal),
-    )
-    const layerResults = await batchSettled(tasks, 3)
-    result[category] = layerResults
-      .filter(
-        (r): r is PromiseFulfilledResult<ServiceFacility[]> =>
-          r.status === 'fulfilled',
-      )
-      .flatMap((r) => r.value)
+  // Run all layer fetches in parallel batches of 5
+  const batchResults = await batchSettled(
+    allTasks.map((t) => t.task),
+    5,
+  )
+
+  for (let i = 0; i < batchResults.length; i++) {
+    const r = batchResults[i]
+    const { category } = allTasks[i]
+    if (r.status === 'fulfilled') {
+      if (!result[category]) result[category] = []
+      result[category].push(...r.value)
+    }
   }
 
   cacheSet('services', result)
@@ -225,10 +237,12 @@ export async function fetchGreenAreas(
   const cached = cacheGet<GreenArea[]>('greenAreas')
   if (cached) return cached
 
-  const tasks = GREEN_AREA_LAYERS.map((layerId) =>
-    fetchAllFeatures(CONSERVACAO_URL, layerId, signal),
+  const results = await batchSettled(
+    GREEN_AREA_LAYERS.map(
+      (layerId) => () => fetchAllFeatures(CONSERVACAO_URL, layerId, signal),
+    ),
+    5,
   )
-  const results = await Promise.allSettled(tasks)
 
   const areas: GreenArea[] = []
   for (let i = 0; i < results.length; i++) {
