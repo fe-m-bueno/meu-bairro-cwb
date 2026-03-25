@@ -2,23 +2,42 @@
 
 import 'leaflet/dist/leaflet.css'
 
-import { MapContainer, TileLayer } from 'react-leaflet'
-import type { Bairro, BairroScore } from '@/lib/types'
+import { useEffect } from 'react'
+import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import type { Bairro, BairroScore, ServiceFacility } from '@/lib/types'
 import { NeighborhoodLayer } from './neighborhood-layer'
+import { RadiusRings } from './radius-rings'
+import { ServiceMarkers } from './service-markers'
 
 interface CityMapProps {
   bairros: Bairro[]
   scores: BairroScore[]
+  services: Record<string, ServiceFacility[]>
   onSelectBairro: (codigo: string) => void
+  searchedPoint: [number, number] | null
+  visibleLayers: Set<string>
 }
 
 const CURITIBA_CENTER: [number, number] = [-25.4284, -49.2733]
 const DEFAULT_ZOOM = 12
 
+function FlyTo({ center }: { center: [number, number] | null }) {
+  const map = useMap()
+  useEffect(() => {
+    if (center) {
+      map.flyTo(center, 15, { duration: 1.5 })
+    }
+  }, [center, map])
+  return null
+}
+
 export default function CityMap({
   bairros,
   scores,
+  services,
   onSelectBairro,
+  searchedPoint,
+  visibleLayers,
 }: CityMapProps) {
   return (
     <MapContainer
@@ -38,6 +57,9 @@ export default function CityMap({
           onSelectBairro={onSelectBairro}
         />
       )}
+      <ServiceMarkers services={services} visibleLayers={visibleLayers} />
+      {searchedPoint && <RadiusRings center={searchedPoint} />}
+      <FlyTo center={searchedPoint} />
     </MapContainer>
   )
 }

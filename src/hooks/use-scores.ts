@@ -55,5 +55,5 @@ export function useScores() {
     return avg
   }, [scores])
 
-  return { scores, cityAverage, bairros, isLoading, error }
+  return { scores, cityAverage, bairros, services, isLoading, error }
 }
