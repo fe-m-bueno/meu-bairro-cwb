@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { ThemeProvider } from 'next-themes'
 import { Header } from '@/components/layout/header'
 import './globals.css'
 
@@ -20,10 +21,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="pt-BR" className={`dark ${inter.variable}`}>
-      <body className="min-h-screen bg-zinc-950 font-sans antialiased">
-        <Header />
-        <main className="pt-14">{children}</main>
+    <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
+      <body className="min-h-screen bg-zinc-950 font-sans antialiased dark:bg-zinc-950">
+        <ThemeProvider attribute="class" defaultTheme="dark">
+          <Header />
+          <main className="pt-14">{children}</main>
+        </ThemeProvider>
       </body>
     </html>
   )
