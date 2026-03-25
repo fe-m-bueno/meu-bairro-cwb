@@ -12,6 +12,17 @@ import {
 } from './layers'
 
 // ---------------------------------------------------------------------------
+// Proxy helper — routes through Next.js API route in the browser to avoid CORS
+// ---------------------------------------------------------------------------
+
+async function proxyFetch(url: string): Promise<Response> {
+  if (typeof window !== 'undefined') {
+    return fetch(`/api/proxy?url=${encodeURIComponent(url)}`)
+  }
+  return fetch(url)
+}
+
+// ---------------------------------------------------------------------------
 // ArcGIS query URL builder
 // ---------------------------------------------------------------------------
 
@@ -50,7 +61,7 @@ export async function fetchAllFeatures(
 
   while (true) {
     const url = buildQueryUrl(baseUrl, layerId, offset)
-    const res = await fetch(url)
+    const res = await proxyFetch(url)
     if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`)
     const data: GeoJSONResponse = await res.json()
     if (data.features?.length) {
