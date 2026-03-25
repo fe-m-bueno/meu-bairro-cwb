@@ -10,10 +10,21 @@ export function useBairros() {
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    fetchBairros()
-      .then(setBairros)
-      .catch(setError)
-      .finally(() => setIsLoading(false))
+    const controller = new AbortController()
+    const { signal } = controller
+
+    fetchBairros(signal)
+      .then((data) => {
+        if (!signal.aborted) setBairros(data)
+      })
+      .catch((e) => {
+        if (!signal.aborted) setError(e)
+      })
+      .finally(() => {
+        if (!signal.aborted) setIsLoading(false)
+      })
+
+    return () => controller.abort()
   }, [])
 
   return { bairros, isLoading, error }

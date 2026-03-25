@@ -143,7 +143,7 @@ function HomeContent() {
       )}
 
       {compareMode && !compareBairro && (
-        <div className="absolute top-16 left-1/2 z-30 -translate-x-1/2 rounded-lg border border-emerald-700 bg-zinc-900/95 px-4 py-2.5 shadow-lg backdrop-blur-sm">
+        <div className="pointer-events-auto absolute top-16 left-1/2 z-30 -translate-x-1/2 rounded-lg border border-emerald-700 bg-zinc-900/95 px-4 py-2.5 shadow-lg backdrop-blur-sm">
           <div className="flex items-center gap-3">
             <p className="text-sm text-zinc-200">
               Clique em outro bairro para comparar

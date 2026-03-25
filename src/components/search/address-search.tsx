@@ -79,7 +79,7 @@ export function AddressSearch({ onSelect, onClear }: AddressSearchProps) {
   return (
     <div
       ref={containerRef}
-      className="absolute top-4 left-1/2 z-[1000] w-full max-w-[400px] -translate-x-1/2 px-4"
+      className="pointer-events-auto absolute top-4 left-1/2 z-[1000] w-full max-w-[400px] -translate-x-1/2 px-4"
     >
       <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center">

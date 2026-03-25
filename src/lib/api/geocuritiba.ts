@@ -15,11 +15,14 @@ import {
 // Proxy helper — routes through Next.js API route in the browser to avoid CORS
 // ---------------------------------------------------------------------------
 
-async function proxyFetch(url: string): Promise<Response> {
+async function proxyFetch(
+  url: string,
+  signal?: AbortSignal,
+): Promise<Response> {
   if (typeof window !== 'undefined') {
-    return fetch(`/api/proxy?url=${encodeURIComponent(url)}`)
+    return fetch(`/api/proxy?url=${encodeURIComponent(url)}`, { signal })
   }
-  return fetch(url)
+  return fetch(url, { signal })
 }
 
 // ---------------------------------------------------------------------------
@@ -52,23 +55,27 @@ interface GeoJSONResponse {
   exceededTransferLimit?: boolean
 }
 
+const MAX_PAGES = 50
+
 export async function fetchAllFeatures(
   baseUrl: string,
   layerId: number,
+  signal?: AbortSignal,
 ): Promise<GeoJSON.Feature[]> {
   const features: GeoJSON.Feature[] = []
   let offset = 0
 
-  while (true) {
+  for (let page = 0; page < MAX_PAGES; page++) {
     const url = buildQueryUrl(baseUrl, layerId, offset)
-    const res = await proxyFetch(url)
+    const res = await proxyFetch(url, signal)
     if (!res.ok) throw new Error(`HTTP ${res.status} fetching ${url}`)
     const data: GeoJSONResponse = await res.json()
-    if (data.features?.length) {
-      features.push(...data.features)
-    }
+    if (!data.features?.length) break
+    features.push(...data.features)
     if (!data.exceededTransferLimit) break
-    offset += data.features.length
+    const newOffset = offset + data.features.length
+    if (newOffset === offset) break
+    offset = newOffset
   }
 
   return features
@@ -78,11 +85,15 @@ export async function fetchAllFeatures(
 // Bairros
 // ---------------------------------------------------------------------------
 
-export async function fetchBairros(): Promise<Bairro[]> {
+export async function fetchBairros(signal?: AbortSignal): Promise<Bairro[]> {
   const cached = cacheGet<Bairro[]>('bairros')
   if (cached) return cached
 
-  const features = await fetchAllFeatures(MAPA_CADASTRAL_URL, BAIRROS_LAYER_ID)
+  const features = await fetchAllFeatures(
+    MAPA_CADASTRAL_URL,
+    BAIRROS_LAYER_ID,
+    signal,
+  )
 
   const bairros: Bairro[] = features
     .filter(
@@ -147,8 +158,13 @@ export function featureToFacility(
 export async function fetchCategoryLayer(
   category: string,
   layerDef: LayerDef,
+  signal?: AbortSignal,
 ): Promise<ServiceFacility[]> {
-  const features = await fetchAllFeatures(layerDef.baseUrl, layerDef.layerId)
+  const features = await fetchAllFeatures(
+    layerDef.baseUrl,
+    layerDef.layerId,
+    signal,
+  )
   return features
     .map((f) =>
       featureToFacility(f, category, layerDef.subcategory, layerDef.layerId),
@@ -156,33 +172,43 @@ export async function fetchCategoryLayer(
     .filter((f): f is ServiceFacility => f !== null)
 }
 
-export async function fetchAllServices(): Promise<
-  Record<string, ServiceFacility[]>
-> {
+// Process an array of promises in batches of `size`
+async function batchSettled<T>(
+  tasks: (() => Promise<T>)[],
+  size: number,
+): Promise<PromiseSettledResult<T>[]> {
+  const results: PromiseSettledResult<T>[] = []
+  for (let i = 0; i < tasks.length; i += size) {
+    const batch = tasks.slice(i, i + size)
+    const batchResults = await Promise.allSettled(batch.map((fn) => fn()))
+    results.push(...batchResults)
+  }
+  return results
+}
+
+export async function fetchAllServices(
+  signal?: AbortSignal,
+): Promise<Record<string, ServiceFacility[]>> {
   const cached = cacheGet<Record<string, ServiceFacility[]>>('services')
   if (cached) return cached
 
   const result: Record<string, ServiceFacility[]> = {}
 
   const categoryEntries = Object.entries(SERVICE_LAYERS)
-  const promises = categoryEntries.map(async ([category, layers]) => {
-    const layerResults = await Promise.allSettled(
-      layers.map((l) => fetchCategoryLayer(category, l)),
+
+  // Fetch categories sequentially; within each category, batch layers in groups of 3
+  for (const [category, layers] of categoryEntries) {
+    if (signal?.aborted) break
+    const tasks = layers.map(
+      (l) => () => fetchCategoryLayer(category, l, signal),
     )
-    const facilities = layerResults
+    const layerResults = await batchSettled(tasks, 3)
+    result[category] = layerResults
       .filter(
         (r): r is PromiseFulfilledResult<ServiceFacility[]> =>
           r.status === 'fulfilled',
       )
       .flatMap((r) => r.value)
-    return { category, facilities }
-  })
-
-  const results = await Promise.allSettled(promises)
-  for (const r of results) {
-    if (r.status === 'fulfilled') {
-      result[r.value.category] = r.value.facilities
-    }
   }
 
   cacheSet('services', result)
@@ -193,12 +219,14 @@ export async function fetchAllServices(): Promise<
 // Green areas
 // ---------------------------------------------------------------------------
 
-export async function fetchGreenAreas(): Promise<GreenArea[]> {
+export async function fetchGreenAreas(
+  signal?: AbortSignal,
+): Promise<GreenArea[]> {
   const cached = cacheGet<GreenArea[]>('greenAreas')
   if (cached) return cached
 
   const tasks = GREEN_AREA_LAYERS.map((layerId) =>
-    fetchAllFeatures(CONSERVACAO_URL, layerId),
+    fetchAllFeatures(CONSERVACAO_URL, layerId, signal),
   )
   const results = await Promise.allSettled(tasks)
 
@@ -233,12 +261,12 @@ export async function fetchGreenAreas(): Promise<GreenArea[]> {
 // Bus lines
 // ---------------------------------------------------------------------------
 
-export async function fetchBusLines(): Promise<BusLine[]> {
+export async function fetchBusLines(signal?: AbortSignal): Promise<BusLine[]> {
   const cached = cacheGet<BusLine[]>('busLines')
   if (cached) return cached
 
   // Layer 2 = bus route lines (LineString / MultiLineString geometries)
-  const features = await fetchAllFeatures(TRANSPORTE_URL, 2)
+  const features = await fetchAllFeatures(TRANSPORTE_URL, 2, signal)
 
   const lines: BusLine[] = []
   for (const f of features) {

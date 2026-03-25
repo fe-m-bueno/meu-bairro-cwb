@@ -38,7 +38,9 @@ function scoreCount(count: number): number {
 
 function calculateCoveragePercentage(
   bairroGeometry: GeoJSON.Polygon | GeoJSON.MultiPolygon,
+  bairroCentroid: [number, number],
   greenAreas: GreenArea[],
+  greenCentroids: Map<string, [number, number]>,
 ): number {
   try {
     // Dynamic imports are not ideal in sync functions, so we use require
@@ -62,6 +64,18 @@ function calculateCoveragePercentage(
 
     for (const green of greenAreas) {
       try {
+        // Skip green areas whose centroid is >5km from bairro centroid (quick filter)
+        const gc = greenCentroids.get(green.id)
+        if (gc) {
+          const dist = haversine(
+            bairroCentroid[0],
+            bairroCentroid[1],
+            gc[0],
+            gc[1],
+          )
+          if (dist > 5000) continue
+        }
+
         const greenFeature =
           green.geometry.type === 'MultiPolygon'
             ? multiPolygon(green.geometry.coordinates)
@@ -86,24 +100,42 @@ function calculateCoveragePercentage(
   }
 }
 
+/**
+ * Pre-compute centroids for all green areas once.
+ * Call this once and pass the result to calculateGreenScore for each bairro.
+ */
+export function precomputeGreenCentroids(
+  greenAreas: GreenArea[],
+): Map<string, [number, number]> {
+  const centroids = new Map<string, [number, number]>()
+  for (const green of greenAreas) {
+    try {
+      centroids.set(green.id, calculateCentroid(green.geometry))
+    } catch {
+      // skip invalid geometry
+    }
+  }
+  return centroids
+}
+
 export function calculateGreenScore(
   centroid: [number, number],
   greenAreas: GreenArea[],
   bairroGeometry: GeoJSON.Polygon | GeoJSON.MultiPolygon,
+  greenCentroids?: Map<string, [number, number]>,
 ): CategoryScore {
+  // Use pre-computed centroids if available, otherwise compute on the fly
+  const centroids = greenCentroids ?? precomputeGreenCentroids(greenAreas)
+
   // Find nearest green area by centroid distance
   let nearestDistance = Number.POSITIVE_INFINITY
   let nearestName = ''
   let countWithin2km = 0
 
   for (const green of greenAreas) {
-    const greenCentroid = calculateCentroid(green.geometry)
-    const dist = haversine(
-      centroid[0],
-      centroid[1],
-      greenCentroid[0],
-      greenCentroid[1],
-    )
+    const gc = centroids.get(green.id)
+    if (!gc) continue
+    const dist = haversine(centroid[0], centroid[1], gc[0], gc[1])
     if (dist < nearestDistance) {
       nearestDistance = dist
       nearestName = green.name
@@ -113,7 +145,9 @@ export function calculateGreenScore(
 
   const coveragePercentage = calculateCoveragePercentage(
     bairroGeometry,
+    centroid,
     greenAreas,
+    centroids,
   )
 
   const nearestScore =

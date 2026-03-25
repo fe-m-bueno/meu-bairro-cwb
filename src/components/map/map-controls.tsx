@@ -23,7 +23,7 @@ export function MapControls({
 
   return (
     <div
-      className="absolute top-4 right-4 z-[1000] rounded-lg border border-zinc-700 bg-zinc-900 shadow-lg"
+      className="pointer-events-auto absolute top-4 right-4 z-[1000] rounded-lg border border-zinc-700 bg-zinc-900 shadow-lg"
       style={{ minWidth: '180px' }}
     >
       <button

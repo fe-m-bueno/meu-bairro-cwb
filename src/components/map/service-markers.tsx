@@ -16,30 +16,46 @@ const CATEGORY_COLORS: Record<string, string> = {
   cultura: '#ec4899',
 }
 
-const MAX_TRANSPORT_PARADAS = 500
+const MAX_MARKERS_PER_CATEGORY: Record<string, number> = {
+  saude: 200,
+  educacao: 200,
+  seguranca: 100,
+  transporte: 300,
+  cultura: 150,
+}
+
+const MAX_TOTAL_MARKERS = 500
+const DEFAULT_CAP = 100
 
 export function ServiceMarkers({
   services,
   visibleLayers,
 }: ServiceMarkersProps) {
+  // Calculate how many categories are visible and budget markers accordingly
+  const visibleCategories = Object.keys(services).filter((cat) =>
+    visibleLayers.has(cat),
+  )
+
+  let totalBudget = MAX_TOTAL_MARKERS
+  const renderGroups: { category: string; facilities: ServiceFacility[] }[] = []
+
+  for (const category of visibleCategories) {
+    const facilities = services[category] ?? []
+    const categoryCap = MAX_MARKERS_PER_CATEGORY[category] ?? DEFAULT_CAP
+    const cap = Math.min(categoryCap, totalBudget)
+    if (cap <= 0) break
+
+    const capped = facilities.slice(0, cap)
+    renderGroups.push({ category, facilities: capped })
+    totalBudget -= capped.length
+  }
+
   return (
     <>
-      {Object.entries(services).map(([category, facilities]) => {
-        if (!visibleLayers.has(category)) return null
-
+      {renderGroups.map(({ category, facilities }) => {
         const color = CATEGORY_COLORS[category] ?? '#6b7280'
 
-        let renderFacilities = facilities
-        if (category === 'transporte') {
-          const paradas = facilities.filter((f) => f.subcategory === 'Parada')
-          const nonParadas = facilities.filter(
-            (f) => f.subcategory !== 'Parada',
-          )
-          const paradaSubset = paradas.slice(0, MAX_TRANSPORT_PARADAS)
-          renderFacilities = [...nonParadas, ...paradaSubset]
-        }
-
-        return renderFacilities.map((facility) => (
+        return facilities.map((facility) => (
           <CircleMarker
             key={facility.id}
             center={[facility.coordinates[0], facility.coordinates[1]]}

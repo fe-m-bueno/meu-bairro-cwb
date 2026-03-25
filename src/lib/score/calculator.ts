@@ -10,7 +10,7 @@ import type {
 } from '@/lib/types'
 import { calculateCultureScore } from './culture'
 import { calculateEducationScore } from './education'
-import { calculateGreenScore } from './green'
+import { calculateGreenScore, precomputeGreenCentroids } from './green'
 import { calculateHealthScore } from './health'
 import { calculateSafetyScore } from './safety'
 import { calculateTransportScore } from './transport'
@@ -22,6 +22,7 @@ export function calculateBairroScore(
   services: Record<string, ServiceFacility[]>,
   greenAreas: GreenArea[],
   busLines: BusLine[],
+  greenCentroids?: Map<string, [number, number]>,
 ): BairroScore {
   const centroid = bairro.centroid ?? calculateCentroid(bairro.geometry)
 
@@ -35,7 +36,12 @@ export function calculateBairroScore(
       bairro.geometry,
       busLines,
     ),
-    areasVerdes: calculateGreenScore(centroid, greenAreas, bairro.geometry),
+    areasVerdes: calculateGreenScore(
+      centroid,
+      greenAreas,
+      bairro.geometry,
+      greenCentroids,
+    ),
     cultura: calculateCultureScore(centroid, services.cultura ?? []),
     diversidade: calculateVarietyScore(centroid, services, greenAreas),
   }
@@ -65,8 +71,11 @@ export function calculateAllScores(
   greenAreas: GreenArea[],
   busLines: BusLine[],
 ): BairroScore[] {
+  // Pre-compute green area centroids once for all bairros
+  const greenCentroids = precomputeGreenCentroids(greenAreas)
+
   const scores = bairros.map((b) =>
-    calculateBairroScore(b, services, greenAreas, busLines),
+    calculateBairroScore(b, services, greenAreas, busLines, greenCentroids),
   )
 
   scores.sort((a, b) => b.overall - a.overall)

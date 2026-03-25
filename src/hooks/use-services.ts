@@ -14,19 +14,38 @@ export function useServices() {
   const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    Promise.allSettled([fetchAllServices(), fetchGreenAreas(), fetchBusLines()])
-      .then(([svcResult, greenResult, busResult]) => {
-        if (svcResult.status === 'fulfilled') setServices(svcResult.value)
+    const controller = new AbortController()
+    const { signal } = controller
+
+    async function load() {
+      try {
+        // Fetch sequentially to avoid flooding the browser with 37+ parallel requests
+        const svc = await fetchAllServices(signal)
+        setServices(svc)
+
+        const [greenResult, busResult] = await Promise.allSettled([
+          fetchGreenAreas(signal),
+          fetchBusLines(signal),
+        ])
+
         if (greenResult.status === 'fulfilled') setGreenAreas(greenResult.value)
         if (busResult.status === 'fulfilled') setBusLines(busResult.value)
-        if (
-          svcResult.status === 'rejected' &&
-          greenResult.status === 'rejected'
-        ) {
-          setError(new Error('Failed to fetch services'))
+      } catch (e) {
+        if (!signal.aborted) {
+          setError(
+            e instanceof Error ? e : new Error('Failed to fetch services'),
+          )
         }
-      })
-      .finally(() => setIsLoading(false))
+      } finally {
+        if (!signal.aborted) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    load()
+
+    return () => controller.abort()
   }, [])
 
   return { services, greenAreas, busLines, isLoading, error }
