@@ -145,28 +145,37 @@ export async function fetchCategoryLayer(
     .filter((f): f is ServiceFacility => f !== null)
 }
 
-export async function fetchAllServices(): Promise<ServiceFacility[]> {
-  const cached = cacheGet<ServiceFacility[]>('services')
+export async function fetchAllServices(): Promise<
+  Record<string, ServiceFacility[]>
+> {
+  const cached = cacheGet<Record<string, ServiceFacility[]>>('services')
   if (cached) return cached
 
-  const tasks: Promise<ServiceFacility[]>[] = []
-  for (const [category, layers] of Object.entries(SERVICE_LAYERS)) {
-    for (const layerDef of layers) {
-      tasks.push(fetchCategoryLayer(category, layerDef))
+  const result: Record<string, ServiceFacility[]> = {}
+
+  const categoryEntries = Object.entries(SERVICE_LAYERS)
+  const promises = categoryEntries.map(async ([category, layers]) => {
+    const layerResults = await Promise.allSettled(
+      layers.map((l) => fetchCategoryLayer(category, l)),
+    )
+    const facilities = layerResults
+      .filter(
+        (r): r is PromiseFulfilledResult<ServiceFacility[]> =>
+          r.status === 'fulfilled',
+      )
+      .flatMap((r) => r.value)
+    return { category, facilities }
+  })
+
+  const results = await Promise.allSettled(promises)
+  for (const r of results) {
+    if (r.status === 'fulfilled') {
+      result[r.value.category] = r.value.facilities
     }
   }
 
-  const results = await Promise.allSettled(tasks)
-  const facilities: ServiceFacility[] = []
-  for (const result of results) {
-    if (result.status === 'fulfilled') {
-      facilities.push(...result.value)
-    }
-    // rejected promises are silently skipped — partial data is better than nothing
-  }
-
-  cacheSet('services', facilities)
-  return facilities
+  cacheSet('services', result)
+  return result
 }
 
 // ---------------------------------------------------------------------------

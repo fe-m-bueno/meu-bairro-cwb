@@ -48,45 +48,48 @@ describe('calculateVarietyScore', () => {
   })
 
   it('returns 5 with no services', () => {
-    const result = calculateVarietyScore(CENTROID, [], [])
+    const result = calculateVarietyScore(CENTROID, {}, [])
     expect(result.score).toBe(5)
   })
 
   it('returns 100 with all 6 categories present', () => {
-    const facilities: ServiceFacility[] = [
-      makeFacility('saude', 'UBS', -25.4285, -49.2734),
-      makeFacility('educacao', 'Escola Municipal', -25.4285, -49.2734),
-      makeFacility('seguranca', 'Polícia Militar', -25.4285, -49.2734),
-      makeFacility('transporte', 'Parada de Ônibus', -25.4285, -49.2734),
-      makeFacility('cultura', 'Biblioteca', -25.4285, -49.2734),
-    ]
-    const result = calculateVarietyScore(CENTROID, facilities, [
-      makeGreenArea(),
-    ])
+    const services: Record<string, ServiceFacility[]> = {
+      saude: [makeFacility('saude', 'UBS', -25.4285, -49.2734)],
+      educacao: [
+        makeFacility('educacao', 'Escola Municipal', -25.4285, -49.2734),
+      ],
+      seguranca: [
+        makeFacility('seguranca', 'Policia Militar', -25.4285, -49.2734),
+      ],
+      transporte: [makeFacility('transporte', 'Parada', -25.4285, -49.2734)],
+      cultura: [makeFacility('cultura', 'Biblioteca', -25.4285, -49.2734)],
+    }
+    const result = calculateVarietyScore(CENTROID, services, [makeGreenArea()])
     expect(result.score).toBe(100)
   })
 
   it('returns 80 with 5 categories present', () => {
-    const facilities: ServiceFacility[] = [
-      makeFacility('saude', 'UBS', -25.4285, -49.2734),
-      makeFacility('educacao', 'Escola Municipal', -25.4285, -49.2734),
-      makeFacility('seguranca', 'Polícia Militar', -25.4285, -49.2734),
-      makeFacility('transporte', 'Parada de Ônibus', -25.4285, -49.2734),
-    ]
-    const result = calculateVarietyScore(CENTROID, facilities, [
-      makeGreenArea(),
-    ])
+    const services: Record<string, ServiceFacility[]> = {
+      saude: [makeFacility('saude', 'UBS', -25.4285, -49.2734)],
+      educacao: [
+        makeFacility('educacao', 'Escola Municipal', -25.4285, -49.2734),
+      ],
+      seguranca: [
+        makeFacility('seguranca', 'Policia Militar', -25.4285, -49.2734),
+      ],
+      transporte: [makeFacility('transporte', 'Parada', -25.4285, -49.2734)],
+    }
+    const result = calculateVarietyScore(CENTROID, services, [makeGreenArea()])
     expect(result.score).toBe(80)
   })
 
   it('correctly checks distance thresholds', () => {
-    // Health within 2km but education far away (>1.5km = ~0.014 degrees)
-    const facilities: ServiceFacility[] = [
-      makeFacility('saude', 'UBS', -25.4285, -49.2734), // very close
-      makeFacility('educacao', 'Escola Municipal', -25.45, -49.3), // ~3km away
-    ]
-    const result = calculateVarietyScore(CENTROID, facilities, [])
-    // Only health should count
+    const services: Record<string, ServiceFacility[]> = {
+      saude: [makeFacility('saude', 'UBS', -25.4285, -49.2734)],
+      educacao: [makeFacility('educacao', 'Escola Municipal', -25.45, -49.3)],
+    }
+    const result = calculateVarietyScore(CENTROID, services, [])
+    // Only health should count (education is >1.5km away)
     expect(result.score).toBe(5) // 1 category = 5
   })
 })

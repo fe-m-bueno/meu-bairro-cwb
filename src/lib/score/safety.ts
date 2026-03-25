@@ -47,11 +47,11 @@ export function calculateSafetyScore(
   const pmGuarda = facilities.filter(
     (f) =>
       f.category === 'seguranca' &&
-      (f.subcategory === 'Polícia Militar' ||
+      (f.subcategory === 'Policia Militar' ||
         f.subcategory === 'Guarda Municipal'),
   )
   const delegacias = facilities.filter(
-    (f) => f.category === 'seguranca' && f.subcategory === 'Polícia Civil',
+    (f) => f.category === 'seguranca' && f.subcategory === 'Policia Civil',
   )
   const bombeiros = facilities.filter(
     (f) => f.category === 'seguranca' && f.subcategory === 'Corpo de Bombeiros',

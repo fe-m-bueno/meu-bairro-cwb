@@ -14,54 +14,38 @@ function scoreVariety(count: number): number {
 
 export function calculateVarietyScore(
   centroid: [number, number],
-  facilities: ServiceFacility[],
+  services: Record<string, ServiceFacility[]>,
   greenAreas: GreenArea[],
 ): CategoryScore {
   let count = 0
   const checks: string[] = []
 
   // Health within 2km
-  const healthNearby = findWithinRadius(
-    centroid,
-    facilities.filter((f) => f.category === 'saude'),
-    2000,
-  )
+  const healthNearby = findWithinRadius(centroid, services.saude ?? [], 2000)
   if (healthNearby.length > 0) {
     count++
     checks.push('Saúde')
   }
 
   // Education within 1.5km
-  const eduNearby = findWithinRadius(
-    centroid,
-    facilities.filter((f) => f.category === 'educacao'),
-    1500,
-  )
+  const eduNearby = findWithinRadius(centroid, services.educacao ?? [], 1500)
   if (eduNearby.length > 0) {
     count++
     checks.push('Educação')
   }
 
   // Security within 3km
-  const secNearby = findWithinRadius(
-    centroid,
-    facilities.filter((f) => f.category === 'seguranca'),
-    3000,
-  )
+  const secNearby = findWithinRadius(centroid, services.seguranca ?? [], 3000)
   if (secNearby.length > 0) {
     count++
     checks.push('Segurança')
   }
 
   // Transport stops within 500m
-  const transportNearby = findWithinRadius(
-    centroid,
-    facilities.filter(
-      (f) =>
-        f.category === 'transporte' && f.subcategory === 'Parada de Ônibus',
-    ),
-    500,
+  const stops = (services.transporte ?? []).filter(
+    (f) => f.subcategory === 'Parada',
   )
+  const transportNearby = findWithinRadius(centroid, stops, 500)
   if (transportNearby.length > 0) {
     count++
     checks.push('Transporte')
@@ -84,11 +68,7 @@ export function calculateVarietyScore(
   }
 
   // Culture within 2km
-  const cultureNearby = findWithinRadius(
-    centroid,
-    facilities.filter((f) => f.category === 'cultura'),
-    2000,
-  )
+  const cultureNearby = findWithinRadius(centroid, services.cultura ?? [], 2000)
   if (cultureNearby.length > 0) {
     count++
     checks.push('Cultura & Esporte')

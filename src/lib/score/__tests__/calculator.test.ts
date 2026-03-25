@@ -27,7 +27,7 @@ function makeBairro(codigo: string, lat: number, lng: number): Bairro {
 describe('calculateBairroScore', () => {
   it('produces a valid score with empty services', () => {
     const bairro = makeBairro('001', -25.4284, -49.2733)
-    const result = calculateBairroScore(bairro, [], [], [])
+    const result = calculateBairroScore(bairro, {}, [], [])
 
     expect(result.bairroCode).toBe('001')
     expect(result.overall).toBeGreaterThanOrEqual(0)
@@ -39,42 +39,48 @@ describe('calculateBairroScore', () => {
 
   it('produces higher score with nearby facilities', () => {
     const bairro = makeBairro('002', -25.4284, -49.2733)
-    const facilities: ServiceFacility[] = [
-      {
-        id: 'ubs-1',
-        name: 'UBS Centro',
-        category: 'saude',
-        subcategory: 'UBS',
-        coordinates: [-25.4285, -49.2734],
-        layerId: 134,
-      },
-      {
-        id: 'escola-1',
-        name: 'Escola Centro',
-        category: 'educacao',
-        subcategory: 'Escola Municipal',
-        coordinates: [-25.4285, -49.2734],
-        layerId: 80,
-      },
-      {
-        id: 'pm-1',
-        name: 'PM Centro',
-        category: 'seguranca',
-        subcategory: 'Polícia Militar',
-        coordinates: [-25.4285, -49.2734],
-        layerId: 142,
-      },
-    ]
+    const services: Record<string, ServiceFacility[]> = {
+      saude: [
+        {
+          id: 'ubs-1',
+          name: 'UBS Centro',
+          category: 'saude',
+          subcategory: 'UBS',
+          coordinates: [-25.4285, -49.2734],
+          layerId: 134,
+        },
+      ],
+      educacao: [
+        {
+          id: 'escola-1',
+          name: 'Escola Centro',
+          category: 'educacao',
+          subcategory: 'Escola Municipal',
+          coordinates: [-25.4285, -49.2734],
+          layerId: 80,
+        },
+      ],
+      seguranca: [
+        {
+          id: 'pm-1',
+          name: 'PM Centro',
+          category: 'seguranca',
+          subcategory: 'Policia Militar',
+          coordinates: [-25.4285, -49.2734],
+          layerId: 142,
+        },
+      ],
+    }
 
-    const withFacilities = calculateBairroScore(bairro, facilities, [], [])
-    const withoutFacilities = calculateBairroScore(bairro, [], [], [])
+    const withFacilities = calculateBairroScore(bairro, services, [], [])
+    const withoutFacilities = calculateBairroScore(bairro, {}, [], [])
 
     expect(withFacilities.overall).toBeGreaterThan(withoutFacilities.overall)
   })
 
   it('all category scores are between 0 and 100', () => {
     const bairro = makeBairro('003', -25.4284, -49.2733)
-    const result = calculateBairroScore(bairro, [], [], [])
+    const result = calculateBairroScore(bairro, {}, [], [])
 
     for (const cat of Object.values(result.categories)) {
       expect(cat.score).toBeGreaterThanOrEqual(0)
@@ -91,7 +97,7 @@ describe('calculateAllScores', () => {
       makeBairro('C', -25.45, -49.28),
     ]
 
-    const results = calculateAllScores(bairros, [], [], [])
+    const results = calculateAllScores(bairros, {}, [], [])
 
     expect(results).toHaveLength(3)
     expect(results[0].rank).toBe(1)
@@ -109,7 +115,7 @@ describe('calculateAllScores', () => {
       makeBairro('B', -25.5, -49.3),
     ]
 
-    const results = calculateAllScores(bairros, [], [], [])
+    const results = calculateAllScores(bairros, {}, [], [])
 
     // First place should have higher percentile
     expect(results[0].percentile).toBeGreaterThanOrEqual(results[1].percentile)
@@ -117,7 +123,7 @@ describe('calculateAllScores', () => {
 
   it('handles single bairro', () => {
     const bairros = [makeBairro('A', -25.4284, -49.2733)]
-    const results = calculateAllScores(bairros, [], [], [])
+    const results = calculateAllScores(bairros, {}, [], [])
 
     expect(results).toHaveLength(1)
     expect(results[0].rank).toBe(1)

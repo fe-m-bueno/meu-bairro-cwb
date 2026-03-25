@@ -23,7 +23,7 @@ function makeStop(lat: number, lng: number): ServiceFacility {
     id: `stop-${lat}-${lng}`,
     name: 'Parada Test',
     category: 'transporte',
-    subcategory: 'Parada de Ônibus',
+    subcategory: 'Parada',
     coordinates: [lat, lng],
     layerId: 1,
   }

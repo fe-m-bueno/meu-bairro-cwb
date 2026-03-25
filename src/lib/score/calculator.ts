@@ -19,24 +19,24 @@ import { CATEGORY_WEIGHTS, getScoreLabel } from './weights'
 
 export function calculateBairroScore(
   bairro: Bairro,
-  services: ServiceFacility[],
+  services: Record<string, ServiceFacility[]>,
   greenAreas: GreenArea[],
   busLines: BusLine[],
 ): BairroScore {
   const centroid = bairro.centroid ?? calculateCentroid(bairro.geometry)
 
   const categories: Record<CategoryKey, CategoryScore> = {
-    saude: calculateHealthScore(centroid, services),
-    educacao: calculateEducationScore(centroid, services),
-    seguranca: calculateSafetyScore(centroid, services),
+    saude: calculateHealthScore(centroid, services.saude ?? []),
+    educacao: calculateEducationScore(centroid, services.educacao ?? []),
+    seguranca: calculateSafetyScore(centroid, services.seguranca ?? []),
     transporte: calculateTransportScore(
       centroid,
-      services,
+      services.transporte ?? [],
       bairro.geometry,
       busLines,
     ),
     areasVerdes: calculateGreenScore(centroid, greenAreas, bairro.geometry),
-    cultura: calculateCultureScore(centroid, services),
+    cultura: calculateCultureScore(centroid, services.cultura ?? []),
     diversidade: calculateVarietyScore(centroid, services, greenAreas),
   }
 
@@ -61,7 +61,7 @@ export function calculateBairroScore(
 
 export function calculateAllScores(
   bairros: Bairro[],
-  services: ServiceFacility[],
+  services: Record<string, ServiceFacility[]>,
   greenAreas: GreenArea[],
   busLines: BusLine[],
 ): BairroScore[] {

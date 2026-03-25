@@ -45,7 +45,7 @@ export function calculateTransportScore(
   busLines: BusLine[],
 ): CategoryScore {
   const stops = facilities.filter(
-    (f) => f.category === 'transporte' && f.subcategory === 'Parada de Ônibus',
+    (f) => f.category === 'transporte' && f.subcategory === 'Parada',
   )
   const terminals = facilities.filter(
     (f) => f.category === 'transporte' && f.subcategory === 'Terminal',
