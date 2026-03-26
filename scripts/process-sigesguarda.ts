@@ -268,13 +268,17 @@ function parseCSV(content: string): RawRecord[] {
   const lines = content.split('\n')
   if (lines.length < 2) return []
 
-  const header = lines[0].split(';').map((h) => h.trim().replace(/"/g, ''))
+  // Auto-detect separator: check if header has more commas or semicolons
+  const headerLine = lines[0]
+  const sep = (headerLine.match(/,/g) ?? []).length > (headerLine.match(/;/g) ?? []).length ? ',' : ';'
+
+  const header = headerLine.split(sep).map((h) => h.trim().replace(/"/g, ''))
   const records: RawRecord[] = []
 
   for (let i = 1; i < lines.length; i++) {
     const line = lines[i].trim()
     if (!line) continue
-    const values = line.split(';').map((v) => v.trim().replace(/"/g, ''))
+    const values = line.split(sep).map((v) => v.trim().replace(/"/g, ''))
     const record: Record<string, string> = {}
     for (let j = 0; j < header.length; j++) {
       record[header[j]] = values[j] ?? ''
@@ -291,16 +295,17 @@ function parseCSV(content: string): RawRecord[] {
 
 function parseDate(dateStr: string): Date | null {
   if (!dateStr) return null
-  // Try multiple date formats
   // DD/MM/YYYY
-  const parts = dateStr.split('/')
-  if (parts.length === 3) {
-    const [day, month, year] = parts
+  const slashParts = dateStr.split('/')
+  if (slashParts.length === 3 && slashParts[2].length === 4) {
+    const [day, month, year] = slashParts
     return new Date(Number(year), Number(month) - 1, Number(day))
   }
-  // YYYY-MM-DD
-  const isoDate = new Date(dateStr)
-  if (!Number.isNaN(isoDate.getTime())) return isoDate
+  // YYYY-MM-DD or YYYY-MM-DD HH:MM:SS.sss
+  const isoMatch = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})/)
+  if (isoMatch) {
+    return new Date(Number(isoMatch[1]), Number(isoMatch[2]) - 1, Number(isoMatch[3]))
+  }
   return null
 }
 
@@ -319,24 +324,56 @@ async function downloadCSV(url: string): Promise<string> {
 }
 
 async function listAvailableCSVs(): Promise<string[]> {
-  const baseUrl = 'http://dadosabertos.c3sl.ufpr.br/curitiba/Sigesguarda/'
-  console.log('Fetching file listing...')
-  const res = await fetch(baseUrl)
+  // Primary source: Curitiba official open data portal (actively maintained)
+  const portalBaseUrl = 'https://mid-dadosabertos.curitiba.pr.gov.br/Sigesguarda/'
+  const apiUrl = 'https://dadosabertos.curitiba.pr.gov.br/ConjuntoDado/DownloadArquivos/?conjuntoDadoChave=b16ead9d-835e-41e8-a4d7-dcc4f2b4b627&conjuntoDadoExtensao=377f4e23-0e4f-4f11-954f-ae06ba689558&pagina=1&tamanhoPagina=100'
+  console.log('Fetching file listing from Curitiba open data portal...')
+
+  try {
+    const res = await fetch(apiUrl)
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const json = await res.json() as { htmlPaginacao?: string; htmlArquivos?: string }
+    const html = json.htmlArquivos ?? ''
+    // Extract download links from the HTML response
+    const urlRegex = /href="(https?:\/\/[^"]*\.csv)"/gi
+    const files: string[] = []
+    for (const match of html.matchAll(urlRegex)) {
+      files.push(match[1])
+    }
+    if (files.length > 0) {
+      console.log(`Found ${files.length} CSV file(s) on official portal`)
+      return files
+    }
+  } catch (err) {
+    console.warn(`Portal API failed: ${err}`)
+  }
+
+  // Fallback: C3SL mirror (may be stale)
+  const fallbackUrl = 'http://dadosabertos.c3sl.ufpr.br/curitiba/Sigesguarda/'
+  console.log('Falling back to C3SL mirror...')
+  const res = await fetch(fallbackUrl)
   if (!res.ok) throw new Error(`HTTP ${res.status} fetching index`)
   const html = await res.text()
 
-  // Extract CSV filenames from the directory listing
   const csvRegex = /href="([^"]*\.csv)"/gi
   const files: string[] = []
   for (const match of html.matchAll(csvRegex)) {
     files.push(match[1])
   }
 
-  return files.map((f) => `${baseUrl}${f}`)
+  return files.map((f) => `${fallbackUrl}${f}`)
 }
 
 function processRecords(records: RawRecord[]) {
-  const now = new Date()
+  // Find the most recent date in the data to use as reference
+  // (data may lag behind the current date)
+  let maxDate = new Date(0)
+  for (const r of records) {
+    const d = parseDate(r.OCORRENCIA_DATA)
+    if (d && d > maxDate) maxDate = d
+  }
+  const now = maxDate.getTime() > 0 ? maxDate : new Date()
+  console.log(`  Data date range ends at: ${now.toISOString().slice(0, 10)}`)
   const twelveMonthsAgo = new Date(now)
   twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12)
   const twentyFourMonthsAgo = new Date(now)
@@ -457,19 +494,42 @@ async function main() {
   const allRecords: RawRecord[] = []
 
   try {
-    // Try to download from the open data portal
-    const csvUrls = await listAvailableCSVs()
-    console.log(`Found ${csvUrls.length} CSV file(s)\n`)
+    // Each CSV is cumulative (contains ALL records up to that month),
+    // so we only need the most recent one.
+    // Try direct download from official portal first (has most recent data)
+    const portalBase = 'https://mid-dadosabertos.curitiba.pr.gov.br/Sigesguarda/'
+    let latestUrl: string | null = null
 
-    for (const url of csvUrls) {
-      try {
-        const content = await downloadCSV(url)
-        const records = parseCSV(content)
-        console.log(`  → Parsed ${records.length} records`)
-        allRecords.push(...records)
-      } catch (err) {
-        console.warn(`  ⚠ Failed to process ${url}: ${err}`)
+    // Try recent months from official portal (newest first)
+    const now = new Date()
+    for (let i = 0; i < 6 && !latestUrl; i++) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1)
+      const dateStr = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`
+      const url = `${portalBase}${dateStr}_sigesguarda_-_Base_de_Dados.csv`
+      console.log(`  Trying: ${url}`)
+      const head = await fetch(url, { method: 'HEAD' })
+      if (head.ok) {
+        latestUrl = url
       }
+    }
+
+    // Fallback: list from C3SL mirror
+    if (!latestUrl) {
+      console.log('Official portal files not found, falling back to C3SL mirror...')
+      const csvUrls = await listAvailableCSVs()
+      console.log(`Found ${csvUrls.length} CSV file(s)\n`)
+      const datedUrls = csvUrls.filter((u) => /\d{4}-\d{2}-\d{2}/.test(u))
+      datedUrls.sort().reverse()
+      latestUrl = datedUrls[0]
+    }
+
+    console.log(`\nUsing most recent: ${latestUrl}\n`)
+
+    const content = await downloadCSV(latestUrl)
+    const records = parseCSV(content)
+    console.log(`  → Parsed ${records.length} records`)
+    for (const r of records) {
+      allRecords.push(r)
     }
   } catch (err) {
     console.warn(`Failed to list CSVs: ${err}`)
@@ -493,7 +553,7 @@ async function main() {
 
   if (allRecords.length === 0) {
     console.log('\nNo records found. Generating empty output file.')
-    const outDir = join(import.meta.dirname ?? '.', '..', 'public', 'data')
+    const outDir = join(process.cwd(), 'public', 'data')
     mkdirSync(outDir, { recursive: true })
     writeFileSync(join(outDir, 'ocorrencias-por-bairro.json'), '[]', 'utf-8')
     return
@@ -504,7 +564,7 @@ async function main() {
   // Sort by bairro name for readability
   results.sort((a, b) => a.bairro.localeCompare(b.bairro, 'pt-BR'))
 
-  const outDir = join(import.meta.dirname ?? '.', '..', 'public', 'data')
+  const outDir = join(process.cwd(), 'public', 'data')
   mkdirSync(outDir, { recursive: true })
   const outPath = join(outDir, 'ocorrencias-por-bairro.json')
   writeFileSync(outPath, JSON.stringify(results, null, 2), 'utf-8')

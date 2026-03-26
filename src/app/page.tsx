@@ -13,10 +13,10 @@ import { findBairroForPoint } from '@/lib/geo/point-in-polygon'
 const CityMap = dynamic(() => import('@/components/map/city-map'), {
   ssr: false,
   loading: () => (
-    <div className="flex h-full w-full items-center justify-center bg-zinc-900">
+    <div className="flex h-full w-full items-center justify-center bg-muted">
       <div className="flex flex-col items-center gap-3">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-600 border-t-emerald-500" />
-        <p className="text-sm text-zinc-400">Carregando mapa...</p>
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-muted-foreground border-t-emerald-500" />
+        <p className="text-sm text-muted-foreground">Carregando mapa...</p>
       </div>
     </div>
   ),
@@ -122,12 +122,12 @@ function HomeContent() {
   }, [])
 
   return (
-    <div className="relative h-[calc(100vh-3.5rem)]">
+    <div className="relative h-[calc(100vh-3.5rem)] overflow-hidden">
       {isLoading && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-zinc-950/70">
+        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-background/70">
           <div className="flex flex-col items-center gap-3">
-            <div className="h-8 w-8 animate-spin rounded-full border-2 border-zinc-600 border-t-emerald-500" />
-            <p className="text-sm text-zinc-400">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-muted-foreground border-t-emerald-500" />
+            <p className="text-sm text-muted-foreground">
               Carregando dados de Curitiba...
             </p>
           </div>
@@ -135,23 +135,23 @@ function HomeContent() {
       )}
 
       {error && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-zinc-950/70">
-          <div className="pointer-events-auto rounded-lg border border-red-800 bg-zinc-900 px-6 py-4">
+        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-background/70">
+          <div className="pointer-events-auto rounded-lg border border-red-800 bg-card px-6 py-4">
             <p className="text-sm text-red-400">Erro ao carregar dados</p>
           </div>
         </div>
       )}
 
       {compareMode && !compareBairro && (
-        <div className="pointer-events-auto absolute top-16 left-1/2 z-30 -translate-x-1/2 rounded-lg border border-emerald-700 bg-zinc-900/95 px-4 py-2.5 shadow-lg backdrop-blur-sm">
+        <div className="pointer-events-auto absolute top-16 left-1/2 z-30 -translate-x-1/2 rounded-lg border border-emerald-700 bg-card/95 px-4 py-2.5 shadow-lg backdrop-blur-sm">
           <div className="flex items-center gap-3">
-            <p className="text-sm text-zinc-200">
+            <p className="text-sm text-foreground">
               Clique em outro bairro para comparar
             </p>
             <button
               type="button"
               onClick={handleExitCompare}
-              className="rounded-md px-2 py-1 text-xs text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
+              className="rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             >
               Cancelar
             </button>
@@ -169,6 +169,23 @@ function HomeContent() {
         onToggleLayer={handleToggleLayer}
       />
 
+      <div className="pointer-events-none absolute bottom-4 right-4 z-[1000] flex flex-col items-end gap-1">
+        <span className="text-[10px] font-medium text-muted-foreground">
+          Score de Qualidade
+        </span>
+        <div className="flex items-center gap-1.5">
+          <span className="text-[10px] text-muted-foreground">0</span>
+          <div
+            className="h-2 w-24 rounded-full"
+            style={{
+              background:
+                'linear-gradient(to right, #ef4444, #f59e0b, #eab308, #84cc16, #22c55e, #10b981)',
+            }}
+          />
+          <span className="text-[10px] text-muted-foreground">100</span>
+        </div>
+      </div>
+
       <CityMap
         bairros={bairros}
         scores={scores}
@@ -176,6 +193,7 @@ function HomeContent() {
         onSelectBairro={handleSelectBairro}
         searchedPoint={searchedPoint}
         visibleLayers={visibleLayers}
+        panelOpen={!!selectedBairro || !!compareBairro}
       />
 
       {compareBairro &&
@@ -183,15 +201,15 @@ function HomeContent() {
       selectedScore &&
       compareBairroData &&
       compareScore ? (
-        <div className="fixed top-0 right-0 z-40 flex h-full w-[400px] flex-col border-l border-zinc-800 bg-zinc-950/95 backdrop-blur-sm">
-          <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
-            <span className="text-sm font-semibold text-zinc-200">
+        <div className="fixed top-14 right-0 z-[1001] flex h-[calc(100vh-3.5rem)] w-[400px] flex-col border-l border-border bg-background/95 backdrop-blur-sm">
+          <div className="flex items-center justify-between border-b border-border px-4 py-3">
+            <span className="text-sm font-semibold text-foreground">
               Comparando bairros
             </span>
             <button
               type="button"
               onClick={handleExitCompare}
-              className="rounded-md p-1 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
+              className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
               aria-label="Fechar comparação"
             >
               <svg

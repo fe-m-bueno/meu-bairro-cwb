@@ -1,0 +1,4413 @@
+[
+  {
+    "bairro": "Abranches",
+    "totalOcorrencias12m": 274,
+    "ocorrenciasPorKm2": 63.4,
+    "naturezas": {
+      "TrÃ¢nsito": 129,
+      "InvasÃ£o": 17,
+      "Apoio": 48,
+      "Queima a cÃ©u aberto": 2,
+      "ZELADORIA URBANA": 3,
+      "Risco de acidente / Ã  vida": 2,
+      "Alarmes": 2,
+      "Desacato": 1,
+      "Paciente/usuÃ¡rio alterado": 3,
+      "Fundada Suspeita (Abordagem)": 6,
+      "OrientaÃ§Ã£o": 1,
+      "SubstÃ¢ncia IlÃ­cita": 7,
+      "Escolta": 1,
+      "Porte Ilegal": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 9,
+      "Ronda": 7,
+      "AgressÃ£o fÃ­sica/verbal": 3,
+      "Dano": 2,
+      "Alagamento": 2,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "Vistoria": 14,
+      "Furto": 3,
+      "Transito": 1,
+      "Vias de Fato": 1,
+      "Risco de queda de fios de energia": 1,
+      "Animais": 1,
+      "Risco de acidente/Ã  vida (Defesa Civil)": 1,
+      "VeÃ­culo": 1,
+      "ErosÃ£o": 1,
+      "Crime ambiental": 2,
+      "FiscalizaÃ§Ãµes e OrientaÃ§Ãµes": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 129
+      },
+      {
+        "nome": "Apoio",
+        "count": 48
+      },
+      {
+        "nome": "InvasÃ£o",
+        "count": 17
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Ãgua Verde",
+    "totalOcorrencias12m": 1224,
+    "ocorrenciasPorKm2": 244.8,
+    "naturezas": {
+      "TrÃ¢nsito": 734,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 11,
+      "Apoio": 119,
+      "Queima a cÃ©u aberto": 8,
+      "ZELADORIA URBANA": 43,
+      "Risco de acidente / Ã  vida": 69,
+      "Furto": 26,
+      "Queda de fios de energia": 2,
+      "Vistoria": 9,
+      "OrientaÃ§Ã£o": 22,
+      "Ronda": 9,
+      "Dano": 21,
+      "Fundada Suspeita (Abordagem)": 40,
+      "Roubo": 13,
+      "SubstÃ¢ncia IlÃ­cita": 8,
+      "Uso indevido do cartÃ£o transporte": 1,
+      "Tentativa": 6,
+      "Alarmes": 3,
+      "AgressÃ£o fÃ­sica/verbal": 7,
+      "VeÃ­culo": 4,
+      "Transito": 5,
+      "PerturbaÃ§Ã£o do sossego": 7,
+      "ArrastÃ£o": 1,
+      "Vias de Fato": 5,
+      "InvasÃ£o": 16,
+      "AmeaÃ§a": 5,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 1,
+      "Conduta inconveniente": 1,
+      "Disparo de arma": 2,
+      "Risco de queda de Ã¡rvore": 2,
+      "DesinteligÃªncia": 7,
+      "DepÃ³sito irregular": 1,
+      "Animais": 2,
+      "Escolta": 2,
+      "Racismo": 1,
+      "Crime ambiental": 9,
+      "Encaminhamento": 1,
+      "Atos obscenos/libidinosos": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 734
+      },
+      {
+        "nome": "Apoio",
+        "count": 119
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 69
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Ahãº",
+    "totalOcorrencias12m": 43,
+    "ocorrenciasPorKm2": 8.6,
+    "naturezas": {
+      "SubstÃ¢ncia IlÃ­cita": 2,
+      "Patrulha Maria da Penha": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 3,
+      "AmeaÃ§a": 1,
+      "Apoio": 6,
+      "Escolta": 1,
+      "AgressÃ£o fÃ­sica/verbal": 1,
+      "TrÃ¢nsito": 16,
+      "OrientaÃ§Ã£o": 1,
+      "ZELADORIA URBANA": 3,
+      "Fundada Suspeita (Abordagem)": 2,
+      "Queima a cÃ©u aberto": 1,
+      "Alagamento": 1,
+      "Vias de Fato": 1,
+      "Risco de queda de Ã¡rvore": 1,
+      "Crime ambiental": 1,
+      "Dano": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 16
+      },
+      {
+        "nome": "Apoio",
+        "count": 6
+      },
+      {
+        "nome": "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha",
+        "count": 3
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 5
+  },
+  {
+    "bairro": "Alto Boqueirã£o",
+    "totalOcorrencias12m": 749,
+    "ocorrenciasPorKm2": 149.8,
+    "naturezas": {
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 25,
+      "Paciente/usuÃ¡rio alterado": 3,
+      "Apoio": 129,
+      "Vistoria": 22,
+      "TrÃ¢nsito": 283,
+      "VeÃ­culo": 4,
+      "AgressÃ£o fÃ­sica/verbal": 16,
+      "Fundada Suspeita (Abordagem)": 34,
+      "Queima a cÃ©u aberto": 14,
+      "Fornecimento de Lona": 6,
+      "Achado": 2,
+      "Disparo de arma": 1,
+      "InvasÃ£o": 27,
+      "Dano": 16,
+      "DesinteligÃªncia": 4,
+      "Fuga de aluno/interno": 1,
+      "CrianÃ§a perdida/desaparecida": 7,
+      "Risco de acidente / Ã  vida": 39,
+      "ZELADORIA URBANA": 11,
+      "ÃrgÃ£os acionados": 2,
+      "Ronda": 10,
+      "AmeaÃ§a": 5,
+      "Alarmes": 3,
+      "Furto": 8,
+      "Animais": 4,
+      "OrientaÃ§Ã£o": 9,
+      "SubstÃ¢ncia IlÃ­cita": 6,
+      "Recolhimento de Materiais": 1,
+      "Queda de fios de energia": 3,
+      "Acidente de trÃ¢nsito": 1,
+      "Risco de queda de fios de energia": 1,
+      "PerturbaÃ§Ã£o do sossego": 10,
+      "Tentativa": 2,
+      "Roubo": 8,
+      "Aterro irregular": 1,
+      "Alagamento": 3,
+      "InundaÃ§Ã£o/Enchente": 1,
+      "Desacato": 3,
+      "Transito": 2,
+      "Risco de desabamento / desmoronamento": 1,
+      "Rachadura em EdificaÃ§Ã£o": 1,
+      "Risco de queda de Ã¡rvore": 1,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "DepÃ³sito irregular": 1,
+      "Escolta": 2,
+      "PoluiÃ§Ã£o visual/ambiental": 1,
+      "ManifestaÃ§Ã£o": 2,
+      "Patrulha Maria da Penha": 1,
+      "Crime ambiental": 7,
+      "IncÃªndio": 2,
+      "Destelhamento": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 283
+      },
+      {
+        "nome": "Apoio",
+        "count": 129
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 39
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Alto da Glã³ria",
+    "totalOcorrencias12m": 389,
+    "ocorrenciasPorKm2": 77.8,
+    "naturezas": {
+      "Apoio": 243,
+      "Furto": 5,
+      "Ronda": 11,
+      "PerturbaÃ§Ã£o do sossego": 10,
+      "Fundada Suspeita (Abordagem)": 18,
+      "AgressÃ£o fÃ­sica/verbal": 4,
+      "TrÃ¢nsito": 31,
+      "SubstÃ¢ncia IlÃ­cita": 3,
+      "Transito": 1,
+      "Dano": 9,
+      "Tentativa": 5,
+      "ZELADORIA URBANA": 12,
+      "DesinteligÃªncia": 4,
+      "ÃrgÃ£os acionados": 1,
+      "Rixa": 2,
+      "Desacato": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "OrientaÃ§Ã£o": 7,
+      "Risco de acidente / Ã  vida": 2,
+      "Vistoria": 5,
+      "Acidente de trÃ¢nsito": 1,
+      "Animais": 2,
+      "Vias de Fato": 4,
+      "Crime ambiental": 1,
+      "Patrulha Maria da Penha": 1,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "InvasÃ£o": 1,
+      "Roubo": 1,
+      "Disparo de arma": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 243
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 31
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 18
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Alto da Rua XV",
+    "totalOcorrencias12m": 145,
+    "ocorrenciasPorKm2": 96.7,
+    "naturezas": {
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "Fundada Suspeita (Abordagem)": 7,
+      "Apoio": 35,
+      "SubstÃ¢ncia IlÃ­cita": 2,
+      "Furto": 5,
+      "Queda de fios de energia": 1,
+      "InvasÃ£o": 4,
+      "Risco de queda de fios de energia": 1,
+      "SituaÃ§Ã£o de risco": 1,
+      "TrÃ¢nsito": 19,
+      "PerturbaÃ§Ã£o do sossego": 2,
+      "DesinteligÃªncia": 3,
+      "Queima a cÃ©u aberto": 3,
+      "ZELADORIA URBANA": 28,
+      "Ronda": 5,
+      "Risco de acidente / Ã  vida": 3,
+      "Alarmes": 4,
+      "Dano": 5,
+      "OrientaÃ§Ã£o": 4,
+      "Tentativa": 2,
+      "AgressÃ£o fÃ­sica/verbal": 3,
+      "Queda de poste": 1,
+      "Vias de Fato": 1,
+      "Vistoria": 1,
+      "Crime ambiental": 2,
+      "ÃrgÃ£os acionados": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 35
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 28
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 19
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Atuba",
+    "totalOcorrencias12m": 564,
+    "ocorrenciasPorKm2": 132.1,
+    "naturezas": {
+      "TrÃ¢nsito": 303,
+      "CrianÃ§a perdida/desaparecida": 1,
+      "Vistoria": 16,
+      "IncÃªndio": 2,
+      "Apoio": 86,
+      "Queda de fios de energia": 1,
+      "Atos obscenos/libidinosos": 4,
+      "Risco de acidente / Ã  vida": 7,
+      "AgressÃ£o fÃ­sica/verbal": 8,
+      "Ronda": 4,
+      "ZELADORIA URBANA": 19,
+      "PerturbaÃ§Ã£o do sossego": 2,
+      "Dano": 3,
+      "DesinteligÃªncia": 12,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 3,
+      "Roubo": 6,
+      "OrientaÃ§Ã£o": 8,
+      "Fundada Suspeita (Abordagem)": 26,
+      "Alarmes": 2,
+      "VeÃ­culo": 3,
+      "Escolta": 3,
+      "Transito": 3,
+      "Achado": 3,
+      "Crime ambiental": 3,
+      "Encaminhamento": 1,
+      "SubstÃ¢ncia IlÃ­cita": 4,
+      "Animais": 1,
+      "Fornecimento de Lona": 4,
+      "Alagamento": 3,
+      "AmeaÃ§a": 1,
+      "InvasÃ£o": 5,
+      "Queima a cÃ©u aberto": 3,
+      "Deslizamenton de Terra": 1,
+      "Vias de Fato": 1,
+      "Desacato": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "SituaÃ§Ã£o de risco": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 2,
+      "ErosÃ£o": 1,
+      "Furto": 3,
+      "Tentativa": 1,
+      "LesÃ£o Corporal": 1,
+      "Patrulha Maria da Penha": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 303
+      },
+      {
+        "nome": "Apoio",
+        "count": 86
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 26
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Augusta",
+    "totalOcorrencias12m": 135,
+    "ocorrenciasPorKm2": 15.2,
+    "naturezas": {
+      "TrÃ¢nsito": 44,
+      "Fundada Suspeita (Abordagem)": 12,
+      "Queima a cÃ©u aberto": 3,
+      "Ronda": 2,
+      "AgressÃ£o fÃ­sica/verbal": 3,
+      "Apoio": 30,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "AmeaÃ§a": 6,
+      "Pesca em local proibido": 1,
+      "Dano": 4,
+      "PerturbaÃ§Ã£o do sossego": 2,
+      "OrientaÃ§Ã£o": 3,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1,
+      "InvasÃ£o": 8,
+      "VeÃ­culo": 1,
+      "Afogamento": 1,
+      "Risco de acidente / Ã  vida": 3,
+      "Achado": 1,
+      "Vistoria": 3,
+      "Corte Irregular de Ãrvore": 1,
+      "CÃ¢mera Off-Line": 1,
+      "DesinteligÃªncia": 2,
+      "ZELADORIA URBANA": 1,
+      "Crime ambiental": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 44
+      },
+      {
+        "nome": "Apoio",
+        "count": 30
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 12
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Bacacheri",
+    "totalOcorrencias12m": 945,
+    "ocorrenciasPorKm2": 135.4,
+    "naturezas": {
+      "TrÃ¢nsito": 496,
+      "Apoio": 179,
+      "CrianÃ§a perdida/desaparecida": 4,
+      "PerturbaÃ§Ã£o do sossego": 46,
+      "Desacato": 1,
+      "SubstÃ¢ncia IlÃ­cita": 22,
+      "Queima a cÃ©u aberto": 2,
+      "Fundada Suspeita (Abordagem)": 26,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 5,
+      "Estelionato": 1,
+      "Dano": 13,
+      "Paciente/usuÃ¡rio alterado": 12,
+      "Queda de fios de energia": 3,
+      "Vistoria": 11,
+      "Risco de acidente / Ã  vida": 17,
+      "OrientaÃ§Ã£o": 7,
+      "Furto": 1,
+      "Tentativa": 5,
+      "Roubo": 3,
+      "ImportunaÃ§Ã£oÂ sexual": 2,
+      "Achado": 4,
+      "Vias de Fato": 4,
+      "InvasÃ£o": 8,
+      "AmeaÃ§a": 5,
+      "Animais": 6,
+      "Ronda": 6,
+      "VeÃ­culo": 4,
+      "DesinteligÃªncia": 5,
+      "AgressÃ£o fÃ­sica/verbal": 8,
+      "Escolta": 3,
+      "ZELADORIA URBANA": 12,
+      "InjÃºria": 1,
+      "Fuga de Paciente": 2,
+      "Crime ambiental": 10,
+      "Transito": 2,
+      "Fornecimento de Lona": 1,
+      "Risco de queda de Ã¡rvore": 1,
+      "Alagamento": 1,
+      "Risco de queda de fios de energia": 1,
+      "DesobediÃªncia": 1,
+      "AveriguaÃ§Ã£o ComÃ©rcio ilegal": 1,
+      "IncÃªndio": 1,
+      "Atos obscenos/libidinosos": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "Desaparecimento": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 496
+      },
+      {
+        "nome": "Apoio",
+        "count": 179
+      },
+      {
+        "nome": "PerturbaÃ§Ã£o do sossego",
+        "count": 46
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Bairro Alto",
+    "totalOcorrencias12m": 735,
+    "ocorrenciasPorKm2": 147,
+    "naturezas": {
+      "Apoio": 98,
+      "Queima a cÃ©u aberto": 6,
+      "TrÃ¢nsito": 440,
+      "Fundada Suspeita (Abordagem)": 8,
+      "Risco de acidente / Ã  vida": 14,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 16,
+      "Banho em local imprÃ³prio": 19,
+      "Pesca em local proibido": 10,
+      "Paciente/usuÃ¡rio alterado": 7,
+      "DesinteligÃªncia": 3,
+      "InvasÃ£o": 11,
+      "Encaminhamento": 1,
+      "SubstÃ¢ncia IlÃ­cita": 3,
+      "ZELADORIA URBANA": 12,
+      "AgressÃ£o fÃ­sica/verbal": 10,
+      "Desabamento": 3,
+      "VeÃ­culo": 1,
+      "Dano": 6,
+      "Escolta": 3,
+      "ApropriaÃ§Ã£o indÃ©bita": 1,
+      "AmeaÃ§a": 3,
+      "Fornecimento de Lona": 4,
+      "Transito": 1,
+      "Alarmes": 3,
+      "Ronda": 7,
+      "Alagamento": 5,
+      "Vazamento ou derramamento de Produto Perigoso ou Infectante": 1,
+      "OrientaÃ§Ã£o": 2,
+      "Tentativa": 1,
+      "Poda de Ã¡rvore": 1,
+      "Vistoria": 13,
+      "PerturbaÃ§Ã£o do sossego": 8,
+      "Queda de fios de energia": 1,
+      "Corte Irregular de Ãrvore": 1,
+      "Risco de queda de fios de energia": 1,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 1,
+      "Animais": 3,
+      "Desacato": 2,
+      "Porte Ilegal": 1,
+      "Crime ambiental": 5,
+      "Furto": 2
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 440
+      },
+      {
+        "nome": "Apoio",
+        "count": 98
+      },
+      {
+        "nome": "Banho em local imprÃ³prio",
+        "count": 19
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Bariguã­",
+    "totalOcorrencias12m": 0,
+    "ocorrenciasPorKm2": 0,
+    "naturezas": {},
+    "topNaturezas": [],
+    "tendencia": "descendo",
+    "scorePercentil": 5
+  },
+  {
+    "bairro": "Barigui",
+    "totalOcorrencias12m": 1,
+    "ocorrenciasPorKm2": 0.2,
+    "naturezas": {
+      "TrÃ¢nsito": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 1
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 5
+  },
+  {
+    "bairro": "Barreirinha",
+    "totalOcorrencias12m": 327,
+    "ocorrenciasPorKm2": 89.6,
+    "naturezas": {
+      "Queima a cÃ©u aberto": 6,
+      "TrÃ¢nsito": 125,
+      "AgressÃ£o fÃ­sica/verbal": 6,
+      "Vias de Fato": 5,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 9,
+      "Apoio": 71,
+      "Queda de fios de energia": 1,
+      "InvasÃ£o": 12,
+      "AmeaÃ§a": 8,
+      "PerturbaÃ§Ã£o do sossego": 6,
+      "SituaÃ§Ã£o de risco": 1,
+      "Alarmes": 5,
+      "Vistoria": 13,
+      "ZELADORIA URBANA": 4,
+      "Dano": 7,
+      "Fundada Suspeita (Abordagem)": 5,
+      "Risco de acidente / Ã  vida": 11,
+      "DesinteligÃªncia": 3,
+      "SubstÃ¢ncia IlÃ­cita": 6,
+      "Fornecimento de Lona": 5,
+      "Rixa": 1,
+      "Desabamento": 1,
+      "Furto": 1,
+      "Tentativa": 1,
+      "Risco de queda de fios de energia": 1,
+      "Escolta": 2,
+      "Ronda": 3,
+      "Corte Irregular de Ãrvore": 2,
+      "Encaminhamento": 1,
+      "VeÃ­culo": 2,
+      "Crime ambiental": 2,
+      "Atos obscenos/libidinosos": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 125
+      },
+      {
+        "nome": "Apoio",
+        "count": 71
+      },
+      {
+        "nome": "Vistoria",
+        "count": 13
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Batel",
+    "totalOcorrencias12m": 226,
+    "ocorrenciasPorKm2": 128.4,
+    "naturezas": {
+      "Dano": 4,
+      "Fuga de Paciente": 1,
+      "Apoio": 71,
+      "Risco de acidente / Ã  vida": 14,
+      "TrÃ¢nsito": 44,
+      "Ronda": 8,
+      "OrientaÃ§Ã£o": 16,
+      "InvasÃ£o": 4,
+      "Furto": 7,
+      "Fundada Suspeita (Abordagem)": 14,
+      "ZELADORIA URBANA": 24,
+      "SubstÃ¢ncia IlÃ­cita": 5,
+      "Atos obscenos/libidinosos": 1,
+      "AgressÃ£o fÃ­sica/verbal": 2,
+      "AmeaÃ§a": 2,
+      "Corte Irregular de Ãrvore": 2,
+      "Queima a cÃ©u aberto": 1,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "DesinteligÃªncia": 1,
+      "Crime ambiental": 3
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 71
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 44
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 24
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Bigorrilho",
+    "totalOcorrencias12m": 356,
+    "ocorrenciasPorKm2": 127.1,
+    "naturezas": {
+      "PerturbaÃ§Ã£o do sossego": 12,
+      "Ronda": 17,
+      "TrÃ¢nsito": 44,
+      "AgressÃ£o fÃ­sica/verbal": 2,
+      "OrientaÃ§Ã£o": 25,
+      "Queima a cÃ©u aberto": 7,
+      "Apoio": 53,
+      "Risco de acidente / Ã  vida": 19,
+      "SubstÃ¢ncia IlÃ­cita": 8,
+      "Fundada Suspeita (Abordagem)": 29,
+      "Dano": 50,
+      "Escolta": 1,
+      "InvasÃ£o": 4,
+      "Queda de fios de energia": 1,
+      "ZELADORIA URBANA": 29,
+      "DesinteligÃªncia": 6,
+      "Vistoria": 12,
+      "Atos obscenos/libidinosos": 1,
+      "Acidente de trÃ¢nsito": 3,
+      "Alarmes": 2,
+      "ProteÃ§Ã£o ao PatrimÃ´nio": 2,
+      "Vias de Fato": 2,
+      "VeÃ­culo": 3,
+      "AmeaÃ§a": 3,
+      "Pesca em local proibido": 1,
+      "Furto": 3,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "Tentativa": 2,
+      "Achado": 1,
+      "Animais": 3,
+      "Crime ambiental": 6,
+      "ÃrgÃ£os acionados": 1,
+      "Roubo": 1,
+      "Paciente/usuÃ¡rio alterado": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 53
+      },
+      {
+        "nome": "Dano",
+        "count": 50
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 44
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Boa Vista",
+    "totalOcorrencias12m": 881,
+    "ocorrenciasPorKm2": 173.8,
+    "naturezas": {
+      "TrÃ¢nsito": 576,
+      "Apoio": 125,
+      "Queima a cÃ©u aberto": 14,
+      "Risco de acidente / Ã  vida": 15,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 16,
+      "OrientaÃ§Ã£o": 5,
+      "SituaÃ§Ã£o de risco": 1,
+      "InvasÃ£o": 4,
+      "Ronda": 8,
+      "Corte Irregular de Ãrvore": 5,
+      "Furto": 7,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "DepÃ³sito irregular": 1,
+      "Alarmes": 1,
+      "AgressÃ£o fÃ­sica/verbal": 9,
+      "AmeaÃ§a": 7,
+      "ZELADORIA URBANA": 11,
+      "Vias de Fato": 2,
+      "SubstÃ¢ncia IlÃ­cita": 5,
+      "Animais": 3,
+      "DesinteligÃªncia": 2,
+      "Tentativa": 1,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 1,
+      "Disparo de arma": 2,
+      "Fundada Suspeita (Abordagem)": 10,
+      "PerturbaÃ§Ã£o do sossego": 13,
+      "VeÃ­culo": 3,
+      "Dano": 11,
+      "Acidente de trÃ¢nsito": 1,
+      "Queda de fios de energia": 1,
+      "Achado": 1,
+      "Atos obscenos/libidinosos": 2,
+      "Risco de desabamento / desmoronamento": 2,
+      "CrianÃ§a perdida/desaparecida": 1,
+      "Porte Ilegal": 1,
+      "Fornecimento de Lona": 1,
+      "Vistoria": 4,
+      "Transito": 2,
+      "Escolta": 1,
+      "Quedas de objetos ou partes de construÃ§Ãµes": 1,
+      "Fuga de Paciente": 1,
+      "Crime ambiental": 2,
+      "Risco de acidente/Ã  vida (Defesa Civil)": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 576
+      },
+      {
+        "nome": "Apoio",
+        "count": 125
+      },
+      {
+        "nome": "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha",
+        "count": 16
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Bom Retiro",
+    "totalOcorrencias12m": 51,
+    "ocorrenciasPorKm2": 26.4,
+    "naturezas": {
+      "Queda de fios de energia": 1,
+      "ZELADORIA URBANA": 3,
+      "Alarmes": 2,
+      "Apoio": 21,
+      "Corte Irregular de Ãrvore": 1,
+      "SuicÃ­dio": 1,
+      "Risco de queda de Ã¡rvore": 1,
+      "Queima a cÃ©u aberto": 2,
+      "TrÃ¢nsito": 10,
+      "AgressÃ£o fÃ­sica/verbal": 1,
+      "Tentativa": 1,
+      "Dano": 1,
+      "OrientaÃ§Ã£o": 1,
+      "InvasÃ£o": 2,
+      "AmeaÃ§a": 1,
+      "Fundada Suspeita (Abordagem)": 1,
+      "Ronda": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 21
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 10
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 3
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Boqueirã£o",
+    "totalOcorrencias12m": 1999,
+    "ocorrenciasPorKm2": 399.8,
+    "naturezas": {
+      "TrÃ¢nsito": 820,
+      "Vistoria": 28,
+      "InvasÃ£o": 34,
+      "Apoio": 440,
+      "Queima a cÃ©u aberto": 24,
+      "Fundada Suspeita (Abordagem)": 106,
+      "Roubo": 25,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 31,
+      "Ronda": 30,
+      "SubstÃ¢ncia IlÃ­cita": 22,
+      "Dano": 66,
+      "Desacato": 5,
+      "Risco de acidente / Ã  vida": 50,
+      "VeÃ­culo": 8,
+      "Pesca em local proibido": 7,
+      "AgressÃ£o fÃ­sica/verbal": 19,
+      "DesobediÃªncia": 1,
+      "Furto": 28,
+      "ZELADORIA URBANA": 36,
+      "Estupro": 1,
+      "Tentativa": 8,
+      "DesinteligÃªncia": 28,
+      "Achado": 5,
+      "PerturbaÃ§Ã£o do sossego": 7,
+      "OrientaÃ§Ã£o": 19,
+      "Animais": 11,
+      "FiscalizaÃ§Ãµes e OrientaÃ§Ãµes": 1,
+      "AmeaÃ§a": 21,
+      "DepÃ³sito irregular": 3,
+      "SituaÃ§Ã£o de risco": 6,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 1,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "Paciente/usuÃ¡rio alterado": 19,
+      "Fornecimento de Lona": 7,
+      "Encaminhamento": 4,
+      "Vias de Fato": 9,
+      "Risco de queda de fios de energia": 1,
+      "Escolta": 11,
+      "Transito": 5,
+      "Queda de fios de energia": 2,
+      "Fuga de Paciente": 4,
+      "Uso indevido do cartÃ£o transporte": 2,
+      "Alarmes": 4,
+      "Extravio de Equipamento": 1,
+      "Banho em local imprÃ³prio": 1,
+      "Fuga de aluno/interno": 1,
+      "Alagamento": 4,
+      "ImportunaÃ§Ã£oÂ sexual": 3,
+      "Atos obscenos/libidinosos": 2,
+      "ÃrgÃ£os acionados": 1,
+      "CrianÃ§a perdida/desaparecida": 3,
+      "Disparo de arma": 3,
+      "Estelionato": 1,
+      "ErosÃ£o": 3,
+      "ApreensÃ£o de materiais": 1,
+      "Abandono de incapaz": 1,
+      "Porte de artefato explosivo": 1,
+      "DevoluÃ§Ã£o de coisa achada": 1,
+      "Risco de queda de Ã¡rvore": 1,
+      "Crime ambiental": 13,
+      "EVENTO": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 820
+      },
+      {
+        "nome": "Apoio",
+        "count": 440
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 106
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 100
+  },
+  {
+    "bairro": "Butiatuvinha",
+    "totalOcorrencias12m": 178,
+    "ocorrenciasPorKm2": 15.2,
+    "naturezas": {
+      "TrÃ¢nsito": 106,
+      "Apoio": 25,
+      "Queima a cÃ©u aberto": 4,
+      "Fundada Suspeita (Abordagem)": 8,
+      "ZELADORIA URBANA": 5,
+      "Paciente/usuÃ¡rio alterado": 1,
+      "Vistoria": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1,
+      "InvasÃ£o": 2,
+      "VeÃ­culo": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "Vias de Fato": 2,
+      "Alarmes": 1,
+      "Ronda": 1,
+      "Risco de acidente / Ã  vida": 1,
+      "AmeaÃ§a": 1,
+      "Atos obscenos/libidinosos": 2,
+      "PerturbaÃ§Ã£o do sossego": 3,
+      "Dano": 3,
+      "OrientaÃ§Ã£o": 3,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "Animais": 1,
+      "AgressÃ£o fÃ­sica/verbal": 1,
+      "Crime ambiental": 1,
+      "Disparo de arma": 2
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 106
+      },
+      {
+        "nome": "Apoio",
+        "count": 25
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 8
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Cabral",
+    "totalOcorrencias12m": 174,
+    "ocorrenciasPorKm2": 85.3,
+    "naturezas": {
+      "Dano": 18,
+      "Ronda": 8,
+      "Apoio": 35,
+      "TrÃ¢nsito": 31,
+      "Fundada Suspeita (Abordagem)": 7,
+      "DesinteligÃªncia": 6,
+      "Vistoria": 4,
+      "AgressÃ£o fÃ­sica/verbal": 10,
+      "DepÃ³sito irregular": 1,
+      "Disparo de arma": 1,
+      "PerseguiÃ§Ã£o (stalking)": 1,
+      "Risco de acidente / Ã  vida": 3,
+      "Furto": 3,
+      "Conduta inconveniente": 1,
+      "Patrulha Maria da Penha": 1,
+      "InvasÃ£o": 2,
+      "ZELADORIA URBANA": 9,
+      "PerturbaÃ§Ã£o do sossego": 3,
+      "Desaparecimento": 1,
+      "Paciente/usuÃ¡rio alterado": 1,
+      "OrientaÃ§Ã£o": 5,
+      "ImportunaÃ§Ã£oÂ sexual": 4,
+      "Queima a cÃ©u aberto": 2,
+      "ÃrgÃ£os acionados": 1,
+      "AmeaÃ§a": 4,
+      "Alagamento": 1,
+      "Encaminhamento": 1,
+      "Vazamento ou derramamento de Produto Perigoso ou Infectante": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1,
+      "Crime ambiental": 3,
+      "Roubo": 2,
+      "Queda de fios de energia": 1,
+      "Tentativa": 1,
+      "Alarmes": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 35
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 31
+      },
+      {
+        "nome": "Dano",
+        "count": 18
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Cachoeira",
+    "totalOcorrencias12m": 155,
+    "ocorrenciasPorKm2": 47.8,
+    "naturezas": {
+      "OrientaÃ§Ã£o": 2,
+      "Corte Irregular de Ãrvore": 2,
+      "Dano": 4,
+      "TrÃ¢nsito": 75,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 6,
+      "Apoio": 25,
+      "AgressÃ£o fÃ­sica/verbal": 5,
+      "Vistoria": 5,
+      "Ronda": 1,
+      "Alarmes": 1,
+      "Queima a cÃ©u aberto": 3,
+      "Fornecimento de Lona": 2,
+      "Crime ambiental": 2,
+      "Risco de acidente / Ã  vida": 12,
+      "Risco de desabamento / desmoronamento": 1,
+      "ZELADORIA URBANA": 3,
+      "Escolta": 2,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "Atos obscenos/libidinosos": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "Paciente/usuÃ¡rio alterado": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 75
+      },
+      {
+        "nome": "Apoio",
+        "count": 25
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 12
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Cajuru",
+    "totalOcorrencias12m": 1971,
+    "ocorrenciasPorKm2": 170.6,
+    "naturezas": {
+      "Dano": 32,
+      "Risco de acidente / Ã  vida": 84,
+      "Apoio": 465,
+      "TrÃ¢nsito": 747,
+      "Paciente/usuÃ¡rio alterado": 20,
+      "AgressÃ£o fÃ­sica/verbal": 41,
+      "ZELADORIA URBANA": 138,
+      "Patrulha Maria da Penha": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 38,
+      "Queima a cÃ©u aberto": 20,
+      "Animais": 5,
+      "Vistoria": 38,
+      "InvasÃ£o": 44,
+      "Roubo": 7,
+      "Ronda": 16,
+      "Fundada Suspeita (Abordagem)": 39,
+      "LesÃ£o Corporal": 9,
+      "SubstÃ¢ncia IlÃ­cita": 18,
+      "PerturbaÃ§Ã£o do sossego": 19,
+      "CrianÃ§a perdida/desaparecida": 3,
+      "Queda de fios de energia": 5,
+      "OrientaÃ§Ã£o": 25,
+      "AmeaÃ§a": 18,
+      "DesinteligÃªncia": 14,
+      "ObstruÃ§Ã£o da Atividade Policial": 1,
+      "Tentativa": 6,
+      "SituaÃ§Ã£o de risco": 4,
+      "Fornecimento de Lona": 17,
+      "VeÃ­culo": 4,
+      "Vias de Fato": 12,
+      "Furto": 17,
+      "Achado": 3,
+      "Alarmes": 6,
+      "Alagamento": 13,
+      "Disparo de arma": 2,
+      "ImportunaÃ§Ã£oÂ sexual": 4,
+      "Queda de Revestimento de Fachadas": 1,
+      "ErosÃ£o": 2,
+      "AveriguaÃ§Ã£o (COSEDI)": 2,
+      "Rixa": 1,
+      "Risco de desabamento / desmoronamento": 3,
+      "Desacato": 1,
+      "Desaparecimento": 2,
+      "OcupaÃ§Ã£o Irregular": 2,
+      "Atos obscenos/libidinosos": 2,
+      "ÃrgÃ£os acionados": 1,
+      "Escolta": 1,
+      "IncÃªndio": 1,
+      "Encaminhamento": 1,
+      "Acidente de trÃ¢nsito": 1,
+      "Queda de poste": 2,
+      "Crime ambiental": 10,
+      "Fuga de Paciente": 2,
+      "DepÃ³sito irregular": 1,
+      "Risco de queda de fios de energia": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 747
+      },
+      {
+        "nome": "Apoio",
+        "count": 465
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 138
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 100
+  },
+  {
+    "bairro": "Campina do Siqueira",
+    "totalOcorrencias12m": 424,
+    "ocorrenciasPorKm2": 253.9,
+    "naturezas": {
+      "Apoio": 45,
+      "TrÃ¢nsito": 291,
+      "Paciente/usuÃ¡rio alterado": 3,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1,
+      "Vistoria": 6,
+      "Roubo": 2,
+      "Fundada Suspeita (Abordagem)": 12,
+      "OrientaÃ§Ã£o": 4,
+      "Dano": 8,
+      "Ronda": 4,
+      "PerturbaÃ§Ã£o do sossego": 12,
+      "InvasÃ£o": 5,
+      "DesinteligÃªncia": 3,
+      "AgressÃ£o fÃ­sica/verbal": 3,
+      "ZELADORIA URBANA": 10,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "Vias de Fato": 1,
+      "Disparo de arma": 1,
+      "AmeaÃ§a": 2,
+      "Achado": 1,
+      "Transito": 1,
+      "Escolta": 1,
+      "Queima a cÃ©u aberto": 1,
+      "Furto": 1,
+      "Risco de acidente / Ã  vida": 2,
+      "VeÃ­culo": 1,
+      "Atos obscenos/libidinosos": 1,
+      "CrianÃ§a perdida/desaparecida": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 291
+      },
+      {
+        "nome": "Apoio",
+        "count": 45
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 12
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Campo Comprido",
+    "totalOcorrencias12m": 731,
+    "ocorrenciasPorKm2": 85.1,
+    "naturezas": {
+      "Dano": 7,
+      "TrÃ¢nsito": 516,
+      "Apoio": 92,
+      "Paciente/usuÃ¡rio alterado": 14,
+      "Queima a cÃ©u aberto": 6,
+      "Fundada Suspeita (Abordagem)": 10,
+      "Queda de fios de energia": 2,
+      "Ronda": 4,
+      "DesinteligÃªncia": 1,
+      "Risco de acidente / Ã  vida": 9,
+      "Escolta": 2,
+      "LesÃ£o Corporal": 3,
+      "AmeaÃ§a": 5,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "AgressÃ£o fÃ­sica/verbal": 2,
+      "InvasÃ£o": 19,
+      "Transito": 1,
+      "Vistoria": 3,
+      "ConstruÃ§Ã£o Irregular": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1,
+      "ZELADORIA URBANA": 5,
+      "Achado": 1,
+      "PerturbaÃ§Ã£o do sossego": 3,
+      "Patrulha Maria da Penha": 1,
+      "Alagamento": 1,
+      "Desabamento": 1,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "Alarmes": 4,
+      "Risco de queda de Ã¡rvore": 1,
+      "SituaÃ§Ã£o de risco": 1,
+      "Furto": 1,
+      "Corte Irregular de Ãrvore": 2,
+      "DepÃ³sito irregular": 2,
+      "Desacato": 2,
+      "Crime ambiental": 5,
+      "OrientaÃ§Ã£o": 2,
+      "Fornecimento de Lona": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 516
+      },
+      {
+        "nome": "Apoio",
+        "count": 92
+      },
+      {
+        "nome": "InvasÃ£o",
+        "count": 19
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Campo de Santana",
+    "totalOcorrencias12m": 553,
+    "ocorrenciasPorKm2": 25.6,
+    "naturezas": {
+      "Ronda": 13,
+      "TrÃ¢nsito": 198,
+      "Apoio": 122,
+      "InvasÃ£o": 30,
+      "Tentativa": 4,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 22,
+      "Disparo de arma": 3,
+      "CrianÃ§a perdida/desaparecida": 3,
+      "Vistoria": 15,
+      "Risco de acidente / Ã  vida": 12,
+      "Dano": 8,
+      "Fornecimento de Lona": 4,
+      "ZELADORIA URBANA": 4,
+      "Maus tratos Ã  pessoas": 1,
+      "Furto": 5,
+      "VeÃ­culo": 5,
+      "Encaminhamento": 3,
+      "DesinteligÃªncia": 3,
+      "DepÃ³sito irregular": 2,
+      "Fundada Suspeita (Abordagem)": 34,
+      "SituaÃ§Ã£o de risco": 1,
+      "AgressÃ£o fÃ­sica/verbal": 20,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "SubstÃ¢ncia IlÃ­cita": 4,
+      "Alagamento": 1,
+      "ManifestaÃ§Ã£o": 1,
+      "Corte Irregular de Ãrvore": 3,
+      "Crime ambiental": 4,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "Escolta": 1,
+      "Animais": 4,
+      "Queima a cÃ©u aberto": 5,
+      "Alarmes": 1,
+      "Queda de fios de energia": 1,
+      "OrientaÃ§Ã£o": 2,
+      "AmeaÃ§a": 3,
+      "VOO DRONE GMC": 3,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 2,
+      "IncÃªndio": 2
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 198
+      },
+      {
+        "nome": "Apoio",
+        "count": 122
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 34
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Campo Pequeno",
+    "totalOcorrencias12m": 9,
+    "ocorrenciasPorKm2": 1.8,
+    "naturezas": {
+      "Apoio": 1,
+      "Crime ambiental": 2,
+      "Risco de acidente / Ã  vida": 2,
+      "Fundada Suspeita (Abordagem)": 1,
+      "OrientaÃ§Ã£o": 1,
+      "Roubo": 1,
+      "SubstÃ¢ncia IlÃ­cita": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Crime ambiental",
+        "count": 2
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 2
+      },
+      {
+        "nome": "Apoio",
+        "count": 1
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 5
+  },
+  {
+    "bairro": "Capã£o da Imbuia",
+    "totalOcorrencias12m": 406,
+    "ocorrenciasPorKm2": 81.2,
+    "naturezas": {
+      "Roubo": 6,
+      "Apoio": 62,
+      "ZELADORIA URBANA": 17,
+      "TrÃ¢nsito": 185,
+      "Dano": 12,
+      "DesinteligÃªncia": 6,
+      "Risco de acidente / Ã  vida": 26,
+      "AmeaÃ§a": 13,
+      "Alarmes": 1,
+      "InvasÃ£o": 12,
+      "Ronda": 3,
+      "ImportunaÃ§Ã£oÂ sexual": 2,
+      "Furto": 4,
+      "OrientaÃ§Ã£o": 3,
+      "Fundada Suspeita (Abordagem)": 10,
+      "Transito": 4,
+      "Rixa": 1,
+      "Queima a cÃ©u aberto": 5,
+      "AgressÃ£o fÃ­sica/verbal": 6,
+      "Vias de Fato": 1,
+      "Alagamento": 3,
+      "Achado": 2,
+      "Vistoria": 7,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 3,
+      "VeÃ­culo": 1,
+      "ArrastÃ£o": 1,
+      "Paciente/usuÃ¡rio alterado": 3,
+      "Embriaguez": 1,
+      "Patrulha Maria da Penha": 1,
+      "SubstÃ¢ncia IlÃ­cita": 2,
+      "NotificaÃ§Ã£o": 1,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "Corte Irregular de Ãrvore": 1,
+      "Recolhimento de Materiais": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 185
+      },
+      {
+        "nome": "Apoio",
+        "count": 62
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 26
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Capã£o Raso",
+    "totalOcorrencias12m": 2076,
+    "ocorrenciasPorKm2": 415.2,
+    "naturezas": {
+      "TrÃ¢nsito": 1405,
+      "InvasÃ£o": 10,
+      "Fundada Suspeita (Abordagem)": 40,
+      "PerseguiÃ§Ã£o (stalking)": 1,
+      "Apoio": 265,
+      "AmeaÃ§a": 12,
+      "DesinteligÃªncia": 28,
+      "ZELADORIA URBANA": 11,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 14,
+      "Dano": 37,
+      "Risco de acidente / Ã  vida": 66,
+      "VeÃ­culo": 4,
+      "Quedas de objetos ou partes de construÃ§Ãµes": 1,
+      "ErosÃ£o": 1,
+      "Vias de Fato": 12,
+      "Fuga de Paciente": 5,
+      "ImportunaÃ§Ã£oÂ sexual": 8,
+      "SubstÃ¢ncia IlÃ­cita": 7,
+      "Queda de fios de energia": 1,
+      "PerturbaÃ§Ã£o do sossego": 5,
+      "Encaminhamento": 1,
+      "Atos obscenos/libidinosos": 4,
+      "Ronda": 15,
+      "AgressÃ£o fÃ­sica/verbal": 21,
+      "Tentativa": 4,
+      "Porte Ilegal": 3,
+      "Paciente/usuÃ¡rio alterado": 13,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 2,
+      "Transito": 5,
+      "Achado": 1,
+      "Queima a cÃ©u aberto": 10,
+      "Risco de queda de Ã¡rvore": 1,
+      "Furto": 14,
+      "Escolta": 6,
+      "Roubo": 7,
+      "Alagamento": 4,
+      "Alarmes": 1,
+      "Desaparecimento": 2,
+      "ÃrgÃ£os acionados": 1,
+      "Racismo": 1,
+      "OrientaÃ§Ã£o": 4,
+      "Disparo de arma": 3,
+      "Vistoria": 4,
+      "LesÃ£o Corporal": 2,
+      "AveriguaÃ§Ã£o (Defesa Civil)": 2,
+      "CrianÃ§a perdida/desaparecida": 2,
+      "Material abandonado": 1,
+      "Corte Irregular de Ãrvore": 1,
+      "Patrulha Maria da Penha": 1,
+      "Crime ambiental": 5,
+      "Fornecimento de Lona": 2,
+      "ManifestaÃ§Ã£o": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 1405
+      },
+      {
+        "nome": "Apoio",
+        "count": 265
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 66
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 100
+  },
+  {
+    "bairro": "Casa",
+    "totalOcorrencias12m": 67,
+    "ocorrenciasPorKm2": 13.4,
+    "naturezas": {
+      "TrÃ¢nsito": 56,
+      "Apoio": 4,
+      "Paciente/usuÃ¡rio alterado": 1,
+      "Risco de acidente / Ã  vida": 1,
+      "Fundada Suspeita (Abordagem)": 1,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "ZELADORIA URBANA": 2,
+      "Crime ambiental": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 56
+      },
+      {
+        "nome": "Apoio",
+        "count": 4
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 2
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Cascatinha",
+    "totalOcorrencias12m": 109,
+    "ocorrenciasPorKm2": 36.6,
+    "naturezas": {
+      "TrÃ¢nsito": 64,
+      "Apoio": 17,
+      "Pesca em local proibido": 1,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "Dano": 1,
+      "Fundada Suspeita (Abordagem)": 2,
+      "Risco de acidente / Ã  vida": 3,
+      "ZELADORIA URBANA": 3,
+      "Queda de poste": 1,
+      "CrianÃ§a perdida/desaparecida": 3,
+      "Vistoria": 2,
+      "Queima a cÃ©u aberto": 1,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "Animais": 1,
+      "Tentativa": 1,
+      "Queda de fios de energia": 2,
+      "Furto": 1,
+      "Transito": 1,
+      "FiscalizaÃ§Ãµes e OrientaÃ§Ãµes": 1,
+      "Risco de queda de Ã¡rvore": 1,
+      "AgressÃ£o fÃ­sica/verbal": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 64
+      },
+      {
+        "nome": "Apoio",
+        "count": 17
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 3
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Caximba",
+    "totalOcorrencias12m": 71,
+    "ocorrenciasPorKm2": 2.5,
+    "naturezas": {
+      "Apoio": 32,
+      "Fornecimento de Lona": 3,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 3,
+      "Dano": 1,
+      "TrÃ¢nsito": 11,
+      "InvasÃ£o": 3,
+      "AmeaÃ§a": 1,
+      "Desabamento": 1,
+      "Vistoria": 3,
+      "Furto": 1,
+      "Fundada Suspeita (Abordagem)": 4,
+      "AgressÃ£o fÃ­sica/verbal": 1,
+      "Patrulha Maria da Penha": 1,
+      "CrianÃ§a perdida/desaparecida": 1,
+      "ZELADORIA URBANA": 2,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 1,
+      "VOO DRONE GMC": 1,
+      "Alarmes": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 32
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 11
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 4
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Centro",
+    "totalOcorrencias12m": 4929,
+    "ocorrenciasPorKm2": 1493.6,
+    "naturezas": {
+      "Dano": 134,
+      "Fundada Suspeita (Abordagem)": 575,
+      "Ronda": 72,
+      "Furto": 181,
+      "Apoio": 1944,
+      "Vias de Fato": 53,
+      "ZELADORIA URBANA": 180,
+      "Uso indevido do cartÃ£o transporte": 10,
+      "AgressÃ£o fÃ­sica/verbal": 58,
+      "OrientaÃ§Ã£o": 377,
+      "Roubo": 79,
+      "PerturbaÃ§Ã£o do sossego": 49,
+      "Vistoria": 68,
+      "TrÃ¢nsito": 238,
+      "AmeaÃ§a": 60,
+      "InvasÃ£o": 66,
+      "SubstÃ¢ncia IlÃ­cita": 176,
+      "Encaminhamento": 19,
+      "Escolta": 79,
+      "Atos obscenos/libidinosos": 13,
+      "ImportunaÃ§Ã£oÂ sexual": 15,
+      "DesinteligÃªncia": 198,
+      "SituaÃ§Ã£o de risco": 4,
+      "Queima a cÃ©u aberto": 20,
+      "ÃrgÃ£os acionados": 14,
+      "Porte Ilegal": 3,
+      "Risco de acidente / Ã  vida": 33,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 3,
+      "Tentativa": 23,
+      "Animais": 10,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 8,
+      "Acidente de trÃ¢nsito": 3,
+      "Impedimento ou perturbaÃ§Ã£o de cerimÃ´nia funerÃ¡ria": 1,
+      "Desacato": 5,
+      "CorrupÃ§Ã£o de menores": 1,
+      "Disparo de arma": 10,
+      "Achado": 42,
+      "Banho em local imprÃ³prio": 8,
+      "Desaparecimento": 3,
+      "Rixa": 2,
+      "Paciente/usuÃ¡rio alterado": 11,
+      "Pesca em local proibido": 2,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 2,
+      "VeÃ­culo": 6,
+      "Alarmes": 4,
+      "ManifestaÃ§Ã£o": 2,
+      "Fornecimento de Lona": 2,
+      "Risco de queda de galho": 1,
+      "LesÃ£o Corporal": 4,
+      "Transito": 1,
+      "Patrulha Maria da Penha": 2,
+      "CrianÃ§a perdida/desaparecida": 5,
+      "Venda proibida de produtos especÃ­ficos Ã  menores": 1,
+      "PerseguiÃ§Ã£o (stalking)": 1,
+      "DesobediÃªncia": 1,
+      "Alagamento": 1,
+      "Estelionato": 3,
+      "Queda de fios de energia": 2,
+      "ComÃ©rcio ambulante": 1,
+      "Conduta inconveniente": 5,
+      "Fuga de Paciente": 1,
+      "ExtorsÃ£o": 1,
+      "Menores abordando transeuntes": 2,
+      "FiscalizaÃ§Ãµes e OrientaÃ§Ãµes": 1,
+      "Crime ambiental": 29,
+      "CalÃºnia": 1,
+      "Extravio de Equipamento": 1,
+      "Calote": 1,
+      "HomicÃ­dio": 1,
+      "Racismo": 1,
+      "Corte Irregular de Ãrvore": 1,
+      "Tentativa de suborno": 1,
+      "SuicÃ­dio": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 1944
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 575
+      },
+      {
+        "nome": "OrientaÃ§Ã£o",
+        "count": 377
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 100
+  },
+  {
+    "bairro": "Centro Cã­vico",
+    "totalOcorrencias12m": 317,
+    "ocorrenciasPorKm2": 63.4,
+    "naturezas": {
+      "Apoio": 114,
+      "OrientaÃ§Ã£o": 26,
+      "ManifestaÃ§Ã£o": 17,
+      "Fundada Suspeita (Abordagem)": 27,
+      "Dano": 6,
+      "AgressÃ£o fÃ­sica/verbal": 7,
+      "SubstÃ¢ncia IlÃ­cita": 9,
+      "TrÃ¢nsito": 29,
+      "Escolta": 2,
+      "Disparo de arma": 1,
+      "Queima a cÃ©u aberto": 6,
+      "InvasÃ£o": 4,
+      "DesinteligÃªncia": 2,
+      "Vistoria": 9,
+      "Animais": 2,
+      "Furto": 8,
+      "ZELADORIA URBANA": 15,
+      "Achado": 6,
+      "Deslizamenton de Terra": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 1,
+      "DepÃ³sito irregular": 1,
+      "Atos obscenos/libidinosos": 2,
+      "Ronda": 3,
+      "Vias de Fato": 1,
+      "PerturbaÃ§Ã£o do sossego": 4,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "EVENTO": 6,
+      "Banho em local imprÃ³prio": 1,
+      "SuicÃ­dio": 1,
+      "Desacato": 1,
+      "Risco de acidente / Ã  vida": 1,
+      "Crime ambiental": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 114
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 29
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 27
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Cidade Industrial",
+    "totalOcorrencias12m": 2979,
+    "ocorrenciasPorKm2": 68.7,
+    "naturezas": {
+      "Dano": 67,
+      "Fundada Suspeita (Abordagem)": 154,
+      "TrÃ¢nsito": 1396,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 72,
+      "InvasÃ£o": 92,
+      "Apoio": 499,
+      "AgressÃ£o fÃ­sica/verbal": 53,
+      "Queima a cÃ©u aberto": 36,
+      "Risco de acidente / Ã  vida": 64,
+      "Paciente/usuÃ¡rio alterado": 38,
+      "Vistoria": 76,
+      "Atos obscenos/libidinosos": 3,
+      "Uso indevido do cartÃ£o transporte": 22,
+      "Ronda": 28,
+      "Furto": 27,
+      "AmeaÃ§a": 14,
+      "Crime ambiental": 37,
+      "SubstÃ¢ncia IlÃ­cita": 21,
+      "ImportunaÃ§Ã£oÂ sexual": 2,
+      "Tentativa": 8,
+      "Fornecimento de Lona": 10,
+      "Corte Irregular de Ãrvore": 6,
+      "OrientaÃ§Ã£o": 24,
+      "DesinteligÃªncia": 11,
+      "Encaminhamento": 6,
+      "Disparo de arma": 4,
+      "PerturbaÃ§Ã£o do sossego": 25,
+      "DepÃ³sito irregular": 7,
+      "Queda de fios de energia": 6,
+      "VeÃ­culo": 6,
+      "SituaÃ§Ã£o de risco": 2,
+      "Alarmes": 21,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 4,
+      "Escolta": 4,
+      "ZELADORIA URBANA": 36,
+      "Transito": 11,
+      "Roubo": 8,
+      "AveriguaÃ§Ã£o (Defesa Civil)": 1,
+      "Rixa": 1,
+      "FiscalizaÃ§Ãµes e OrientaÃ§Ãµes": 3,
+      "Vias de Fato": 8,
+      "Achado": 11,
+      "ErosÃ£o": 3,
+      "Animais": 10,
+      "LesÃ£o Corporal": 1,
+      "Alagamento": 11,
+      "Risco de desabamento / desmoronamento": 2,
+      "CrianÃ§a perdida/desaparecida": 6,
+      "PoluiÃ§Ã£o visual/ambiental": 2,
+      "Fuga de Paciente": 9,
+      "HomicÃ­dio": 1,
+      "Patrulha Maria da Penha": 3,
+      "ProteÃ§Ã£o ao PatrimÃ´nio": 1,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "Desaparecimento": 2,
+      "ConstruÃ§Ã£o Irregular": 2,
+      "ÃrgÃ£os acionados": 2,
+      "Desacato": 3,
+      "Queda de poste": 1,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 1,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 1,
+      "InundaÃ§Ã£o/Enchente": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 1396
+      },
+      {
+        "nome": "Apoio",
+        "count": 499
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 154
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 100
+  },
+  {
+    "bairro": "Cristo Rei",
+    "totalOcorrencias12m": 208,
+    "ocorrenciasPorKm2": 144.4,
+    "naturezas": {
+      "TrÃ¢nsito": 39,
+      "Apoio": 37,
+      "Fundada Suspeita (Abordagem)": 7,
+      "OrientaÃ§Ã£o": 8,
+      "Tentativa": 3,
+      "Encaminhamento": 2,
+      "Dano": 9,
+      "ZELADORIA URBANA": 33,
+      "Risco de acidente / Ã  vida": 16,
+      "AmeaÃ§a": 3,
+      "InvasÃ£o": 5,
+      "Furto": 6,
+      "Queima a cÃ©u aberto": 4,
+      "DesinteligÃªncia": 3,
+      "AgressÃ£o fÃ­sica/verbal": 4,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "Disparo de arma": 1,
+      "Roubo": 3,
+      "Ronda": 7,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "Vistoria": 2,
+      "Achado": 1,
+      "Risco de queda de Ã¡rvore": 1,
+      "Vias de Fato": 1,
+      "Alarmes": 1,
+      "Animais": 1,
+      "Escolta": 2,
+      "SituaÃ§Ã£o de risco": 1,
+      "Estupro": 1,
+      "Crime ambiental": 3,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 39
+      },
+      {
+        "nome": "Apoio",
+        "count": 37
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 33
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Fanny",
+    "totalOcorrencias12m": 480,
+    "ocorrenciasPorKm2": 470.6,
+    "naturezas": {
+      "ZELADORIA URBANA": 14,
+      "Dano": 4,
+      "TrÃ¢nsito": 373,
+      "Fundada Suspeita (Abordagem)": 5,
+      "Apoio": 29,
+      "Risco de acidente / Ã  vida": 9,
+      "Ronda": 2,
+      "Queima a cÃ©u aberto": 9,
+      "Vistoria": 1,
+      "AgressÃ£o fÃ­sica/verbal": 5,
+      "Corte Irregular de Ãrvore": 1,
+      "PerturbaÃ§Ã£o do sossego": 4,
+      "DesinteligÃªncia": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "OrientaÃ§Ã£o": 4,
+      "Achado": 1,
+      "Alagamento": 1,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "Queda de poste": 1,
+      "Embriaguez": 1,
+      "Alarmes": 1,
+      "IncÃªndio": 1,
+      "Queda de fios de energia": 1,
+      "Paciente/usuÃ¡rio alterado": 1,
+      "Roubo": 2,
+      "Encaminhamento": 1,
+      "Crime ambiental": 3,
+      "Vias de Fato": 1,
+      "Atos obscenos/libidinosos": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 373
+      },
+      {
+        "nome": "Apoio",
+        "count": 29
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 14
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Fazendinha",
+    "totalOcorrencias12m": 572,
+    "ocorrenciasPorKm2": 153.8,
+    "naturezas": {
+      "PerturbaÃ§Ã£o do sossego": 6,
+      "TrÃ¢nsito": 214,
+      "Apoio": 138,
+      "Paciente/usuÃ¡rio alterado": 10,
+      "Fundada Suspeita (Abordagem)": 21,
+      "InvasÃ£o": 6,
+      "Pesca em local proibido": 9,
+      "Banho em local imprÃ³prio": 3,
+      "ImportunaÃ§Ã£oÂ sexual": 2,
+      "Crime ambiental": 6,
+      "Disparo de arma": 2,
+      "Risco de acidente / Ã  vida": 10,
+      "Ronda": 10,
+      "Alarmes": 3,
+      "Queima a cÃ©u aberto": 1,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "AmeaÃ§a": 8,
+      "Vistoria": 15,
+      "Fuga de Paciente": 4,
+      "ZELADORIA URBANA": 6,
+      "Furto": 13,
+      "Abandono de incapaz": 1,
+      "AgressÃ£o fÃ­sica/verbal": 11,
+      "Vias de Fato": 2,
+      "DesinteligÃªncia": 5,
+      "SubstÃ¢ncia IlÃ­cita": 4,
+      "Dano": 8,
+      "OrientaÃ§Ã£o": 8,
+      "Achado": 2,
+      "VeÃ­culo": 3,
+      "Tentativa": 6,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 8,
+      "Alagamento": 6,
+      "Acidente de trÃ¢nsito": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "Fornecimento de Lona": 1,
+      "ÃrgÃ£os acionados": 2,
+      "Roubo": 1,
+      "DepÃ³sito irregular": 2,
+      "Atos obscenos/libidinosos": 2,
+      "Rixa": 1,
+      "Extravio de Equipamento": 3,
+      "AveriguaÃ§Ã£o (Defesa Civil)": 1,
+      "Encaminhamento": 2,
+      "CrianÃ§a perdida/desaparecida": 2,
+      "Risco de queda de fios de energia": 1,
+      "DiscriminaÃ§Ã£o": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 214
+      },
+      {
+        "nome": "Apoio",
+        "count": 138
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 21
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Ganchinho",
+    "totalOcorrencias12m": 175,
+    "ocorrenciasPorKm2": 15.4,
+    "naturezas": {
+      "OrientaÃ§Ã£o": 3,
+      "TrÃ¢nsito": 62,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 10,
+      "Apoio": 33,
+      "Animais": 2,
+      "Risco de queda de poste": 1,
+      "ZELADORIA URBANA": 2,
+      "Fundada Suspeita (Abordagem)": 8,
+      "ManifestaÃ§Ã£o": 1,
+      "Ronda": 6,
+      "InvasÃ£o": 5,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 1,
+      "PoluiÃ§Ã£o visual/ambiental": 1,
+      "Poda de Ã¡rvore": 1,
+      "Dano": 1,
+      "AgressÃ£o fÃ­sica/verbal": 7,
+      "Corte Irregular de Ãrvore": 1,
+      "Transito": 1,
+      "Vistoria": 3,
+      "ErosÃ£o": 1,
+      "Furto": 3,
+      "Paciente/usuÃ¡rio alterado": 5,
+      "Queima a cÃ©u aberto": 3,
+      "Encaminhamento": 1,
+      "DesinteligÃªncia": 2,
+      "PerturbaÃ§Ã£o do sossego": 2,
+      "Uso indevido do cartÃ£o transporte": 1,
+      "Risco de acidente / Ã  vida": 5,
+      "Alagamento": 1,
+      "Atos obscenos/libidinosos": 1,
+      "SubstÃ¢ncia IlÃ­cita": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 62
+      },
+      {
+        "nome": "Apoio",
+        "count": 33
+      },
+      {
+        "nome": "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha",
+        "count": 10
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Guaã­ra",
+    "totalOcorrencias12m": 478,
+    "ocorrenciasPorKm2": 95.6,
+    "naturezas": {
+      "InvasÃ£o": 12,
+      "ZELADORIA URBANA": 30,
+      "Apoio": 105,
+      "TrÃ¢nsito": 181,
+      "Encaminhamento": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 20,
+      "Queima a cÃ©u aberto": 5,
+      "Dano": 8,
+      "Fundada Suspeita (Abordagem)": 21,
+      "ImportunaÃ§Ã£oÂ sexual": 2,
+      "Furto": 6,
+      "Ronda": 9,
+      "AgressÃ£o fÃ­sica/verbal": 7,
+      "PerturbaÃ§Ã£o do sossego": 4,
+      "Roubo": 4,
+      "OrientaÃ§Ã£o": 8,
+      "Alarmes": 5,
+      "Tentativa": 2,
+      "Transito": 2,
+      "Alagamento": 1,
+      "DesinteligÃªncia": 6,
+      "SubstÃ¢ncia IlÃ­cita": 4,
+      "Risco de acidente / Ã  vida": 10,
+      "Paciente/usuÃ¡rio alterado": 5,
+      "VeÃ­culo": 1,
+      "OcupaÃ§Ã£o Irregular": 2,
+      "AmeaÃ§a": 2,
+      "Atos obscenos/libidinosos": 1,
+      "SituaÃ§Ã£o de risco": 1,
+      "Vistoria": 1,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "Desacato": 1,
+      "Corte Irregular de Ãrvore": 1,
+      "Crime ambiental": 7,
+      "DevoluÃ§Ã£o de coisa achada": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 181
+      },
+      {
+        "nome": "Apoio",
+        "count": 105
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 30
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Guabirotuba",
+    "totalOcorrencias12m": 301,
+    "ocorrenciasPorKm2": 116.7,
+    "naturezas": {
+      "Dano": 3,
+      "TrÃ¢nsito": 202,
+      "PerturbaÃ§Ã£o do sossego": 21,
+      "OrientaÃ§Ã£o": 2,
+      "Queima a cÃ©u aberto": 7,
+      "InvasÃ£o": 3,
+      "Vistoria": 4,
+      "Crime ambiental": 5,
+      "Apoio": 18,
+      "ZELADORIA URBANA": 6,
+      "ConstruÃ§Ã£o Irregular": 1,
+      "Ronda": 7,
+      "Fundada Suspeita (Abordagem)": 5,
+      "Risco de queda de fios de energia": 1,
+      "DesinteligÃªncia": 1,
+      "Transito": 1,
+      "AgressÃ£o fÃ­sica/verbal": 1,
+      "Risco de acidente / Ã  vida": 1,
+      "AmeaÃ§a": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 5,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 1,
+      "Alarmes": 1,
+      "Roubo": 1,
+      "SubstÃ¢ncia IlÃ­cita": 2,
+      "Tentativa": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 202
+      },
+      {
+        "nome": "PerturbaÃ§Ã£o do sossego",
+        "count": 21
+      },
+      {
+        "nome": "Apoio",
+        "count": 18
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Hauer",
+    "totalOcorrencias12m": 767,
+    "ocorrenciasPorKm2": 376,
+    "naturezas": {
+      "TrÃ¢nsito": 476,
+      "Apoio": 63,
+      "Queima a cÃ©u aberto": 11,
+      "OrientaÃ§Ã£o": 6,
+      "Dano": 16,
+      "Roubo": 13,
+      "ZELADORIA URBANA": 40,
+      "Desacato": 1,
+      "Quedas de objetos ou partes de construÃ§Ãµes": 1,
+      "Animais": 4,
+      "AgressÃ£o fÃ­sica/verbal": 7,
+      "ImportunaÃ§Ã£oÂ sexual": 3,
+      "Fundada Suspeita (Abordagem)": 16,
+      "Achado": 2,
+      "Vistoria": 3,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 3,
+      "Furto": 9,
+      "Risco de acidente / Ã  vida": 35,
+      "VeÃ­culo": 3,
+      "InvasÃ£o": 7,
+      "Vias de Fato": 1,
+      "AmeaÃ§a": 7,
+      "Paciente/usuÃ¡rio alterado": 5,
+      "Ronda": 3,
+      "Alarmes": 4,
+      "SubstÃ¢ncia IlÃ­cita": 4,
+      "Alagamento": 6,
+      "Risco de desabamento / desmoronamento": 1,
+      "Tentativa": 2,
+      "DepÃ³sito irregular": 1,
+      "Escolta": 1,
+      "CrianÃ§a perdida/desaparecida": 1,
+      "SituaÃ§Ã£o de risco": 2,
+      "Encaminhamento": 2,
+      "Crime ambiental": 1,
+      "DesinteligÃªncia": 3,
+      "Risco de queda de Ã¡rvore": 2,
+      "Uso indevido do cartÃ£o transporte": 1,
+      "Risco de queda de fios de energia": 1,
+      "Fornecimento de Lona": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 476
+      },
+      {
+        "nome": "Apoio",
+        "count": 63
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 40
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Higienã³polis",
+    "totalOcorrencias12m": 0,
+    "ocorrenciasPorKm2": 0,
+    "naturezas": {},
+    "topNaturezas": [],
+    "tendencia": "descendo",
+    "scorePercentil": 5
+  },
+  {
+    "bairro": "Hugo Lange",
+    "totalOcorrencias12m": 52,
+    "ocorrenciasPorKm2": 44.1,
+    "naturezas": {
+      "Roubo": 2,
+      "Apoio": 13,
+      "Alarmes": 4,
+      "Ronda": 3,
+      "InvasÃ£o": 1,
+      "Dano": 2,
+      "PerturbaÃ§Ã£o do sossego": 2,
+      "ZELADORIA URBANA": 2,
+      "Fundada Suspeita (Abordagem)": 2,
+      "Fornecimento de Lona": 1,
+      "TrÃ¢nsito": 16,
+      "SubstÃ¢ncia IlÃ­cita": 2,
+      "Crime ambiental": 1,
+      "Animais": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 16
+      },
+      {
+        "nome": "Apoio",
+        "count": 13
+      },
+      {
+        "nome": "Alarmes",
+        "count": 4
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Jardim Botã¢nico",
+    "totalOcorrencias12m": 844,
+    "ocorrenciasPorKm2": 168.8,
+    "naturezas": {
+      "AgressÃ£o fÃ­sica/verbal": 17,
+      "Dano": 26,
+      "ZELADORIA URBANA": 86,
+      "Apoio": 241,
+      "TrÃ¢nsito": 61,
+      "OrientaÃ§Ã£o": 48,
+      "Encaminhamento": 18,
+      "ReceptaÃ§Ã£o": 1,
+      "Queima a cÃ©u aberto": 25,
+      "PerturbaÃ§Ã£o do sossego": 4,
+      "DesinteligÃªncia": 30,
+      "Fundada Suspeita (Abordagem)": 60,
+      "Risco de acidente / Ã  vida": 14,
+      "InjÃºria": 1,
+      "Vias de Fato": 24,
+      "Roubo": 7,
+      "SubstÃ¢ncia IlÃ­cita": 17,
+      "InvasÃ£o": 8,
+      "Furto": 27,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 4,
+      "Disparo de arma": 4,
+      "Desacato": 8,
+      "AmeaÃ§a": 22,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "Fuga de Paciente": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 4,
+      "Maus tratos Ã  pessoas": 1,
+      "Vistoria": 17,
+      "Tentativa": 5,
+      "Achado": 4,
+      "AveriguaÃ§Ã£o ComÃ©rcio ilegal": 3,
+      "Ronda": 14,
+      "Porte Ilegal": 2,
+      "Estelionato": 1,
+      "Desaparecimento": 2,
+      "DepÃ³sito irregular": 2,
+      "Banho em local imprÃ³prio": 1,
+      "Animais": 2,
+      "VeÃ­culo": 3,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "SituaÃ§Ã£o de risco": 1,
+      "DesobediÃªncia": 1,
+      "Crime ambiental": 21,
+      "ÃrgÃ£os acionados": 2,
+      "Extravio de Equipamento": 1,
+      "CrianÃ§a perdida/desaparecida": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 241
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 86
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 61
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Jardim das Amã©ricas",
+    "totalOcorrencias12m": 389,
+    "ocorrenciasPorKm2": 77.8,
+    "naturezas": {
+      "ZELADORIA URBANA": 26,
+      "TrÃ¢nsito": 265,
+      "Dano": 6,
+      "Corte Irregular de Ãrvore": 2,
+      "Uso indevido do cartÃ£o transporte": 1,
+      "Queima a cÃ©u aberto": 6,
+      "Risco de acidente / Ã  vida": 10,
+      "Queda de fios de energia": 2,
+      "PerturbaÃ§Ã£o do sossego": 6,
+      "Apoio": 19,
+      "SubstÃ¢ncia IlÃ­cita": 6,
+      "Furto": 2,
+      "Crime ambiental": 12,
+      "VeÃ­culo": 3,
+      "AgressÃ£o fÃ­sica/verbal": 2,
+      "AmeaÃ§a": 3,
+      "Alagamento": 3,
+      "Tentativa": 1,
+      "Fundada Suspeita (Abordagem)": 7,
+      "Ronda": 2,
+      "Vistoria": 1,
+      "Animais": 2,
+      "InvasÃ£o": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1,
+      "OrientaÃ§Ã£o": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 265
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 26
+      },
+      {
+        "nome": "Apoio",
+        "count": 19
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Jardim Social",
+    "totalOcorrencias12m": 38,
+    "ocorrenciasPorKm2": 18.6,
+    "naturezas": {
+      "Paciente/usuÃ¡rio alterado": 3,
+      "InvasÃ£o": 3,
+      "Fornecimento de Lona": 6,
+      "TrÃ¢nsito": 10,
+      "Ronda": 2,
+      "SituaÃ§Ã£o de risco": 1,
+      "Apoio": 8,
+      "Alagamento": 1,
+      "VeÃ­culo": 1,
+      "Fundada Suspeita (Abordagem)": 1,
+      "Corte Irregular de Ãrvore": 1,
+      "Crime ambiental": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 10
+      },
+      {
+        "nome": "Apoio",
+        "count": 8
+      },
+      {
+        "nome": "Fornecimento de Lona",
+        "count": 6
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 5
+  },
+  {
+    "bairro": "Juvevãª",
+    "totalOcorrencias12m": 41,
+    "ocorrenciasPorKm2": 8.2,
+    "naturezas": {
+      "Apoio": 10,
+      "Fundada Suspeita (Abordagem)": 3,
+      "Dano": 2,
+      "InvasÃ£o": 2,
+      "VeÃ­culo": 1,
+      "TrÃ¢nsito": 8,
+      "Animais": 1,
+      "Vistoria": 1,
+      "Queda de fios de energia": 1,
+      "Ronda": 3,
+      "DesinteligÃªncia": 1,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "ErosÃ£o": 1,
+      "Atos obscenos/libidinosos": 1,
+      "Risco de acidente / Ã  vida": 4
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 10
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 8
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 4
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Lamenha Pequena",
+    "totalOcorrencias12m": 9,
+    "ocorrenciasPorKm2": 2.6,
+    "naturezas": {
+      "TrÃ¢nsito": 6,
+      "Vistoria": 2,
+      "Apoio": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 6
+      },
+      {
+        "nome": "Vistoria",
+        "count": 2
+      },
+      {
+        "nome": "Apoio",
+        "count": 1
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 5
+  },
+  {
+    "bairro": "Lindã³ia",
+    "totalOcorrencias12m": 266,
+    "ocorrenciasPorKm2": 53.2,
+    "naturezas": {
+      "TrÃ¢nsito": 177,
+      "Apoio": 22,
+      "Vistoria": 2,
+      "Alarmes": 1,
+      "Queima a cÃ©u aberto": 8,
+      "Dano": 1,
+      "Furto": 5,
+      "Roubo": 3,
+      "PerturbaÃ§Ã£o do sossego": 3,
+      "Corte Irregular de Ãrvore": 2,
+      "ZELADORIA URBANA": 10,
+      "Material abandonado": 1,
+      "Queda de fios de energia": 1,
+      "Alagamento": 1,
+      "Fundada Suspeita (Abordagem)": 3,
+      "InvasÃ£o": 3,
+      "Paciente/usuÃ¡rio alterado": 4,
+      "AgressÃ£o fÃ­sica/verbal": 5,
+      "SituaÃ§Ã£o de risco": 1,
+      "Ronda": 1,
+      "Fornecimento de Lona": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "AmeaÃ§a": 2,
+      "ÃrgÃ£os acionados": 1,
+      "Poda de Ã¡rvore": 1,
+      "Risco de acidente / Ã  vida": 1,
+      "Crime ambiental": 2,
+      "OrientaÃ§Ã£o": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 177
+      },
+      {
+        "nome": "Apoio",
+        "count": 22
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 10
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Mercãªs",
+    "totalOcorrencias12m": 330,
+    "ocorrenciasPorKm2": 66,
+    "naturezas": {
+      "Risco de acidente / Ã  vida": 7,
+      "Vistoria": 10,
+      "Apoio": 81,
+      "AmeaÃ§a": 7,
+      "PerturbaÃ§Ã£o do sossego": 8,
+      "Dano": 36,
+      "Alagamento": 3,
+      "TrÃ¢nsito": 53,
+      "Paciente/usuÃ¡rio alterado": 3,
+      "Fundada Suspeita (Abordagem)": 23,
+      "OrientaÃ§Ã£o": 18,
+      "Atos obscenos/libidinosos": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 5,
+      "InvasÃ£o": 6,
+      "Pesca em local proibido": 1,
+      "Ronda": 10,
+      "Alarmes": 3,
+      "SituaÃ§Ã£o de risco": 1,
+      "Furto": 9,
+      "ZELADORIA URBANA": 12,
+      "AgressÃ£o fÃ­sica/verbal": 3,
+      "DesinteligÃªncia": 1,
+      "DepÃ³sito irregular": 1,
+      "PoluiÃ§Ã£o visual/ambiental": 1,
+      "Tentativa": 2,
+      "Banho em local imprÃ³prio": 1,
+      "Queima a cÃ©u aberto": 3,
+      "Achado": 2,
+      "Vias de Fato": 1,
+      "Encaminhamento": 1,
+      "Porte Ilegal": 1,
+      "Roubo": 3,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "Animais": 3,
+      "CrianÃ§a perdida/desaparecida": 2,
+      "Desacato": 1,
+      "Crime ambiental": 3,
+      "VeÃ­culo": 1,
+      "Corte Irregular de Ãrvore": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 81
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 53
+      },
+      {
+        "nome": "Dano",
+        "count": 36
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Mossunguãª",
+    "totalOcorrencias12m": 381,
+    "ocorrenciasPorKm2": 76.2,
+    "naturezas": {
+      "TrÃ¢nsito": 314,
+      "FiscalizaÃ§Ãµes e OrientaÃ§Ãµes": 1,
+      "Queima a cÃ©u aberto": 4,
+      "Apoio": 20,
+      "Fundada Suspeita (Abordagem)": 7,
+      "Vistoria": 3,
+      "OrientaÃ§Ã£o": 2,
+      "Ronda": 4,
+      "Roubo": 1,
+      "Crime ambiental": 2,
+      "Risco de desabamento / desmoronamento": 1,
+      "ZELADORIA URBANA": 4,
+      "Risco de acidente / Ã  vida": 6,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "Transito": 1,
+      "ÃrgÃ£os acionados": 1,
+      "Dano": 3,
+      "VeÃ­culo": 2,
+      "SituaÃ§Ã£o de risco": 2,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "ArrastÃ£o": 1,
+      "AgressÃ£o fÃ­sica/verbal": 1,
+      "InvasÃ£o": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 314
+      },
+      {
+        "nome": "Apoio",
+        "count": 20
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 7
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Novo Mundo",
+    "totalOcorrencias12m": 1914,
+    "ocorrenciasPorKm2": 343.6,
+    "naturezas": {
+      "TrÃ¢nsito": 1454,
+      "Apoio": 154,
+      "Vias de Fato": 2,
+      "Risco de acidente / Ã  vida": 43,
+      "VeÃ­culo": 2,
+      "ImportunaÃ§Ã£oÂ sexual": 4,
+      "AmeaÃ§a": 8,
+      "Dano": 15,
+      "Crime ambiental": 4,
+      "Ronda": 10,
+      "OrientaÃ§Ã£o": 8,
+      "Queima a cÃ©u aberto": 17,
+      "Fundada Suspeita (Abordagem)": 18,
+      "AgressÃ£o fÃ­sica/verbal": 16,
+      "Furto": 7,
+      "ZELADORIA URBANA": 19,
+      "DesinteligÃªncia": 10,
+      "Vistoria": 9,
+      "Escolta": 1,
+      "Alarmes": 5,
+      "Fornecimento de Lona": 2,
+      "ErosÃ£o": 1,
+      "SubstÃ¢ncia IlÃ­cita": 7,
+      "SuicÃ­dio": 1,
+      "InvasÃ£o": 25,
+      "Transito": 5,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 22,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "Patrulha Maria da Penha": 3,
+      "Tentativa": 3,
+      "PerturbaÃ§Ã£o do sossego": 7,
+      "Queda de fios de energia": 3,
+      "Roubo": 5,
+      "Porte Ilegal": 1,
+      "Animais": 2,
+      "Risco de queda de fios de energia": 1,
+      "Alagamento": 3,
+      "ComÃ©rcio ambulante": 1,
+      "ÃrgÃ£os acionados": 1,
+      "Disparo de arma": 2,
+      "Uso indevido do cartÃ£o transporte": 1,
+      "ApreensÃ£o de materiais": 1,
+      "CrianÃ§a perdida/desaparecida": 1,
+      "Abandono de incapaz": 1,
+      "Queda de poste": 1,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 1,
+      "Desacato": 1,
+      "Encaminhamento": 2,
+      "AveriguaÃ§Ã£o (Defesa Civil)": 1,
+      "ConstruÃ§Ã£o Irregular": 1,
+      "Atos obscenos/libidinosos": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 1454
+      },
+      {
+        "nome": "Apoio",
+        "count": 154
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 43
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 100
+  },
+  {
+    "bairro": "Orleans",
+    "totalOcorrencias12m": 258,
+    "ocorrenciasPorKm2": 67,
+    "naturezas": {
+      "TrÃ¢nsito": 189,
+      "InvasÃ£o": 2,
+      "Apoio": 36,
+      "Queda de fios de energia": 1,
+      "Risco de acidente / Ã  vida": 5,
+      "Queima a cÃ©u aberto": 2,
+      "AmeaÃ§a": 1,
+      "Fundada Suspeita (Abordagem)": 4,
+      "Vistoria": 2,
+      "Dano": 1,
+      "ZELADORIA URBANA": 1,
+      "AgressÃ£o fÃ­sica/verbal": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "Escolta": 1,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "VeÃ­culo": 1,
+      "Patrulha Maria da Penha": 1,
+      "Alagamento": 1,
+      "Crime ambiental": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "OrientaÃ§Ã£o": 1,
+      "Alarmes": 1,
+      "DesinteligÃªncia": 2
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 189
+      },
+      {
+        "nome": "Apoio",
+        "count": 36
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 5
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Parolin",
+    "totalOcorrencias12m": 580,
+    "ocorrenciasPorKm2": 432.8,
+    "naturezas": {
+      "TrÃ¢nsito": 263,
+      "Risco de acidente / Ã  vida": 15,
+      "Apoio": 69,
+      "Dano": 11,
+      "Furto": 14,
+      "Queima a cÃ©u aberto": 95,
+      "Fundada Suspeita (Abordagem)": 23,
+      "Estupro": 1,
+      "Alarmes": 4,
+      "Ronda": 4,
+      "Fornecimento de Lona": 3,
+      "ZELADORIA URBANA": 17,
+      "ArrastÃ£o": 1,
+      "AmeaÃ§a": 4,
+      "AgressÃ£o fÃ­sica/verbal": 6,
+      "Patrulha Maria da Penha": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 5,
+      "InvasÃ£o": 7,
+      "Vistoria": 7,
+      "SubstÃ¢ncia IlÃ­cita": 7,
+      "Achado": 5,
+      "Roubo": 5,
+      "DepÃ³sito irregular": 1,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "Atos obscenos/libidinosos": 2,
+      "Tentativa": 1,
+      "OrientaÃ§Ã£o": 4,
+      "VeÃ­culo": 1,
+      "Crime ambiental": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 263
+      },
+      {
+        "nome": "Queima a cÃ©u aberto",
+        "count": 95
+      },
+      {
+        "nome": "Apoio",
+        "count": 69
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Pilarzinho",
+    "totalOcorrencias12m": 641,
+    "ocorrenciasPorKm2": 89.9,
+    "naturezas": {
+      "TrÃ¢nsito": 321,
+      "Apoio": 164,
+      "AmeaÃ§a": 2,
+      "SubstÃ¢ncia IlÃ­cita": 7,
+      "Queda de fios de energia": 2,
+      "InvasÃ£o": 11,
+      "Porte de artefato explosivo": 1,
+      "InjÃºria": 1,
+      "PerturbaÃ§Ã£o do sossego": 4,
+      "Queima a cÃ©u aberto": 6,
+      "Fundada Suspeita (Abordagem)": 13,
+      "Paciente/usuÃ¡rio alterado": 3,
+      "Alagamento": 3,
+      "Fornecimento de Lona": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 17,
+      "Furto": 2,
+      "AgressÃ£o fÃ­sica/verbal": 8,
+      "Ronda": 3,
+      "Risco de acidente / Ã  vida": 6,
+      "Animais": 7,
+      "ÃrgÃ£os acionados": 2,
+      "Desacato": 1,
+      "ZELADORIA URBANA": 3,
+      "Vistoria": 11,
+      "OrientaÃ§Ã£o": 12,
+      "VeÃ­culo": 2,
+      "InfiltraÃ§Ã£o": 1,
+      "Patrulha Maria da Penha": 1,
+      "Achado": 1,
+      "Vias de Fato": 1,
+      "Dano": 3,
+      "DepÃ³sito irregular": 2,
+      "Corte Irregular de Ãrvore": 7,
+      "AveriguaÃ§Ã£o ComÃ©rcio ilegal": 1,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 1,
+      "Risco de desabamento / desmoronamento": 2,
+      "DesinteligÃªncia": 2,
+      "PerseguiÃ§Ã£o (stalking)": 1,
+      "Crime ambiental": 5
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 321
+      },
+      {
+        "nome": "Apoio",
+        "count": 164
+      },
+      {
+        "nome": "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha",
+        "count": 17
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Pinheirinho",
+    "totalOcorrencias12m": 1039,
+    "ocorrenciasPorKm2": 96.7,
+    "naturezas": {
+      "ZELADORIA URBANA": 24,
+      "InvasÃ£o": 24,
+      "TrÃ¢nsito": 498,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 27,
+      "Apoio": 153,
+      "DesinteligÃªncia": 5,
+      "AmeaÃ§a": 3,
+      "PerturbaÃ§Ã£o do sossego": 20,
+      "Atos obscenos/libidinosos": 4,
+      "AgressÃ£o fÃ­sica/verbal": 20,
+      "Fundada Suspeita (Abordagem)": 48,
+      "Risco de acidente / Ã  vida": 27,
+      "Corte Irregular de Ãrvore": 1,
+      "VeÃ­culo": 2,
+      "Dano": 19,
+      "SubstÃ¢ncia IlÃ­cita": 31,
+      "Paciente/usuÃ¡rio alterado": 4,
+      "Fornecimento de Lona": 4,
+      "Roubo": 7,
+      "Ronda": 16,
+      "LesÃ£o Corporal": 2,
+      "Risco de queda de fios de energia": 1,
+      "Vistoria": 11,
+      "Alarmes": 5,
+      "Risco de queda de Ã¡rvore": 4,
+      "Furto": 5,
+      "Animais": 2,
+      "Disparo de arma": 3,
+      "Alagamento": 3,
+      "Vias de Fato": 2,
+      "Uso indevido do cartÃ£o transporte": 1,
+      "Queima a cÃ©u aberto": 10,
+      "OrientaÃ§Ã£o": 4,
+      "Queda de fios de energia": 2,
+      "Transito": 3,
+      "SituaÃ§Ã£o de risco": 2,
+      "Risco de acidente/Ã  vida (Defesa Civil)": 1,
+      "ErosÃ£o": 3,
+      "Tentativa": 4,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "PoluiÃ§Ã£o visual/ambiental": 1,
+      "Achado": 2,
+      "Queda de poste": 1,
+      "CrianÃ§a perdida/desaparecida": 2,
+      "Encaminhamento": 6,
+      "ResistÃªncia": 1,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 1,
+      "Patrulha Maria da Penha": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "Crime ambiental": 9,
+      "DepÃ³sito irregular": 5,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "Fuga de Paciente": 1,
+      "Risco de queda de poste": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 498
+      },
+      {
+        "nome": "Apoio",
+        "count": 153
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 48
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Portã£o",
+    "totalOcorrencias12m": 1330,
+    "ocorrenciasPorKm2": 266,
+    "naturezas": {
+      "TrÃ¢nsito": 891,
+      "Risco de acidente / Ã  vida": 48,
+      "Fundada Suspeita (Abordagem)": 27,
+      "OrientaÃ§Ã£o": 4,
+      "Queima a cÃ©u aberto": 5,
+      "Apoio": 145,
+      "Ronda": 13,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "Alarmes": 8,
+      "DesinteligÃªncia": 7,
+      "Dano": 20,
+      "ZELADORIA URBANA": 23,
+      "Vias de Fato": 4,
+      "InvasÃ£o": 10,
+      "Alagamento": 5,
+      "Fornecimento de Lona": 4,
+      "Vistoria": 11,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 17,
+      "PerturbaÃ§Ã£o do sossego": 4,
+      "Furto": 12,
+      "Transito": 4,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 2,
+      "ManifestaÃ§Ã£o": 2,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 2,
+      "SituaÃ§Ã£o de risco": 2,
+      "FiscalizaÃ§Ãµes e OrientaÃ§Ãµes": 1,
+      "Queda de fios de energia": 2,
+      "Atos obscenos/libidinosos": 4,
+      "Animais": 1,
+      "AmeaÃ§a": 4,
+      "Risco de queda de Ã¡rvore": 1,
+      "AgressÃ£o fÃ­sica/verbal": 9,
+      "Tentativa": 4,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "Uso indevido do cartÃ£o transporte": 4,
+      "Risco de desabamento / desmoronamento": 1,
+      "Risco de queda de galho": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 3,
+      "Encaminhamento": 2,
+      "ComÃ©rcio ambulante": 1,
+      "SubstÃ¢ncia IlÃ­cita": 5,
+      "LesÃ£o Corporal": 1,
+      "Roubo": 3,
+      "Patrulha Maria da Penha": 3,
+      "DepÃ³sito irregular": 1,
+      "Risco de queda de fios de energia": 1,
+      "Crime ambiental": 6
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 891
+      },
+      {
+        "nome": "Apoio",
+        "count": 145
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 48
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 100
+  },
+  {
+    "bairro": "Prado Velho",
+    "totalOcorrencias12m": 497,
+    "ocorrenciasPorKm2": 206.2,
+    "naturezas": {
+      "Apoio": 69,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 5,
+      "Fundada Suspeita (Abordagem)": 36,
+      "Queima a cÃ©u aberto": 4,
+      "TrÃ¢nsito": 206,
+      "OrientaÃ§Ã£o": 11,
+      "Paciente/usuÃ¡rio alterado": 8,
+      "ZELADORIA URBANA": 65,
+      "InvasÃ£o": 7,
+      "DesinteligÃªncia": 3,
+      "AgressÃ£o fÃ­sica/verbal": 4,
+      "Roubo": 8,
+      "Furto": 4,
+      "Dano": 21,
+      "Vias de Fato": 3,
+      "AmeaÃ§a": 4,
+      "Alarmes": 5,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "Risco de acidente / Ã  vida": 10,
+      "ExploraÃ§Ã£o de menores": 1,
+      "Vistoria": 2,
+      "Escolta": 2,
+      "SubstÃ¢ncia IlÃ­cita": 6,
+      "Encaminhamento": 2,
+      "Ronda": 2,
+      "Porte Ilegal": 1,
+      "ManipulaÃ§Ã£o de Explosivo": 1,
+      "VeÃ­culo": 1,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 1,
+      "Atos obscenos/libidinosos": 1,
+      "Crime ambiental": 1,
+      "Extravio de Equipamento": 1,
+      "LesÃ£o Corporal": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 206
+      },
+      {
+        "nome": "Apoio",
+        "count": 69
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 65
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Rebouã§as",
+    "totalOcorrencias12m": 962,
+    "ocorrenciasPorKm2": 192.4,
+    "naturezas": {
+      "ZELADORIA URBANA": 137,
+      "InvasÃ£o": 27,
+      "OrientaÃ§Ã£o": 65,
+      "TrÃ¢nsito": 77,
+      "AmeaÃ§a": 19,
+      "Apoio": 250,
+      "SubstÃ¢ncia IlÃ­cita": 10,
+      "Dano": 20,
+      "Paciente/usuÃ¡rio alterado": 43,
+      "DesinteligÃªncia": 23,
+      "Roubo": 11,
+      "Fundada Suspeita (Abordagem)": 67,
+      "ImportunaÃ§Ã£oÂ sexual": 6,
+      "Furto": 31,
+      "Encaminhamento": 6,
+      "Tentativa": 9,
+      "Risco de acidente / Ã  vida": 30,
+      "Queima a cÃ©u aberto": 28,
+      "AgressÃ£o fÃ­sica/verbal": 11,
+      "Vistoria": 8,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 5,
+      "Achado": 4,
+      "Disparo de arma": 5,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "Alarmes": 1,
+      "VeÃ­culo": 3,
+      "Ronda": 18,
+      "PerturbaÃ§Ã£o do sossego": 4,
+      "Risco de desabamento / desmoronamento": 2,
+      "Alagamento": 1,
+      "Fornecimento de Lona": 1,
+      "Uso indevido do cartÃ£o transporte": 4,
+      "Atos obscenos/libidinosos": 2,
+      "Escolta": 3,
+      "Desacato": 3,
+      "Vias de Fato": 2,
+      "LesÃ£o Corporal": 1,
+      "ÃrgÃ£os acionados": 1,
+      "Patrulha Maria da Penha": 1,
+      "Desaparecimento": 1,
+      "Crime ambiental": 20,
+      "SituaÃ§Ã£o de risco": 1,
+      "Moeda Falsa": 1,
+      "OmissÃ£o de socorro": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 250
+      },
+      {
+        "nome": "ZELADORIA URBANA",
+        "count": 137
+      },
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 77
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Riviera",
+    "totalOcorrencias12m": 5,
+    "ocorrenciasPorKm2": 1.6,
+    "naturezas": {
+      "Fundada Suspeita (Abordagem)": 1,
+      "Apoio": 1,
+      "TrÃ¢nsito": 3
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 3
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 1
+      },
+      {
+        "nome": "Apoio",
+        "count": 1
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 5
+  },
+  {
+    "bairro": "Sã£o Braz",
+    "totalOcorrencias12m": 383,
+    "ocorrenciasPorKm2": 76.6,
+    "naturezas": {
+      "Queima a cÃ©u aberto": 8,
+      "TrÃ¢nsito": 230,
+      "Apoio": 40,
+      "Vistoria": 5,
+      "PerturbaÃ§Ã£o do sossego": 4,
+      "Risco de acidente / Ã  vida": 13,
+      "Paciente/usuÃ¡rio alterado": 1,
+      "Atos obscenos/libidinosos": 1,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "AgressÃ£o fÃ­sica/verbal": 5,
+      "Furto": 2,
+      "Dano": 7,
+      "Fundada Suspeita (Abordagem)": 20,
+      "Tentativa": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 13,
+      "Ronda": 3,
+      "Fornecimento de Lona": 6,
+      "DesinteligÃªncia": 1,
+      "InvasÃ£o": 3,
+      "ZELADORIA URBANA": 5,
+      "AmeaÃ§a": 2,
+      "Alagamento": 1,
+      "Risco de queda de poste": 1,
+      "VeÃ­culo": 1,
+      "Crime ambiental": 4,
+      "Queda de fios de energia": 1,
+      "Corte Irregular de Ãrvore": 1,
+      "OrientaÃ§Ã£o": 2
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 230
+      },
+      {
+        "nome": "Apoio",
+        "count": 40
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 20
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Sã£o Francisco",
+    "totalOcorrencias12m": 775,
+    "ocorrenciasPorKm2": 155,
+    "naturezas": {
+      "Apoio": 180,
+      "DesinteligÃªncia": 15,
+      "SubstÃ¢ncia IlÃ­cita": 68,
+      "ÃrgÃ£os acionados": 2,
+      "Dano": 63,
+      "TrÃ¢nsito": 58,
+      "Furto": 23,
+      "InvasÃ£o": 19,
+      "Paciente/usuÃ¡rio alterado": 5,
+      "Fundada Suspeita (Abordagem)": 88,
+      "OrientaÃ§Ã£o": 56,
+      "ZELADORIA URBANA": 22,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 4,
+      "Achado": 7,
+      "Disparo de arma": 1,
+      "Desacato": 1,
+      "AmeaÃ§a": 7,
+      "AgressÃ£o fÃ­sica/verbal": 9,
+      "Queima a cÃ©u aberto": 7,
+      "Atos obscenos/libidinosos": 2,
+      "Vistoria": 15,
+      "Animais": 4,
+      "Tentativa": 6,
+      "Ronda": 24,
+      "PerturbaÃ§Ã£o do sossego": 44,
+      "Roubo": 13,
+      "Vias de Fato": 6,
+      "Alarmes": 1,
+      "Risco de acidente / Ã  vida": 3,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "Acidente de trÃ¢nsito": 1,
+      "Banho em local imprÃ³prio": 4,
+      "Encaminhamento": 2,
+      "DistÃºrbio": 1,
+      "VeÃ­culo": 4,
+      "DepÃ³sito irregular": 1,
+      "ManifestaÃ§Ã£o": 2,
+      "Queda de fios de energia": 2,
+      "Corte Irregular de Ãrvore": 1,
+      "Fornecimento de Lona": 1,
+      "Crime ambiental": 4,
+      "Desaparecimento": 1,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "Apoio",
+        "count": 180
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 88
+      },
+      {
+        "nome": "SubstÃ¢ncia IlÃ­cita",
+        "count": 68
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Sã£o Joã£o",
+    "totalOcorrencias12m": 130,
+    "ocorrenciasPorKm2": 26,
+    "naturezas": {
+      "Queima a cÃ©u aberto": 3,
+      "Apoio": 23,
+      "Crime ambiental": 4,
+      "Tentativa": 1,
+      "TrÃ¢nsito": 36,
+      "InvasÃ£o": 1,
+      "OrientaÃ§Ã£o": 5,
+      "Vistoria": 7,
+      "Pesca em local proibido": 4,
+      "Dano": 3,
+      "Fundada Suspeita (Abordagem)": 8,
+      "Atos obscenos/libidinosos": 2,
+      "Animais": 3,
+      "AmeaÃ§a": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 6,
+      "Risco de acidente / Ã  vida": 2,
+      "Alagamento": 1,
+      "Ronda": 4,
+      "PerturbaÃ§Ã£o do sossego": 4,
+      "Furto": 2,
+      "ZELADORIA URBANA": 4,
+      "Banho em local imprÃ³prio": 2,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "Vias de Fato": 1,
+      "Roubo": 1,
+      "VeÃ­culo": 1,
+      "Risco de queda de poste": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 36
+      },
+      {
+        "nome": "Apoio",
+        "count": 23
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 8
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 20
+  },
+  {
+    "bairro": "Sã£o Lourenã§o",
+    "totalOcorrencias12m": 254,
+    "ocorrenciasPorKm2": 50.8,
+    "naturezas": {
+      "TrÃ¢nsito": 153,
+      "Dano": 6,
+      "Queima a cÃ©u aberto": 1,
+      "AmeaÃ§a": 3,
+      "Fundada Suspeita (Abordagem)": 9,
+      "Apoio": 38,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1,
+      "Paciente/usuÃ¡rio alterado": 1,
+      "Risco de acidente / Ã  vida": 1,
+      "Vistoria": 5,
+      "OrientaÃ§Ã£o": 11,
+      "Ronda": 7,
+      "ZELADORIA URBANA": 2,
+      "SituaÃ§Ã£o de risco": 1,
+      "DesinteligÃªncia": 1,
+      "Furto": 2,
+      "VeÃ­culo": 1,
+      "Transito": 1,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "CrianÃ§a perdida/desaparecida": 1,
+      "InvasÃ£o": 1,
+      "Animais": 2,
+      "Queda de fios de energia": 1,
+      "Roubo": 1,
+      "Crime ambiental": 2,
+      "AgressÃ£o fÃ­sica/verbal": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 153
+      },
+      {
+        "nome": "Apoio",
+        "count": 38
+      },
+      {
+        "nome": "OrientaÃ§Ã£o",
+        "count": 11
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Sã£o Miguel",
+    "totalOcorrencias12m": 212,
+    "ocorrenciasPorKm2": 42.4,
+    "naturezas": {
+      "InvasÃ£o": 13,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "PerturbaÃ§Ã£o do sossego": 13,
+      "TrÃ¢nsito": 67,
+      "Fundada Suspeita (Abordagem)": 11,
+      "Dano": 7,
+      "Apoio": 41,
+      "AgressÃ£o fÃ­sica/verbal": 5,
+      "Furto": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 9,
+      "Tentativa": 1,
+      "Vistoria": 7,
+      "SubstÃ¢ncia IlÃ­cita": 1,
+      "Ronda": 4,
+      "Risco de acidente / Ã  vida": 7,
+      "SituaÃ§Ã£o de risco": 1,
+      "Animais": 4,
+      "ZELADORIA URBANA": 3,
+      "Desaparecimento": 2,
+      "Corte Irregular de Ãrvore": 2,
+      "Abandono de incapaz": 1,
+      "OrientaÃ§Ã£o": 3,
+      "Achado": 2,
+      "Disparo de arma": 1,
+      "Crime ambiental": 2,
+      "DesinteligÃªncia": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 67
+      },
+      {
+        "nome": "Apoio",
+        "count": 41
+      },
+      {
+        "nome": "InvasÃ£o",
+        "count": 13
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Santa Cã¢ndida",
+    "totalOcorrencias12m": 782,
+    "ocorrenciasPorKm2": 156.4,
+    "naturezas": {
+      "TrÃ¢nsito": 328,
+      "Apoio": 213,
+      "Risco de acidente / Ã  vida": 18,
+      "Queima a cÃ©u aberto": 9,
+      "Dano": 12,
+      "Ronda": 11,
+      "ZELADORIA URBANA": 14,
+      "Escolta": 5,
+      "CÃ¢mera Off-Line": 1,
+      "InvasÃ£o": 13,
+      "AgressÃ£o fÃ­sica/verbal": 11,
+      "VeÃ­culo": 6,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 9,
+      "Alarmes": 7,
+      "Fornecimento de Lona": 24,
+      "OrientaÃ§Ã£o": 6,
+      "Acidente de trÃ¢nsito": 1,
+      "AmeaÃ§a": 5,
+      "Fundada Suspeita (Abordagem)": 28,
+      "Vistoria": 9,
+      "SituaÃ§Ã£o de risco": 1,
+      "Tentativa": 2,
+      "Risco de desabamento / desmoronamento": 1,
+      "SubstÃ¢ncia IlÃ­cita": 10,
+      "Encaminhamento": 2,
+      "Patrulha Maria da Penha": 2,
+      "Alagamento": 3,
+      "IncÃªndio": 2,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "Risco de acidente/Ã  vida (Defesa Civil)": 1,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 2,
+      "Furto": 5,
+      "Queda de fios de energia": 2,
+      "Disparo de arma": 1,
+      "Animais": 1,
+      "DesinteligÃªncia": 3,
+      "Achado": 2,
+      "Destelhamento": 1,
+      "Conduta inconveniente": 1,
+      "Racismo": 1,
+      "Vias de Fato": 2,
+      "Crime ambiental": 4,
+      "Paciente/usuÃ¡rio alterado": 1,
+      "Roubo": 1,
+      "Corte Irregular de Ãrvore": 1,
+      "Desaparecimento": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 328
+      },
+      {
+        "nome": "Apoio",
+        "count": 213
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 28
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Santa Felicidade",
+    "totalOcorrencias12m": 696,
+    "ocorrenciasPorKm2": 56.7,
+    "naturezas": {
+      "TrÃ¢nsito": 325,
+      "Paciente/usuÃ¡rio alterado": 6,
+      "Apoio": 155,
+      "Fundada Suspeita (Abordagem)": 36,
+      "Dano": 11,
+      "ImportunaÃ§Ã£oÂ sexual": 2,
+      "Pesca em local proibido": 1,
+      "Risco de acidente / Ã  vida": 14,
+      "Achado": 3,
+      "OrientaÃ§Ã£o": 10,
+      "Furto": 3,
+      "Escolta": 7,
+      "DesinteligÃªncia": 9,
+      "Roubo": 3,
+      "Vistoria": 16,
+      "Porte Ilegal": 2,
+      "Recolhimento de Materiais": 1,
+      "ErosÃ£o": 4,
+      "Encaminhamento": 4,
+      "InvasÃ£o": 5,
+      "Queima a cÃ©u aberto": 4,
+      "ZELADORIA URBANA": 8,
+      "SubstÃ¢ncia IlÃ­cita": 4,
+      "Queda de fios de energia": 3,
+      "Tentativa": 2,
+      "Acidente de trÃ¢nsito": 1,
+      "Ronda": 8,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 9,
+      "Vias de Fato": 3,
+      "Risco de queda de Ã¡rvore": 1,
+      "Risco de queda de galho": 1,
+      "AgressÃ£o fÃ­sica/verbal": 9,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "Atos obscenos/libidinosos": 1,
+      "Alarmes": 2,
+      "AmeaÃ§a": 2,
+      "Desaparecimento": 1,
+      "Disparo de arma": 2,
+      "VeÃ­culo": 1,
+      "Corte Irregular de Ãrvore": 2,
+      "Transito": 2,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "AveriguaÃ§Ã£o (Defesa Civil)": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "Risco de acidente/Ã  vida (Defesa Civil)": 1,
+      "Crime ambiental": 4,
+      "CrianÃ§a perdida/desaparecida": 1,
+      "ÃrgÃ£os acionados": 1,
+      "SituaÃ§Ã£o de risco": 1,
+      "Fornecimento de Lona": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 325
+      },
+      {
+        "nome": "Apoio",
+        "count": 155
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 36
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Santa Quitã©ria",
+    "totalOcorrencias12m": 206,
+    "ocorrenciasPorKm2": 41.2,
+    "naturezas": {
+      "Apoio": 23,
+      "TrÃ¢nsito": 118,
+      "Queima a cÃ©u aberto": 1,
+      "Paciente/usuÃ¡rio alterado": 6,
+      "Alarmes": 1,
+      "ZELADORIA URBANA": 2,
+      "Furto": 1,
+      "DesinteligÃªncia": 3,
+      "Ronda": 3,
+      "PerturbaÃ§Ã£o do sossego": 10,
+      "Alagamento": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 3,
+      "Tentativa": 1,
+      "Corte Irregular de Ãrvore": 1,
+      "Risco de acidente / Ã  vida": 6,
+      "Animais": 3,
+      "Vistoria": 4,
+      "Desaparecimento": 1,
+      "AgressÃ£o fÃ­sica/verbal": 1,
+      "OrientaÃ§Ã£o": 1,
+      "Queda de Muro": 1,
+      "Fundada Suspeita (Abordagem)": 4,
+      "Dano": 1,
+      "Fornecimento de Lona": 1,
+      "Risco de queda de Ã¡rvore": 1,
+      "Crime ambiental": 6,
+      "AmeaÃ§a": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 118
+      },
+      {
+        "nome": "Apoio",
+        "count": 23
+      },
+      {
+        "nome": "PerturbaÃ§Ã£o do sossego",
+        "count": 10
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Santo Inã¡cio",
+    "totalOcorrencias12m": 387,
+    "ocorrenciasPorKm2": 77.4,
+    "naturezas": {
+      "Fundada Suspeita (Abordagem)": 27,
+      "TrÃ¢nsito": 155,
+      "VOO DRONE GMC": 1,
+      "Apoio": 58,
+      "Ronda": 11,
+      "AgressÃ£o fÃ­sica/verbal": 2,
+      "ZELADORIA URBANA": 6,
+      "Queima a cÃ©u aberto": 6,
+      "OrientaÃ§Ã£o": 16,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "Vistoria": 13,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "CrianÃ§a perdida/desaparecida": 12,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "SubstÃ¢ncia IlÃ­cita": 5,
+      "ErosÃ£o": 1,
+      "Pesca em local proibido": 5,
+      "Dano": 8,
+      "Furto": 6,
+      "DesinteligÃªncia": 9,
+      "PerturbaÃ§Ã£o do sossego": 9,
+      "VerificaÃ§Ã£o": 1,
+      "Risco de acidente / Ã  vida": 5,
+      "Alarmes": 1,
+      "Risco de desabamento / desmoronamento": 2,
+      "Achado": 4,
+      "Vias de Fato": 3,
+      "SituaÃ§Ã£o de risco": 1,
+      "Roubo": 1,
+      "Animais": 7,
+      "InjÃºria": 1,
+      "Tentativa": 1,
+      "InvasÃ£o": 3,
+      "Banho em local imprÃ³prio": 1,
+      "Escolta": 1,
+      "Transito": 1,
+      "AmeaÃ§a": 1,
+      "VeÃ­culo": 1,
+      "Crime ambiental": 2
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 155
+      },
+      {
+        "nome": "Apoio",
+        "count": 58
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 27
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Sã­tio Cercado",
+    "totalOcorrencias12m": 2099,
+    "ocorrenciasPorKm2": 419.8,
+    "naturezas": {
+      "TrÃ¢nsito": 903,
+      "Apoio": 451,
+      "Disparo de arma": 9,
+      "Dano": 44,
+      "Achado": 6,
+      "PerturbaÃ§Ã£o do sossego": 30,
+      "AmeaÃ§a": 29,
+      "Queima a cÃ©u aberto": 21,
+      "InvasÃ£o": 71,
+      "AgressÃ£o fÃ­sica/verbal": 51,
+      "SituaÃ§Ã£o de risco": 1,
+      "Fundada Suspeita (Abordagem)": 80,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 62,
+      "Corte Irregular de Ãrvore": 2,
+      "Ronda": 39,
+      "SubstÃ¢ncia IlÃ­cita": 23,
+      "DesinteligÃªncia": 26,
+      "Paciente/usuÃ¡rio alterado": 40,
+      "Risco de acidente / Ã  vida": 24,
+      "ImportunaÃ§Ã£oÂ sexual": 2,
+      "LesÃ£o Corporal": 6,
+      "Estupro": 1,
+      "Roubo": 6,
+      "Animais": 4,
+      "Porte Ilegal": 1,
+      "ZELADORIA URBANA": 25,
+      "Transito": 5,
+      "Crime ambiental": 24,
+      "Embriaguez": 1,
+      "Furto": 9,
+      "Vistoria": 23,
+      "ConstruÃ§Ã£o Irregular": 2,
+      "Uso indevido do cartÃ£o transporte": 3,
+      "Rixa": 1,
+      "OrientaÃ§Ã£o": 13,
+      "ÃrgÃ£os acionados": 2,
+      "Vias de Fato": 7,
+      "Alarmes": 9,
+      "Risco de queda de fios de energia": 1,
+      "Desacato": 1,
+      "Racismo": 1,
+      "Desaparecimento": 2,
+      "CrianÃ§a perdida/desaparecida": 6,
+      "ErosÃ£o": 4,
+      "Fornecimento de bebida alcoÃ³lica Ã  menores": 1,
+      "Tentativa": 6,
+      "Atos obscenos/libidinosos": 3,
+      "DepÃ³sito irregular": 4,
+      "VeÃ­culo": 1,
+      "DesobediÃªncia": 1,
+      "Vazamento ou derramamento de Produto Perigoso ou Infectante": 1,
+      "Acidente de trÃ¢nsito": 1,
+      "ProteÃ§Ã£o ao PatrimÃ´nio": 1,
+      "Fornecimento de Lona": 2,
+      "Alagamento": 2,
+      "Destelhamento": 1,
+      "Encaminhamento": 5,
+      "Abuso de incapazes": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "InjÃºria": 1,
+      "Queda de fios de energia": 1,
+      "Patrulha Maria da Penha": 1,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "Fuga de Paciente": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 903
+      },
+      {
+        "nome": "Apoio",
+        "count": 451
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 80
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 100
+  },
+  {
+    "bairro": "Seminã¡rio",
+    "totalOcorrencias12m": 217,
+    "ocorrenciasPorKm2": 43.4,
+    "naturezas": {
+      "TrÃ¢nsito": 161,
+      "Risco de queda de fios de energia": 1,
+      "Apoio": 11,
+      "Furto": 1,
+      "ZELADORIA URBANA": 4,
+      "OrientaÃ§Ã£o": 3,
+      "Fundada Suspeita (Abordagem)": 3,
+      "ManifestaÃ§Ã£o": 1,
+      "Risco de acidente / Ã  vida": 3,
+      "SubstÃ¢ncia IlÃ­cita": 5,
+      "Queda de fios de energia": 1,
+      "Desaparecimento": 1,
+      "Transito": 1,
+      "Dano": 3,
+      "Queima a cÃ©u aberto": 2,
+      "Alagamento": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "Risco de desabamento / desmoronamento": 1,
+      "Paciente/usuÃ¡rio alterado": 1,
+      "AgressÃ£o fÃ­sica/verbal": 2,
+      "InvasÃ£o": 2,
+      "Ronda": 2,
+      "Escolta": 1,
+      "Crime ambiental": 5
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 161
+      },
+      {
+        "nome": "Apoio",
+        "count": 11
+      },
+      {
+        "nome": "SubstÃ¢ncia IlÃ­cita",
+        "count": 5
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Taboã£o",
+    "totalOcorrencias12m": 140,
+    "ocorrenciasPorKm2": 28,
+    "naturezas": {
+      "Apoio": 31,
+      "Encaminhamento": 1,
+      "Banho em local imprÃ³prio": 1,
+      "Risco de acidente / Ã  vida": 2,
+      "Queima a cÃ©u aberto": 3,
+      "InvasÃ£o": 1,
+      "TrÃ¢nsito": 32,
+      "Roubo": 13,
+      "Atos obscenos/libidinosos": 1,
+      "VeÃ­culo": 1,
+      "DesinteligÃªncia": 5,
+      "Fundada Suspeita (Abordagem)": 2,
+      "Tentativa": 3,
+      "Ronda": 4,
+      "Vistoria": 6,
+      "IncÃªndio": 1,
+      "Furto": 4,
+      "ZELADORIA URBANA": 4,
+      "Escolta": 1,
+      "Disparo de arma": 2,
+      "OrientaÃ§Ã£o": 7,
+      "PerturbaÃ§Ã£o do sossego": 2,
+      "Dano": 1,
+      "Queda de aeronave": 1,
+      "Vias de Fato": 1,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "Transito": 1,
+      "SubstÃ¢ncia IlÃ­cita": 2,
+      "Achado": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "Crime ambiental": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 32
+      },
+      {
+        "nome": "Apoio",
+        "count": 31
+      },
+      {
+        "nome": "Roubo",
+        "count": 13
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Tanguã¡",
+    "totalOcorrencias12m": 0,
+    "ocorrenciasPorKm2": 0,
+    "naturezas": {},
+    "topNaturezas": [],
+    "tendencia": "descendo",
+    "scorePercentil": 5
+  },
+  {
+    "bairro": "Tarumã£",
+    "totalOcorrencias12m": 474,
+    "ocorrenciasPorKm2": 94.8,
+    "naturezas": {
+      "TrÃ¢nsito": 340,
+      "InvasÃ£o": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 5,
+      "Dano": 6,
+      "Fundada Suspeita (Abordagem)": 13,
+      "Apoio": 63,
+      "ZELADORIA URBANA": 11,
+      "Risco de acidente / Ã  vida": 7,
+      "DesinteligÃªncia": 2,
+      "OrientaÃ§Ã£o": 5,
+      "Paciente/usuÃ¡rio alterado": 4,
+      "Fornecimento de Lona": 1,
+      "AgressÃ£o fÃ­sica/verbal": 1,
+      "PerturbaÃ§Ã£o do sossego": 2,
+      "Ronda": 1,
+      "Queima a cÃ©u aberto": 1,
+      "AmeaÃ§a": 1,
+      "Alarmes": 1,
+      "Furto": 2,
+      "Fuga de Paciente": 1,
+      "Tentativa": 2,
+      "Crime ambiental": 2,
+      "Vistoria": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 340
+      },
+      {
+        "nome": "Apoio",
+        "count": 63
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 13
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 65
+  },
+  {
+    "bairro": "Tatuquara",
+    "totalOcorrencias12m": 1259,
+    "ocorrenciasPorKm2": 112.1,
+    "naturezas": {
+      "VeÃ­culo": 13,
+      "Apoio": 242,
+      "TrÃ¢nsito": 468,
+      "AgressÃ£o fÃ­sica/verbal": 41,
+      "VOO DRONE GMC": 4,
+      "Fundada Suspeita (Abordagem)": 124,
+      "Queima a cÃ©u aberto": 19,
+      "Alarmes": 8,
+      "Vistoria": 27,
+      "Fuga de Paciente": 4,
+      "InvasÃ£o": 45,
+      "OrientaÃ§Ã£o": 13,
+      "Paciente/usuÃ¡rio alterado": 15,
+      "Dano": 18,
+      "AmeaÃ§a": 6,
+      "Ronda": 9,
+      "ZELADORIA URBANA": 15,
+      "Desaparecimento": 1,
+      "Fornecimento de Lona": 11,
+      "Risco de acidente / Ã  vida": 15,
+      "Achado": 2,
+      "Corte Irregular de Ãrvore": 2,
+      "Crime ambiental": 30,
+      "SituaÃ§Ã£o de risco": 2,
+      "Tentativa": 3,
+      "DesinteligÃªncia": 5,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 33,
+      "SubstÃ¢ncia IlÃ­cita": 11,
+      "Risco de queda de poste": 2,
+      "Roubo": 5,
+      "Disparo de arma": 3,
+      "Risco de queda de fios de energia": 1,
+      "Furto": 15,
+      "Transito": 3,
+      "ImportunaÃ§Ã£oÂ sexual": 3,
+      "Abandono de incapaz": 1,
+      "Encaminhamento": 7,
+      "Vias de Fato": 2,
+      "PoluiÃ§Ã£o visual/ambiental": 1,
+      "Destelhamento": 1,
+      "DepÃ³sito irregular": 3,
+      "ConstruÃ§Ã£o Irregular": 1,
+      "Alagamento": 4,
+      "Animais": 3,
+      "ManifestaÃ§Ã£o": 1,
+      "PerturbaÃ§Ã£o do sossego": 5,
+      "Atos obscenos/libidinosos": 2,
+      "Uso indevido do cartÃ£o transporte": 1,
+      "Desacato": 2,
+      "Retirada de invasÃ£o": 1,
+      "ErosÃ£o": 2,
+      "LesÃ£o Corporal": 2,
+      "Estupro": 1,
+      "Patrulha Maria da Penha": 1,
+      "Ãbito": 1,
+      "Queda de fios de energia": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 468
+      },
+      {
+        "nome": "Apoio",
+        "count": 242
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 124
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Tingui",
+    "totalOcorrencias12m": 310,
+    "ocorrenciasPorKm2": 151.2,
+    "naturezas": {
+      "TrÃ¢nsito": 159,
+      "Apoio": 43,
+      "Fundada Suspeita (Abordagem)": 6,
+      "Risco de acidente / Ã  vida": 18,
+      "ErosÃ£o": 1,
+      "Dano": 8,
+      "DesinteligÃªncia": 4,
+      "Alarmes": 1,
+      "SituaÃ§Ã£o de risco": 1,
+      "Ronda": 3,
+      "OrientaÃ§Ã£o": 6,
+      "Vistoria": 4,
+      "InvasÃ£o": 8,
+      "Vias de Fato": 3,
+      "Encaminhamento": 1,
+      "Queda de fios de energia": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 2,
+      "Tentativa": 1,
+      "AgressÃ£o fÃ­sica/verbal": 10,
+      "Atos obscenos/libidinosos": 2,
+      "Escolta": 3,
+      "DepÃ³sito irregular": 1,
+      "Queima a cÃ©u aberto": 1,
+      "AmeaÃ§a": 6,
+      "ZELADORIA URBANA": 2,
+      "ApropriaÃ§Ã£o indÃ©bita": 1,
+      "Animais": 1,
+      "Porte Ilegal": 1,
+      "Fornecimento de Lona": 1,
+      "Risco de desabamento / desmoronamento": 1,
+      "VeÃ­culo": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 2,
+      "Desaparecimento": 1,
+      "Crime ambiental": 5,
+      "SubstÃ¢ncia IlÃ­cita": 2
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 159
+      },
+      {
+        "nome": "Apoio",
+        "count": 43
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 18
+      }
+    ],
+    "tendencia": "subindo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Uberaba",
+    "totalOcorrencias12m": 1131,
+    "ocorrenciasPorKm2": 82.7,
+    "naturezas": {
+      "Apoio": 217,
+      "PerturbaÃ§Ã£o do sossego": 26,
+      "TrÃ¢nsito": 572,
+      "InvasÃ£o": 24,
+      "Risco de acidente / Ã  vida": 18,
+      "Furto": 12,
+      "Vistoria": 22,
+      "Alarmes": 7,
+      "Dano": 14,
+      "Queima a cÃ©u aberto": 31,
+      "AgressÃ£o fÃ­sica/verbal": 17,
+      "Paciente/usuÃ¡rio alterado": 11,
+      "ZELADORIA URBANA": 14,
+      "OrientaÃ§Ã£o": 8,
+      "Fornecimento de Lona": 5,
+      "Ronda": 20,
+      "Vias de Fato": 3,
+      "ÃrgÃ£os acionados": 2,
+      "Fundada Suspeita (Abordagem)": 8,
+      "Roubo": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 27,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "DepÃ³sito irregular": 2,
+      "Transito": 5,
+      "Corte Irregular de Ãrvore": 2,
+      "Risco de queda de Ã¡rvore": 3,
+      "SubstÃ¢ncia IlÃ­cita": 6,
+      "Alagamento": 11,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 1,
+      "Patrulha Maria da Penha": 2,
+      "SituaÃ§Ã£o de risco": 1,
+      "LesÃ£o Corporal": 1,
+      "DesinteligÃªncia": 4,
+      "InundaÃ§Ã£o/Enchente": 1,
+      "Queda de poste": 1,
+      "Escolta": 1,
+      "Desacato": 2,
+      "Risco de desabamento / desmoronamento": 1,
+      "Achado": 1,
+      "Tentativa": 2,
+      "ErosÃ£o": 2,
+      "Encaminhamento": 1,
+      "Risco de acidente/Ã  vida (Defesa Civil)": 1,
+      "Disparo de arma": 1,
+      "Crime ambiental": 12,
+      "AmeaÃ§a": 1,
+      "Queda de fios de energia": 1,
+      "Risco de queda de galho": 1,
+      "Atos obscenos/libidinosos": 3,
+      "IncÃªndio": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 572
+      },
+      {
+        "nome": "Apoio",
+        "count": 217
+      },
+      {
+        "nome": "Queima a cÃ©u aberto",
+        "count": 31
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 85
+  },
+  {
+    "bairro": "Umbarã¡",
+    "totalOcorrencias12m": 315,
+    "ocorrenciasPorKm2": 63,
+    "naturezas": {
+      "Queima a cÃ©u aberto": 5,
+      "TrÃ¢nsito": 184,
+      "Fundada Suspeita (Abordagem)": 11,
+      "Apoio": 40,
+      "Vistoria": 6,
+      "Roubo": 2,
+      "Fornecimento de Lona": 7,
+      "Risco de acidente / Ã  vida": 3,
+      "Ronda": 4,
+      "InvasÃ£o": 8,
+      "Furto": 3,
+      "Alarmes": 2,
+      "Corte Irregular de Ãrvore": 1,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 9,
+      "Transito": 1,
+      "AgressÃ£o fÃ­sica/verbal": 4,
+      "OrientaÃ§Ã£o": 2,
+      "ZELADORIA URBANA": 7,
+      "Dano": 6,
+      "SituaÃ§Ã£o de risco": 2,
+      "AmeaÃ§a": 1,
+      "Atos obscenos/libidinosos": 1,
+      "Alagamento": 1,
+      "ImportunaÃ§Ã£oÂ sexual": 1,
+      "Crime ambiental": 3,
+      "Avaria em Equipamento/PatrimÃ´nio (nÃ£o intencional)": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 184
+      },
+      {
+        "nome": "Apoio",
+        "count": 40
+      },
+      {
+        "nome": "Fundada Suspeita (Abordagem)",
+        "count": 11
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Vila Izabel",
+    "totalOcorrencias12m": 388,
+    "ocorrenciasPorKm2": 77.6,
+    "naturezas": {
+      "TrÃ¢nsito": 303,
+      "Dano": 3,
+      "OcupaÃ§Ã£o Irregular": 1,
+      "Apoio": 29,
+      "SubstÃ¢ncia IlÃ­cita": 2,
+      "Fundada Suspeita (Abordagem)": 5,
+      "AgressÃ£o fÃ­sica/verbal": 4,
+      "Risco de acidente / Ã  vida": 14,
+      "OrientaÃ§Ã£o": 2,
+      "ZELADORIA URBANA": 3,
+      "ImportunaÃ§Ã£o ofensiva ao pudor": 1,
+      "Ronda": 5,
+      "PerturbaÃ§Ã£o do sossego": 3,
+      "VeÃ­culo": 1,
+      "Paciente/usuÃ¡rio alterado": 2,
+      "Alarmes": 2,
+      "Vistoria": 2,
+      "Vias de Fato": 1,
+      "Transito": 2,
+      "Queima a cÃ©u aberto": 1,
+      "Crime ambiental": 1,
+      "DesinteligÃªncia": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 303
+      },
+      {
+        "nome": "Apoio",
+        "count": 29
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 14
+      }
+    ],
+    "tendencia": "descendo",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Vista Alegre",
+    "totalOcorrencias12m": 277,
+    "ocorrenciasPorKm2": 76.9,
+    "naturezas": {
+      "TrÃ¢nsito": 181,
+      "OrientaÃ§Ã£o": 3,
+      "Risco de acidente / Ã  vida": 6,
+      "Corte Irregular de Ãrvore": 2,
+      "Apoio": 21,
+      "SubstÃ¢ncia IlÃ­cita": 14,
+      "Alagamento": 4,
+      "Risco de desabamento / desmoronamento": 2,
+      "ErosÃ£o": 1,
+      "Fundada Suspeita (Abordagem)": 7,
+      "Ronda": 6,
+      "InvasÃ£o": 2,
+      "Tentativa": 1,
+      "PerturbaÃ§Ã£o do sossego": 1,
+      "ZELADORIA URBANA": 3,
+      "Vistoria": 4,
+      "FiscalizaÃ§Ãµes e OrientaÃ§Ãµes": 1,
+      "Dano": 2,
+      "Incendio/ExplosÃ£o em edificaÃ§Ã£o": 1,
+      "Desaparecimento": 1,
+      "Achado": 1,
+      "Pesca em local proibido": 1,
+      "AmeaÃ§a": 1,
+      "Vias de Fato": 2,
+      "Risco de queda de Ã¡rvore": 1,
+      "Transito": 2,
+      "AgressÃ£o fÃ­sica/verbal": 2,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 1,
+      "Queima a cÃ©u aberto": 2,
+      "Crime ambiental": 1
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 181
+      },
+      {
+        "nome": "Apoio",
+        "count": 21
+      },
+      {
+        "nome": "SubstÃ¢ncia IlÃ­cita",
+        "count": 14
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 40
+  },
+  {
+    "bairro": "Xaxim",
+    "totalOcorrencias12m": 1260,
+    "ocorrenciasPorKm2": 140.5,
+    "naturezas": {
+      "InvasÃ£o": 20,
+      "TrÃ¢nsito": 957,
+      "Apoio": 91,
+      "VeÃ­culo": 4,
+      "SituaÃ§Ã£o de risco": 2,
+      "OrientaÃ§Ã£o": 3,
+      "Queima a cÃ©u aberto": 13,
+      "AgressÃ£o fÃ­sica/verbal": 10,
+      "Fornecimento de Lona": 1,
+      "Risco de acidente / Ã  vida": 21,
+      "Furto": 5,
+      "PerturbaÃ§Ã£o do sossego": 6,
+      "Risco de desabamento / desmoronamento": 1,
+      "Fundada Suspeita (Abordagem)": 14,
+      "ViolaÃ§Ã£o de Medida Protetiva Lei Maria da Penha": 7,
+      "Alarmes": 2,
+      "Encaminhamento": 1,
+      "Escolta": 3,
+      "Disparo de arma": 1,
+      "ZELADORIA URBANA": 17,
+      "Dano": 13,
+      "Vistoria": 8,
+      "Queda de poste": 1,
+      "Patrulha Maria da Penha": 1,
+      "AmeaÃ§a": 7,
+      "Alagamento": 7,
+      "Queda de fios de energia": 2,
+      "Rachadura em EdificaÃ§Ã£o": 1,
+      "Crime ambiental": 9,
+      "Paciente/usuÃ¡rio alterado": 4,
+      "Tentativa": 2,
+      "InundaÃ§Ã£o/Enchente": 1,
+      "Ronda": 4,
+      "Queda de Muro": 1,
+      "ÃrgÃ£os acionados": 3,
+      "Transito": 3,
+      "DepÃ³sito irregular": 2,
+      "Roubo": 4,
+      "Destelhamento": 1,
+      "Animais": 2,
+      "CrianÃ§a perdida/desaparecida": 1,
+      "AveriguaÃ§Ã£o (Defesa Civil)": 1,
+      "Desacato": 1,
+      "Vias de Fato": 1,
+      "SubstÃ¢ncia IlÃ­cita": 2
+    },
+    "topNaturezas": [
+      {
+        "nome": "TrÃ¢nsito",
+        "count": 957
+      },
+      {
+        "nome": "Apoio",
+        "count": 91
+      },
+      {
+        "nome": "Risco de acidente / Ã  vida",
+        "count": 21
+      }
+    ],
+    "tendencia": "estavel",
+    "scorePercentil": 85
+  }
+]

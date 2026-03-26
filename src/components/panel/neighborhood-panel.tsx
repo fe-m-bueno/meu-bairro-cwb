@@ -60,8 +60,8 @@ function PanelContent({
   return (
     <div className="space-y-5 p-4">
       <div className="text-center">
-        <h2 className="text-lg font-bold text-zinc-100">{bairro.nome}</h2>
-        <p className="text-xs text-zinc-500">{bairro.nmRegional}</p>
+        <h2 className="text-lg font-bold text-foreground">{bairro.nome}</h2>
+        <p className="text-xs text-muted-foreground">{bairro.nmRegional}</p>
       </div>
 
       <ScoreGauge
@@ -82,7 +82,7 @@ function PanelContent({
       <Separator />
 
       <div className="space-y-1">
-        <h3 className="px-1 text-xs font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="px-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Categorias
         </h3>
         {CATEGORY_ORDER.map((key) => (
@@ -98,7 +98,7 @@ function PanelContent({
       <Separator />
 
       <div className="space-y-2">
-        <h3 className="px-1 text-xs font-semibold uppercase tracking-wider text-zinc-500">
+        <h3 className="px-1 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
           Equipamentos próximos
         </h3>
         <NearbyServices centroid={bairro.centroid} services={services} />
@@ -109,7 +109,7 @@ function PanelContent({
           <button
             type="button"
             onClick={onStartCompare}
-            className="w-full rounded-lg border border-emerald-700 bg-emerald-900/30 px-4 py-2.5 text-sm font-medium text-emerald-400 transition-colors hover:bg-emerald-900/50"
+            className="w-full rounded-lg border border-emerald-600 bg-emerald-500/10 px-4 py-2.5 text-sm font-medium text-emerald-600 transition-colors hover:bg-emerald-500/20 dark:border-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50"
           >
             Comparar com outro bairro
           </button>
@@ -159,15 +159,15 @@ export function NeighborhoodPanel({
   }
 
   return (
-    <div className="fixed top-0 right-0 z-40 flex h-full w-[380px] flex-col border-l border-zinc-800 bg-zinc-950/95 backdrop-blur-sm transition-transform duration-300">
-      <div className="flex items-center justify-between border-b border-zinc-800 px-4 py-3">
-        <span className="text-sm font-semibold text-zinc-200">
+    <div className="fixed top-14 right-0 z-[1001] flex h-[calc(100vh-3.5rem)] w-[380px] flex-col border-l border-border bg-background/95 backdrop-blur-sm transition-transform duration-300">
+      <div className="flex items-center justify-between border-b border-border px-4 py-3">
+        <span className="text-sm font-semibold text-foreground">
           {bairro.nome}
         </span>
         <button
           type="button"
           onClick={onClose}
-          className="rounded-md p-1 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
+          className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           aria-label="Fechar painel"
         >
           <svg
