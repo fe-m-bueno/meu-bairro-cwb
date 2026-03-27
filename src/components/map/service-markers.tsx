@@ -1,11 +1,15 @@
 'use client'
 
-import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
+import type L from 'leaflet'
+import { Marker, Popup, Tooltip } from 'react-leaflet'
+import { haversine } from '@/lib/geo/haversine'
 import type { ServiceFacility } from '@/lib/types'
+import { getCategoryIcon } from './marker-icons'
 
 interface ServiceMarkersProps {
   services: Record<string, ServiceFacility[]>
   visibleLayers: Set<string>
+  selectedCentroid?: [number, number] | null
 }
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -35,11 +39,16 @@ const MAX_MARKERS_PER_CATEGORY: Record<string, number> = {
 const MAX_TOTAL_MARKERS = 500
 const DEFAULT_CAP = 100
 
+function formatDist(meters: number): string {
+  if (meters < 1000) return `${Math.round(meters)}m`
+  return `${(meters / 1000).toFixed(1)}km`
+}
+
 export function ServiceMarkers({
   services,
   visibleLayers,
+  selectedCentroid,
 }: ServiceMarkersProps) {
-  // Calculate how many categories are visible and budget markers accordingly
   const visibleCategories = Object.keys(services).filter((cat) =>
     visibleLayers.has(cat),
   )
@@ -62,65 +71,140 @@ export function ServiceMarkers({
     <>
       {renderGroups.map(({ category, facilities }) => {
         const color = CATEGORY_COLORS[category] ?? '#6b7280'
+        const icon = getCategoryIcon(category)
 
-        return facilities.map((facility) => (
-          <CircleMarker
-            key={facility.id}
-            center={[facility.coordinates[0], facility.coordinates[1]]}
-            radius={4}
-            weight={1}
-            color={color}
-            fillColor={color}
-            fillOpacity={0.8}
-          >
-            <Tooltip direction="top" offset={[0, -5]}>
-              <span style={{ fontSize: '12px', fontWeight: 600 }}>{facility.name}</span>
-              <br />
-              <span style={{ fontSize: '11px', color: '#888' }}>
-                {CATEGORY_LABELS[category] || category} — {facility.subcategory}
-              </span>
-            </Tooltip>
-            <Popup>
-              <div style={{ minWidth: '150px' }}>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    marginBottom: '4px',
-                  }}
-                >
-                  <span
+        return facilities.map((facility) => {
+          const dist =
+            selectedCentroid != null
+              ? haversine(selectedCentroid[0], selectedCentroid[1], facility.coordinates[0], facility.coordinates[1])
+              : null
+
+          // Build tooltip content with specific subcategory info
+          const tooltipLabel =
+            category === 'transporte' && facility.subcategory === 'Parada'
+              ? facility.name
+              : `${facility.name}`
+
+          // Build popup content
+          const props = facility.properties ?? {}
+          const address =
+            (props.ds_endereco as string) ??
+            (props.endereco as string) ??
+            (props.nm_endereco as string) ??
+            null
+          const lineInfo =
+            category === 'transporte' && facility.subcategory === 'Parada'
+              ? (props.nr_linha as string) ?? null
+              : null
+
+          return (
+            <Marker
+              key={facility.id}
+              position={[facility.coordinates[0], facility.coordinates[1]]}
+              icon={icon}
+              eventHandlers={{
+                mouseover: (e) => {
+                  const el = (e.target as L.Marker).getElement()
+                  const inner = el?.querySelector('.category-marker') as HTMLElement | null
+                  if (inner) {
+                    inner.style.transform = 'scale(1.35)'
+                    inner.style.transition = 'transform 0.15s ease, box-shadow 0.15s ease'
+                    inner.style.boxShadow = `0 4px 12px ${color}80`
+                  }
+                },
+                mouseout: (e) => {
+                  const el = (e.target as L.Marker).getElement()
+                  const inner = el?.querySelector('.category-marker') as HTMLElement | null
+                  if (inner) {
+                    inner.style.transform = 'scale(1)'
+                    inner.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)'
+                  }
+                },
+              }}
+            >
+              <Tooltip direction="top" offset={[0, -16]}>
+                <div style={{ minWidth: '120px' }}>
+                  <div style={{ fontSize: '12px', fontWeight: 600 }}>{tooltipLabel}</div>
+                  <div style={{ fontSize: '11px', opacity: 0.75, marginTop: '2px' }}>
+                    {CATEGORY_LABELS[category] || category} — {facility.subcategory}
+                  </div>
+                  {dist != null && (
+                    <div style={{ fontSize: '11px', opacity: 0.6, marginTop: '2px' }}>
+                      {formatDist(dist)} do bairro
+                    </div>
+                  )}
+                </div>
+              </Tooltip>
+              <Popup>
+                <div style={{ minWidth: '170px', fontFamily: 'system-ui' }}>
+                  {/* Colored header bar */}
+                  <div
                     style={{
-                      width: '8px',
-                      height: '8px',
-                      borderRadius: '50%',
+                      margin: '-10px -12px 10px',
+                      padding: '7px 12px',
                       background: color,
-                      display: 'inline-block',
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontSize: '11px',
-                      color: '#888',
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.5px',
+                      borderRadius: '6px 6px 0 0',
                     }}
                   >
-                    {CATEGORY_LABELS[category] || category}
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        color: 'white',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.8px',
+                      }}
+                    >
+                      {CATEGORY_LABELS[category] || category}
+                    </span>
+                  </div>
+
+                  {/* Facility name */}
+                  <strong style={{ fontSize: '13px', display: 'block', marginBottom: '4px' }}>
+                    {facility.name}
+                  </strong>
+
+                  {/* Subcategory badge */}
+                  <span
+                    style={{
+                      display: 'inline-block',
+                      fontSize: '10px',
+                      padding: '1px 6px',
+                      borderRadius: '10px',
+                      background: `${color}20`,
+                      color: color,
+                      border: `1px solid ${color}40`,
+                      marginBottom: '6px',
+                    }}
+                  >
+                    {facility.subcategory}
                   </span>
+
+                  {/* Distance from selected neighborhood */}
+                  {dist != null && (
+                    <div style={{ fontSize: '12px', opacity: 0.7, marginBottom: '4px' }}>
+                      📍 {formatDist(dist)} do bairro selecionado
+                    </div>
+                  )}
+
+                  {/* Address if available */}
+                  {address && (
+                    <div style={{ fontSize: '11px', opacity: 0.65, marginBottom: '3px' }}>
+                      {address}
+                    </div>
+                  )}
+
+                  {/* Bus line info */}
+                  {lineInfo && (
+                    <div style={{ fontSize: '11px', opacity: 0.7 }}>
+                      Linha: {lineInfo}
+                    </div>
+                  )}
                 </div>
-                <strong style={{ fontSize: '13px' }}>{facility.name}</strong>
-                <div
-                  style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}
-                >
-                  {facility.subcategory}
-                </div>
-              </div>
-            </Popup>
-          </CircleMarker>
-        ))
+              </Popup>
+            </Marker>
+          )
+        })
       })}
     </>
   )

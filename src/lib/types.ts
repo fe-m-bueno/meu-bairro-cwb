@@ -23,6 +23,7 @@ export interface ServiceFacility {
   subcategory: string
   coordinates: [number, number] // [lat, lng]
   layerId: number
+  properties?: Record<string, string | number | null>
 }
 
 export interface FactorScore {
@@ -67,6 +68,8 @@ export interface BusLine {
   id: string
   name: string
   coordinates: [number, number][] // array of [lat, lng] points along the route
+  lineNumber?: string
+  lineType?: string
 }
 
 export interface BairroCrimeData {

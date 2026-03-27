@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Suspense, useCallback, useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useMemo, useState } from 'react'
 import { MapControls } from '@/components/map/map-controls'
 import { MapFooter } from '@/components/layout/map-footer'
 import { CompareView } from '@/components/panel/compare-view'
@@ -60,6 +60,15 @@ function HomeContent() {
   const compareScore = compareBairro
     ? (scores.find((s) => s.bairroCode === compareBairro) ?? null)
     : null
+
+  const markerCounts = useMemo(() => {
+    const counts: Record<string, number> = {}
+    for (const [cat, facilities] of Object.entries(services)) {
+      const cap = { saude: 200, educacao: 200, seguranca: 100, transporte: 300, cultura: 150 }[cat] ?? 100
+      counts[cat] = Math.min(facilities.length, cap)
+    }
+    return counts
+  }, [services])
 
   const handleSelectBairro = useCallback(
     (codigo: string) => {
@@ -168,6 +177,7 @@ function HomeContent() {
       <MapControls
         visibleLayers={visibleLayers}
         onToggleLayer={handleToggleLayer}
+        markerCounts={markerCounts}
       />
 
       <div className="pointer-events-none absolute bottom-4 right-4 z-[1000] flex flex-col items-end gap-1">
@@ -197,6 +207,7 @@ function HomeContent() {
         searchedPoint={searchedPoint}
         visibleLayers={visibleLayers}
         panelOpen={!!selectedBairro || !!compareBairro}
+        selectedCentroid={selectedBairroData?.centroid ?? null}
       />
 
       {compareBairro &&

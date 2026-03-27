@@ -131,7 +131,7 @@ export function featureToFacility(
   const geom = feature.geometry as GeoJSON.Point
   const [lng, lat] = geom.coordinates
   const props = feature.properties ?? {}
-  const name = String(
+  let name = String(
     props.nome ??
       props.NOME ??
       props.ds_nome ??
@@ -139,6 +139,28 @@ export function featureToFacility(
       props.name ??
       subcategory,
   )
+
+  // Extract extra fields (try both lowercase and uppercase)
+  const extraFields = [
+    'cd_ponto', 'nr_ponto', 'nr_linha', 'nm_linha',
+    'ds_endereco', 'endereco', 'nm_endereco',
+    'telefone', 'tp_categoria', 'ds_tipo', 'ds_bairro', 'nm_bairro',
+  ] as const
+  const extraProps: Record<string, string | number | null> = {}
+  for (const field of extraFields) {
+    const val = props[field] ?? props[field.toUpperCase()]
+    if (val !== undefined && val !== null) {
+      extraProps[field] = val as string | number | null
+    }
+  }
+
+  // For bus stops, prefix name with point code if available
+  if (subcategory === 'Parada') {
+    const codigo = extraProps.cd_ponto ?? extraProps.nr_ponto
+    if (codigo !== undefined && codigo !== null) {
+      name = `Ponto ${codigo} — ${name}`
+    }
+  }
 
   return {
     id: String(
@@ -152,6 +174,7 @@ export function featureToFacility(
     subcategory,
     coordinates: [lat, lng],
     layerId,
+    properties: Object.keys(extraProps).length > 0 ? extraProps : undefined,
   }
 }
 
@@ -189,7 +212,7 @@ async function batchSettled<T>(
 export async function fetchAllServices(
   signal?: AbortSignal,
 ): Promise<Record<string, ServiceFacility[]>> {
-  const cached = cacheGet<Record<string, ServiceFacility[]>>('services')
+  const cached = cacheGet<Record<string, ServiceFacility[]>>('services-v2')
   if (cached) return cached
 
   const result: Record<string, ServiceFacility[]> = {}
@@ -223,7 +246,7 @@ export async function fetchAllServices(
     }
   }
 
-  cacheSet('services', result)
+  cacheSet('services-v2', result)
   return result
 }
 
@@ -307,12 +330,23 @@ export async function fetchBusLines(signal?: AbortSignal): Promise<BusLine[]> {
     )
     const id = String(props.objectid ?? props.OBJECTID ?? props.id ?? name)
 
+    const lineNumber =
+      String(
+        props.nr_linha ?? props.NR_LINHA ?? props.ds_linha ?? props.DS_LINHA ?? '',
+      ) || undefined
+    const lineType =
+      String(
+        props.tp_categoria ?? props.TP_CATEGORIA ?? props.ds_tipo ?? props.DS_TIPO ?? '',
+      ) || undefined
+
     if (f.geometry?.type === 'LineString') {
       const geom = f.geometry as GeoJSON.LineString
       lines.push({
         id,
         name,
         coordinates: geom.coordinates.map(([lng, lat]) => [lat, lng]),
+        lineNumber,
+        lineType,
       })
     } else if (f.geometry?.type === 'MultiLineString') {
       const geom = f.geometry as GeoJSON.MultiLineString
@@ -320,7 +354,7 @@ export async function fetchBusLines(signal?: AbortSignal): Promise<BusLine[]> {
       const coords: [number, number][] = geom.coordinates
         .flat()
         .map(([lng, lat]) => [lat, lng])
-      lines.push({ id, name, coordinates: coords })
+      lines.push({ id, name, coordinates: coords, lineNumber, lineType })
     }
     // Non-line geometries are skipped
   }

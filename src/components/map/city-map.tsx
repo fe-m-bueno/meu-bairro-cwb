@@ -19,6 +19,7 @@ interface CityMapProps {
   searchedPoint: [number, number] | null
   visibleLayers: Set<string>
   panelOpen: boolean
+  selectedCentroid?: [number, number] | null
 }
 
 const CURITIBA_CENTER: [number, number] = [-25.4284, -49.2733]
@@ -76,6 +77,7 @@ export default function CityMap({
   searchedPoint,
   visibleLayers,
   panelOpen,
+  selectedCentroid,
 }: CityMapProps) {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -109,7 +111,7 @@ export default function CityMap({
         )}
       </Pane>
       <Pane name="serviceMarkerPane" style={{ zIndex: 600 }}>
-        <ServiceMarkers services={services} visibleLayers={visibleLayers} />
+        <ServiceMarkers services={services} visibleLayers={visibleLayers} selectedCentroid={selectedCentroid} />
       </Pane>
       {searchedPoint && <RadiusRings center={searchedPoint} />}
       <FlyTo center={searchedPoint} />
