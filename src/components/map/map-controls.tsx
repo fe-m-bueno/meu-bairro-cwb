@@ -20,7 +20,7 @@ export function MapControls({
   markerCounts,
 }: MapControlsProps) {
   return (
-    <div className="pointer-events-auto absolute bottom-4 left-4 z-[1000] flex flex-wrap gap-1.5 rounded-lg border border-border bg-card/90 px-3 py-2 shadow-lg backdrop-blur-sm">
+    <div className="pointer-events-auto absolute bottom-10 left-4 z-[1000] flex flex-wrap gap-1.5 rounded-lg border border-border bg-card/90 px-3 py-2 shadow-lg backdrop-blur-sm">
       {CATEGORIES.map((cat) => {
         const active = visibleLayers.has(cat.key)
         return (
