@@ -39,10 +39,20 @@ export function buildQueryUrl(
     outFields: '*',
     outSR: '4326',
     f: 'geojson',
-    resultOffset: String(offset),
     resultRecordCount: '1000',
   })
+  if (offset > 0) {
+    params.set('resultOffset', String(offset))
+  }
   return `${baseUrl}/${layerId}/query?${params.toString()}`
+}
+
+// ---------------------------------------------------------------------------
+// Sleep helper
+// ---------------------------------------------------------------------------
+
+function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
 // ---------------------------------------------------------------------------
@@ -79,6 +89,40 @@ export async function fetchAllFeatures(
   }
 
   return features
+}
+
+// ---------------------------------------------------------------------------
+// Fetch with retry — per-layer wrapper that never throws
+// ---------------------------------------------------------------------------
+
+async function fetchLayerFeaturesWithRetry(
+  baseUrl: string,
+  layerId: number,
+  outerSignal?: AbortSignal,
+): Promise<GeoJSON.Feature[]> {
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), 12000)
+
+  if (outerSignal) {
+    outerSignal.addEventListener('abort', () => controller.abort())
+  }
+
+  try {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      try {
+        return await fetchAllFeatures(baseUrl, layerId, controller.signal)
+      } catch (err) {
+        const message = err instanceof Error ? err.message : String(err)
+        console.warn(`[fetchGreenAreas] Layer ${layerId} failed: ${message}`)
+        if (attempt < 1) {
+          await sleep(600)
+        }
+      }
+    }
+    return []
+  } finally {
+    clearTimeout(timer)
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -234,22 +278,28 @@ export async function fetchAllServices(
 export async function fetchGreenAreas(
   signal?: AbortSignal,
 ): Promise<GreenArea[]> {
-  const cached = cacheGet<GreenArea[]>('greenAreas')
+  const cached = cacheGet<GreenArea[]>('greenAreas_v2')
   if (cached) return cached
 
-  const results = await batchSettled(
-    GREEN_AREA_LAYERS.map(
-      (layerId) => () => fetchAllFeatures(CONSERVACAO_URL, layerId, signal),
-    ),
-    10,
+  const allTasks = GREEN_AREA_LAYERS.map(
+    (layerId) => () => fetchLayerFeaturesWithRetry(CONSERVACAO_URL, layerId, signal),
   )
+
+  const results: GeoJSON.Feature[][] = []
+  for (let i = 0; i < allTasks.length; i += 3) {
+    const batch = allTasks.slice(i, i + 3)
+    const batchResults = await Promise.allSettled(batch.map((fn) => fn()))
+    for (const r of batchResults) {
+      results.push(r.status === 'fulfilled' ? r.value : [])
+    }
+  }
 
   const areas: GreenArea[] = []
   for (let i = 0; i < results.length; i++) {
-    const result = results[i]
-    if (result.status !== 'fulfilled') continue
     const layerId = GREEN_AREA_LAYERS[i]
-    for (const f of result.value) {
+    const features = results[i]
+    console.log(`[fetchGreenAreas] Layer ${layerId}: ${features.length} features`)
+    for (const f of features) {
       if (f.geometry?.type !== 'Polygon' && f.geometry?.type !== 'MultiPolygon')
         continue
       const props = f.properties ?? {}
@@ -267,19 +317,14 @@ export async function fetchGreenAreas(
     }
   }
 
-  const failedCount = results.filter((r) => r.status === 'rejected').length
-  if (failedCount > 0) {
-    console.warn(
-      `[fetchGreenAreas] ${failedCount}/${results.length} layers failed`,
-    )
-  }
+  console.log(`[fetchGreenAreas] Total: ${areas.length} green areas loaded`)
   if (areas.length === 0) {
     console.warn(
       '[fetchGreenAreas] No green areas loaded — scores will use fallback',
     )
   }
 
-  cacheSet('greenAreas', areas)
+  cacheSet('greenAreas_v2', areas)
   return areas
 }
 

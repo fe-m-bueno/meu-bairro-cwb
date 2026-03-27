@@ -6,7 +6,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { useScores } from '@/hooks/use-scores'
 
 export default function RankingPage() {
-  const { scores, bairros, isLoading, error } = useScores()
+  const { scores, bairros, services, greenAreas, crimeData, isLoading, error } = useScores()
 
   return (
     <>
@@ -52,7 +52,7 @@ export default function RankingPage() {
         )}
 
         {!isLoading && !error && scores.length > 0 && (
-          <RankingTable scores={scores} bairros={bairros} />
+          <RankingTable scores={scores} bairros={bairros} services={services} greenAreas={greenAreas} crimeData={crimeData} />
         )}
       </div>
       <Footer />
