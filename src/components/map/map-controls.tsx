@@ -3,6 +3,7 @@
 interface MapControlsProps {
   visibleLayers: Set<string>
   onToggleLayer: (category: string) => void
+  markerCounts?: Record<string, number>
 }
 
 const CATEGORIES = [
@@ -16,6 +17,7 @@ const CATEGORIES = [
 export function MapControls({
   visibleLayers,
   onToggleLayer,
+  markerCounts,
 }: MapControlsProps) {
   return (
     <div className="pointer-events-auto absolute bottom-4 left-4 z-[1000] flex flex-wrap gap-1.5 rounded-lg border border-border bg-card/90 px-3 py-2 shadow-lg backdrop-blur-sm">
@@ -43,6 +45,11 @@ export function MapControls({
               style={{ backgroundColor: cat.color, opacity: active ? 1 : 0.4 }}
             />
             {cat.label}
+            {active && markerCounts?.[cat.key] != null && (
+              <span className="ml-0.5 text-[10px] opacity-50">
+                ({markerCounts[cat.key]})
+              </span>
+            )}
           </button>
         )
       })}

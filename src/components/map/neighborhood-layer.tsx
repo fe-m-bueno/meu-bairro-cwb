@@ -20,52 +20,56 @@ function buildTooltipContent(
 ): string {
   if (!score) return `<strong>${nome}</strong>`
 
-  return `<div style="min-width:180px;font-family:system-ui;">
-      <div style="font-weight:700;font-size:14px;margin-bottom:2px;">${nome}</div>
-      <div style="font-size:11px;color:#888;margin-bottom:6px;">${feature.properties?.nmRegional || ''}</div>
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-        <span style="font-size:20px;font-weight:800;color:${score.color}">${Math.round(score.overall)}</span>
-        <span style="font-size:11px;color:${score.color};font-weight:600;">${score.label}</span>
+  return `<div style="min-width:200px;font-family:system-ui;">
+    <div style="font-weight:700;font-size:15px;margin-bottom:2px;letter-spacing:-0.01em;">${nome}</div>
+    <div style="font-size:11px;opacity:0.6;margin-bottom:8px;">${feature.properties?.nmRegional || ''}</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+      <span style="font-size:22px;font-weight:800;color:${score.color}">${Math.round(score.overall)}</span>
+      <div>
+        <div style="font-size:12px;color:${score.color};font-weight:600;">${score.label}</div>
+        <div style="font-size:10px;opacity:0.5;">${score.rank}º de 75 bairros</div>
       </div>
-      <div style="display:flex;flex-direction:column;gap:3px;">
-        ${(
-          [
-            'saude',
-            'educacao',
-            'seguranca',
-            'transporte',
-            'areasVerdes',
-            'cultura',
-          ] as CategoryKey[]
-        )
-          .map((key) => {
-            const cat = score.categories[key]
-            if (!cat) return ''
-            const catName: Record<string, string> = {
-              saude: 'Saúde',
-              educacao: 'Educação',
-              seguranca: 'Segurança',
-              transporte: 'Transporte',
-              areasVerdes: 'Áreas Verdes',
-              cultura: 'Cultura',
-            }
-            const barColor =
-              cat.score >= 70
-                ? '#22c55e'
-                : cat.score >= 40
-                  ? '#eab308'
-                  : '#ef4444'
-            return `<div style="display:flex;align-items:center;gap:6px;font-size:11px;">
-            <span style="width:70px;color:#aaa;">${catName[key]}</span>
-            <div style="flex:1;height:4px;background:rgba(128,128,128,0.3);border-radius:2px;overflow:hidden;">
-              <div style="width:${cat.score}%;height:100%;background:${barColor};border-radius:2px;"></div>
-            </div>
-            <span style="width:24px;text-align:right;color:#ccc;font-size:10px;">${Math.round(cat.score)}</span>
-          </div>`
-          })
-          .join('')}
-      </div>
-    </div>`
+    </div>
+    <hr style="border:0;border-top:1px solid rgba(128,128,128,0.2);margin:6px 0;"/>
+    <div style="display:flex;flex-direction:column;gap:3px;">
+      ${(
+        [
+          'saude',
+          'educacao',
+          'seguranca',
+          'transporte',
+          'areasVerdes',
+          'cultura',
+        ] as CategoryKey[]
+      )
+        .map((key) => {
+          const cat = score.categories[key]
+          if (!cat) return ''
+          const catName: Record<string, string> = {
+            saude: 'Saúde',
+            educacao: 'Educação',
+            seguranca: 'Segurança',
+            transporte: 'Transporte',
+            areasVerdes: 'Áreas Verdes',
+            cultura: 'Cultura',
+          }
+          const barColor =
+            cat.score >= 70
+              ? '#22c55e'
+              : cat.score >= 40
+                ? '#eab308'
+                : '#ef4444'
+          return `<div style="display:flex;align-items:center;gap:6px;font-size:11px;">
+          <span style="width:74px;opacity:0.7;">${catName[key]}</span>
+          <div style="flex:1;height:5px;background:rgba(128,128,128,0.25);border-radius:3px;overflow:hidden;">
+            <div style="width:${cat.score}%;height:100%;background:${barColor};border-radius:3px;"></div>
+          </div>
+          <span style="width:24px;text-align:right;font-size:10px;opacity:0.7;">${Math.round(cat.score)}</span>
+        </div>`
+        })
+        .join('')}
+    </div>
+  </div>`
 }
 
 export function NeighborhoodLayer({
@@ -159,6 +163,7 @@ export function NeighborhoodLayer({
           color: '#ffffff',
           fillOpacity: 0.8,
         })
+        target.bringToFront()
       },
       mouseout: (e: LeafletMouseEvent) => {
         const target = e.target
