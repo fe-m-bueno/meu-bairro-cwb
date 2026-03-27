@@ -208,10 +208,10 @@ export async function fetchAllServices(
     }
   }
 
-  // Run all layer fetches in parallel batches of 5
+  // Run all layer fetches in parallel batches of 8
   const batchResults = await batchSettled(
     allTasks.map((t) => t.task),
-    5,
+    8,
   )
 
   for (let i = 0; i < batchResults.length; i++) {
@@ -241,7 +241,7 @@ export async function fetchGreenAreas(
     GREEN_AREA_LAYERS.map(
       (layerId) => () => fetchAllFeatures(CONSERVACAO_URL, layerId, signal),
     ),
-    5,
+    10,
   )
 
   const areas: GreenArea[] = []
@@ -265,6 +265,18 @@ export async function fetchGreenAreas(
         layerId,
       })
     }
+  }
+
+  const failedCount = results.filter((r) => r.status === 'rejected').length
+  if (failedCount > 0) {
+    console.warn(
+      `[fetchGreenAreas] ${failedCount}/${results.length} layers failed`,
+    )
+  }
+  if (areas.length === 0) {
+    console.warn(
+      '[fetchGreenAreas] No green areas loaded — scores will use fallback',
+    )
   }
 
   cacheSet('greenAreas', areas)

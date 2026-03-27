@@ -1,5 +1,9 @@
 import { countWithinRadius, findNearest } from '@/lib/geo/nearest'
-import type { BairroCrimeData, CategoryScore, ServiceFacility } from '@/lib/types'
+import type {
+  BairroCrimeData,
+  CategoryScore,
+  ServiceFacility,
+} from '@/lib/types'
 
 function scoreDistance(
   distance: number,

@@ -101,9 +101,7 @@ describe('calculateSafetyScore', () => {
     })
 
     it('crime data with high percentil raises score', () => {
-      const facilities = [
-        makeFacility('Policia Militar', -25.4285, -49.2734),
-      ]
+      const facilities = [makeFacility('Policia Militar', -25.4285, -49.2734)]
       const scoreWithout = calculateSafetyScore(CENTROID, facilities)
       const crimeData = makeCrimeData({ scorePercentil: 100 })
       const scoreWith = calculateSafetyScore(CENTROID, facilities, crimeData)

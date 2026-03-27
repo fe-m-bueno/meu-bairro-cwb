@@ -7,8 +7,7 @@ import { type NextRequest, NextResponse } from 'next/server'
 // Source: https://dadosabertos.curitiba.pr.gov.br (CC BY 4.0)
 // ---------------------------------------------------------------------------
 
-const MID_BASE_URL =
-  'https://mid.curitiba.pr.gov.br/dadosabertos/Sigesguarda/'
+const MID_BASE_URL = 'https://mid.curitiba.pr.gov.br/dadosabertos/Sigesguarda/'
 
 // In-memory server-side cache (persists across requests in the same process)
 let cachedResult: { data: CrimeOutput[]; timestamp: number } | null = null
@@ -69,7 +68,7 @@ const BAIRRO_NAME_MAP: Record<string, string> = {
   AHU: 'Ahú',
   AHUI: 'Ahú',
   MOSSUNGUE: 'Mossunguê',
-  'MOSSUNGUÉ': 'Mossunguê',
+  MOSSUNGUÉ: 'Mossunguê',
   PAJUCARA: 'Pajaçura',
   'SAO JOSE': 'São José',
   TABOAO: 'Taboão',
@@ -95,21 +94,37 @@ function normalizeBairroName(name: string): string {
 // ---------------------------------------------------------------------------
 
 const CRIME_CONTRA_PESSOA = [
-  'AGRESSAO', 'AMEACA', 'ROUBO', 'ASSALTO', 'LESAO CORPORAL',
-  'ESTUPRO', 'HOMICIDIO', 'TENTATIVA DE HOMICIDIO', 'SEQUESTRO',
-  'VIOLENCIA DOMESTICA', 'ABUSO', 'MAUS TRATOS',
+  'AGRESSAO',
+  'AMEACA',
+  'ROUBO',
+  'ASSALTO',
+  'LESAO CORPORAL',
+  'ESTUPRO',
+  'HOMICIDIO',
+  'TENTATIVA DE HOMICIDIO',
+  'SEQUESTRO',
+  'VIOLENCIA DOMESTICA',
+  'ABUSO',
+  'MAUS TRATOS',
 ]
 const CRIME_CONTRA_PATRIMONIO = [
-  'FURTO', 'VANDALISMO', 'DANO', 'ARROMBAMENTO', 'INVASAO',
-  'DEPREDACAO', 'RECEPTACAO',
+  'FURTO',
+  'VANDALISMO',
+  'DANO',
+  'ARROMBAMENTO',
+  'INVASAO',
+  'DEPREDACAO',
+  'RECEPTACAO',
 ]
 const PERTURBACAO = [
-  'PERTURBACAO', 'SOM ALTO', 'BARULHO', 'POLUICAO SONORA',
-  'DESORDEM', 'EMBRIAGUEZ',
+  'PERTURBACAO',
+  'SOM ALTO',
+  'BARULHO',
+  'POLUICAO SONORA',
+  'DESORDEM',
+  'EMBRIAGUEZ',
 ]
-const TRANSITO_KEYWORDS = [
-  'ACIDENTE', 'TRANSITO', 'COLISAO', 'ATROPELAMENTO',
-]
+const TRANSITO_KEYWORDS = ['ACIDENTE', 'TRANSITO', 'COLISAO', 'ATROPELAMENTO']
 
 function getCrimeWeight(natureza: string): number {
   if (!natureza) return 0.5
@@ -126,28 +141,82 @@ function getCrimeWeight(natureza: string): number {
 // ---------------------------------------------------------------------------
 
 const BAIRRO_AREAS: Record<string, number> = {
-  'Água Verde': 2.23, 'Ahú': 1.53, 'Alto Boqueirão': 12.41,
-  'Alto da Glória': 0.86, 'Alto da Rua XV': 1.5, 'Abranches': 4.32,
-  'Atuba': 4.27, 'Augusta': 8.91, 'Bacacheri': 6.98, 'Barreirinha': 3.65,
-  'Batel': 1.76, 'Bigorrilho': 2.80, 'Boa Vista': 5.07, 'Bom Retiro': 1.93,
-  'Boqueirão': 14.80, 'Butiatuvinha': 11.72, 'Cabral': 2.04, 'Cachoeira': 3.24,
-  'Cajuru': 11.55, 'Campina do Siqueira': 1.67, 'Campo Comprido': 8.59,
-  'Campo de Santana': 21.59, 'Capão da Imbuia': 3.16, 'Capão Raso': 5.04,
-  'Cascatinha': 2.98, 'Caximba': 28.56, 'Centro': 3.30, 'Centro Cívico': 0.97,
-  'Cidade Industrial': 43.38, 'Cristo Rei': 1.44, 'Fanny': 1.02,
-  'Fazendinha': 3.72, 'Ganchinho': 11.40, 'Guabirotuba': 2.58, 'Guaíra': 2.32,
-  'Hauer': 2.04, 'Hugo Lange': 1.18, 'Jardim Botânico': 2.77,
-  'Jardim das Américas': 3.87, 'Jardim Social': 2.04, 'Juvevê': 1.07,
-  'Lamenha Pequena': 3.40, 'Lindóia': 1.17, 'Mercês': 3.42, 'Mossunguê': 3.38,
-  'Novo Mundo': 5.57, 'Orleans': 3.85, 'Pajaçura': 0.72, 'Parolin': 1.34,
-  'Pilarzinho': 7.13, 'Pinheirinho': 10.74, 'Portão': 5.69, 'Prado Velho': 2.41,
-  'Praça 29 de Março': 0.12, 'Rebouças': 2.99, 'Riviera': 3.14,
-  'Santa Cândida': 10.33, 'Santa Felicidade': 12.27, 'Santa Quitéria': 2.09,
-  'Santo Inácio': 2.57, 'São Braz': 5.01, 'São Francisco': 0.78,
-  'São João': 2.87, 'São José': 0.47, 'São Lourenço': 2.26, 'São Miguel': 4.08,
-  'Seminário': 2.13, 'Sítio Cercado': 11.12, 'Taboão': 4.33, 'Tarumã': 4.50,
-  'Tatuquara': 11.23, 'Tingui': 2.05, 'Uberaba': 13.68, 'Umbará': 22.44,
-  'Vista Alegre': 3.60, 'Xaxim': 8.97,
+  'Água Verde': 2.23,
+  Ahú: 1.53,
+  'Alto Boqueirão': 12.41,
+  'Alto da Glória': 0.86,
+  'Alto da Rua XV': 1.5,
+  Abranches: 4.32,
+  Atuba: 4.27,
+  Augusta: 8.91,
+  Bacacheri: 6.98,
+  Barreirinha: 3.65,
+  Batel: 1.76,
+  Bigorrilho: 2.8,
+  'Boa Vista': 5.07,
+  'Bom Retiro': 1.93,
+  Boqueirão: 14.8,
+  Butiatuvinha: 11.72,
+  Cabral: 2.04,
+  Cachoeira: 3.24,
+  Cajuru: 11.55,
+  'Campina do Siqueira': 1.67,
+  'Campo Comprido': 8.59,
+  'Campo de Santana': 21.59,
+  'Capão da Imbuia': 3.16,
+  'Capão Raso': 5.04,
+  Cascatinha: 2.98,
+  Caximba: 28.56,
+  Centro: 3.3,
+  'Centro Cívico': 0.97,
+  'Cidade Industrial': 43.38,
+  'Cristo Rei': 1.44,
+  Fanny: 1.02,
+  Fazendinha: 3.72,
+  Ganchinho: 11.4,
+  Guabirotuba: 2.58,
+  Guaíra: 2.32,
+  Hauer: 2.04,
+  'Hugo Lange': 1.18,
+  'Jardim Botânico': 2.77,
+  'Jardim das Américas': 3.87,
+  'Jardim Social': 2.04,
+  Juvevê: 1.07,
+  'Lamenha Pequena': 3.4,
+  Lindóia: 1.17,
+  Mercês: 3.42,
+  Mossunguê: 3.38,
+  'Novo Mundo': 5.57,
+  Orleans: 3.85,
+  Pajaçura: 0.72,
+  Parolin: 1.34,
+  Pilarzinho: 7.13,
+  Pinheirinho: 10.74,
+  Portão: 5.69,
+  'Prado Velho': 2.41,
+  'Praça 29 de Março': 0.12,
+  Rebouças: 2.99,
+  Riviera: 3.14,
+  'Santa Cândida': 10.33,
+  'Santa Felicidade': 12.27,
+  'Santa Quitéria': 2.09,
+  'Santo Inácio': 2.57,
+  'São Braz': 5.01,
+  'São Francisco': 0.78,
+  'São João': 2.87,
+  'São José': 0.47,
+  'São Lourenço': 2.26,
+  'São Miguel': 4.08,
+  Seminário: 2.13,
+  'Sítio Cercado': 11.12,
+  Taboão: 4.33,
+  Tarumã: 4.5,
+  Tatuquara: 11.23,
+  Tingui: 2.05,
+  Uberaba: 13.68,
+  Umbará: 22.44,
+  'Vista Alegre': 3.6,
+  Xaxim: 8.97,
 }
 
 // ---------------------------------------------------------------------------
@@ -238,7 +307,10 @@ function processRecords(records: RawRecord[]): CrimeOutput[] {
     }
   }
 
-  const allBairros = new Set([...Object.keys(current), ...Object.keys(previous)])
+  const allBairros = new Set([
+    ...Object.keys(current),
+    ...Object.keys(previous),
+  ])
   const results: CrimeOutput[] = []
   const weightedScores: Record<string, number> = {}
 
@@ -249,8 +321,13 @@ function processRecords(records: RawRecord[]): CrimeOutput[] {
     let totalWeighted = 0
 
     for (const r of cur) {
-      for (const n of [r.NATUREZA1_DESCRICAO, r.NATUREZA2_DESCRICAO,
-        r.NATUREZA3_DESCRICAO, r.NATUREZA4_DESCRICAO, r.NATUREZA5_DESCRICAO]) {
+      for (const n of [
+        r.NATUREZA1_DESCRICAO,
+        r.NATUREZA2_DESCRICAO,
+        r.NATUREZA3_DESCRICAO,
+        r.NATUREZA4_DESCRICAO,
+        r.NATUREZA5_DESCRICAO,
+      ]) {
         if (!n) continue
         naturezas[n] = (naturezas[n] ?? 0) + 1
         totalWeighted += getCrimeWeight(n)
@@ -292,12 +369,12 @@ function processRecords(records: RawRecord[]): CrimeOutput[] {
     const pct = total > 1 ? (i / (total - 1)) * 100 : 50
     const entry = results.find((r) => r.bairro === sorted[i].bairro)
     if (entry) {
-      if (pct <= 10) entry.scorePercentil = 5
-      else if (pct <= 25) entry.scorePercentil = 20
-      else if (pct <= 50) entry.scorePercentil = 40
-      else if (pct <= 75) entry.scorePercentil = 65
-      else if (pct <= 90) entry.scorePercentil = 85
-      else entry.scorePercentil = 100
+      if (pct <= 10) entry.scorePercentil = 100
+      else if (pct <= 25) entry.scorePercentil = 85
+      else if (pct <= 50) entry.scorePercentil = 65
+      else if (pct <= 75) entry.scorePercentil = 40
+      else if (pct <= 90) entry.scorePercentil = 20
+      else entry.scorePercentil = 5
     }
   }
 

@@ -42,7 +42,7 @@ function ScoreBar({ score }: { score: number }) {
   const { color } = getScoreLabel(score)
   return (
     <div className="flex items-center gap-1.5">
-      <div className="h-1.5 w-14 overflow-hidden rounded-full bg-zinc-800">
+      <div className="h-1.5 w-14 overflow-hidden rounded-full bg-muted">
         <div
           className="h-full rounded-full"
           style={{ width: `${score}%`, backgroundColor: color }}
@@ -70,7 +70,7 @@ function SortIcon({
   if (column !== sortCol) {
     return (
       <svg
-        className="ml-1 inline-block h-3 w-3 text-zinc-600"
+        className="ml-1 inline-block h-3 w-3 text-muted-foreground/50"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
@@ -87,7 +87,7 @@ function SortIcon({
   }
   return (
     <svg
-      className="ml-1 inline-block h-3 w-3 text-emerald-400"
+      className="ml-1 inline-block h-3 w-3 text-primary"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -199,7 +199,7 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
   }) {
     return (
       <TableHead
-        className={`cursor-pointer select-none whitespace-nowrap text-zinc-400 hover:text-zinc-200 ${className ?? ''}`}
+        className={`cursor-pointer select-none whitespace-nowrap text-muted-foreground hover:text-foreground ${className ?? ''}`}
         onClick={() => handleSort(col)}
       >
         {children}
@@ -217,19 +217,19 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
           placeholder="Buscar bairro..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 rounded-md border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-500 focus:border-emerald-500 focus:outline-none"
+          className="flex-1 rounded-md border border-border bg-card px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
         />
         <Select
           value={regionalFilter}
           onValueChange={(v) => setRegionalFilter(v ?? 'all')}
         >
-          <SelectTrigger className="w-full border-zinc-700 bg-zinc-900 text-zinc-200 sm:w-56">
+          <SelectTrigger className="w-full border-border bg-card text-foreground sm:w-56">
             <SelectValue placeholder="Todas as regionais" />
           </SelectTrigger>
-          <SelectContent className="border-zinc-700 bg-zinc-900 text-zinc-200">
+          <SelectContent className="border-border bg-card text-foreground">
             <SelectItem
               value="all"
-              className="focus:bg-zinc-800 focus:text-zinc-100"
+              className="focus:bg-accent focus:text-foreground"
             >
               Todas as regionais
             </SelectItem>
@@ -237,7 +237,7 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
               <SelectItem
                 key={r}
                 value={r}
-                className="focus:bg-zinc-800 focus:text-zinc-100"
+                className="focus:bg-accent focus:text-foreground"
               >
                 {r}
               </SelectItem>
@@ -246,16 +246,16 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
         </Select>
       </div>
 
-      <p className="text-xs text-zinc-500">
+      <p className="text-xs text-muted-foreground">
         {sorted.length} bairro{sorted.length !== 1 ? 's' : ''} encontrado
         {sorted.length !== 1 ? 's' : ''}
       </p>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-lg border border-zinc-800">
+      <div className="overflow-x-auto rounded-lg border border-border">
         <Table>
           <TableHeader>
-            <TableRow className="border-zinc-800 hover:bg-transparent">
+            <TableRow className="border-border hover:bg-transparent">
               <SortableHead col="rank" className="w-12 text-center">
                 #
               </SortableHead>
@@ -276,16 +276,18 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
               return (
                 <TableRow
                   key={score.bairroCode}
-                  className="cursor-pointer border-zinc-800 transition-colors hover:bg-zinc-800/50"
+                  className="cursor-pointer border-border transition-colors hover:bg-accent/50"
                   onClick={() => handleRowClick(score.bairroCode)}
                   title={`Ver ${bairro.nome} no mapa`}
                 >
-                  <TableCell className="text-center text-sm font-medium text-zinc-500">
+                  <TableCell className="text-center text-sm font-medium text-muted-foreground">
                     {score.rank}
                   </TableCell>
                   <TableCell>
                     <div>
-                      <p className="font-medium text-zinc-100">{bairro.nome}</p>
+                      <p className="font-medium text-foreground">
+                        {bairro.nome}
+                      </p>
                       <p
                         className="text-xs font-semibold"
                         style={{ color }}
@@ -295,12 +297,12 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
                       </p>
                     </div>
                   </TableCell>
-                  <TableCell className="text-sm text-zinc-400">
+                  <TableCell className="text-sm text-muted-foreground">
                     {bairro.nmRegional}
                   </TableCell>
                   <TableCell>
                     <div className="flex items-center gap-1.5">
-                      <div className="h-2 w-16 overflow-hidden rounded-full bg-zinc-800">
+                      <div className="h-2 w-16 overflow-hidden rounded-full bg-muted">
                         <div
                           className="h-full rounded-full"
                           style={{
@@ -329,7 +331,7 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
               <TableRow>
                 <TableCell
                   colSpan={4 + CATEGORY_KEYS.length}
-                  className="py-10 text-center text-sm text-zinc-500"
+                  className="py-10 text-center text-sm text-muted-foreground"
                 >
                   Nenhum bairro encontrado com os filtros selecionados.
                 </TableCell>

@@ -19,15 +19,13 @@ export function useServices() {
 
     async function load() {
       try {
-        // Fetch sequentially to avoid flooding the browser with 37+ parallel requests
-        const svc = await fetchAllServices(signal)
-        setServices(svc)
-
-        const [greenResult, busResult] = await Promise.allSettled([
+        const [svcResult, greenResult, busResult] = await Promise.allSettled([
+          fetchAllServices(signal),
           fetchGreenAreas(signal),
           fetchBusLines(signal),
         ])
 
+        if (svcResult.status === 'fulfilled') setServices(svcResult.value)
         if (greenResult.status === 'fulfilled') setGreenAreas(greenResult.value)
         if (busResult.status === 'fulfilled') setBusLines(busResult.value)
       } catch (e) {

@@ -5,7 +5,7 @@ import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -16,13 +16,13 @@ function ThemeToggle() {
     return <div className="h-8 w-8" />
   }
 
-  const isDark = theme === 'dark'
+  const isDark = resolvedTheme === 'dark'
 
   return (
     <button
       type="button"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="rounded-md p-1.5 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200 dark:hover:bg-zinc-800"
+      className="rounded-md p-1.5 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
       aria-label={isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
     >
       {isDark ? (
@@ -64,20 +64,32 @@ function ThemeToggle() {
 
 export function Header() {
   return (
-    <header className="fixed top-0 right-0 left-0 z-50 flex h-14 items-center justify-between border-b border-zinc-800 bg-zinc-950/80 px-4 backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-950/80">
-      <Link href="/" className="text-lg font-bold text-zinc-100">
-        Meu Bairro CWB
+    <header className="fixed top-0 right-0 left-0 z-50 flex h-14 items-center justify-between border-b border-border bg-background/80 px-4 backdrop-blur-md">
+      <Link href="/" className="flex items-center gap-2">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/10">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-5 w-5 text-primary"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path d="M12 2L8 8h3v4H8l4 6 4-6h-3V8h3L12 2zm-4 14h8v2H8v-2z" />
+          </svg>
+        </div>
+        <span className="font-heading text-lg font-semibold tracking-tight text-foreground">
+          Meu Bairro <span className="font-bold text-primary">CWB</span>
+        </span>
       </Link>
-      <nav className="flex items-center gap-4">
+      <nav className="flex items-center gap-1">
         <Link
           href="/ranking"
-          className="text-sm text-zinc-400 transition-colors hover:text-white"
+          className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
         >
           Ranking
         </Link>
         <Link
           href="/metodologia"
-          className="text-sm text-zinc-400 transition-colors hover:text-white"
+          className="rounded-lg px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
         >
           Metodologia
         </Link>

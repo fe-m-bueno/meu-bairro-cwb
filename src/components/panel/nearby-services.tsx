@@ -37,7 +37,7 @@ export function NearbyServices({ centroid, services }: NearbyServicesProps) {
 
   if (categoryKeys.length === 0) {
     return (
-      <p className="px-1 text-xs text-zinc-500">
+      <p className="px-1 text-xs text-muted-foreground">
         Nenhum equipamento encontrado nas proximidades.
       </p>
     )
@@ -56,23 +56,23 @@ export function NearbyServices({ centroid, services }: NearbyServicesProps) {
 
         return (
           <div key={catKey} className="space-y-1.5">
-            <h4 className="text-xs font-medium text-zinc-300">
+            <h4 className="text-xs font-medium text-foreground/80">
               {CATEGORY_NAMES[catKey as keyof typeof CATEGORY_NAMES] ?? catKey}{' '}
-              <span className="text-zinc-500">({nearby.length})</span>
+              <span className="text-muted-foreground">({nearby.length})</span>
             </h4>
             <div className="space-y-1">
               {visible.map((item) => (
                 <div
                   key={item.facility.id}
-                  className="flex items-center gap-2 rounded-md bg-zinc-900/50 px-2.5 py-1.5 text-xs"
+                  className="flex items-center gap-2 rounded-md bg-muted/50 px-2.5 py-1.5 text-xs"
                 >
-                  <span className="flex-1 truncate text-zinc-300">
+                  <span className="flex-1 truncate text-foreground/80">
                     {item.facility.name}
                   </span>
                   <Badge variant="secondary" className="shrink-0 text-[10px]">
                     {item.facility.subcategory}
                   </Badge>
-                  <span className="shrink-0 tabular-nums text-zinc-500">
+                  <span className="shrink-0 tabular-nums text-muted-foreground">
                     {formatDistance(item.distance)}
                   </span>
                 </div>
@@ -81,7 +81,7 @@ export function NearbyServices({ centroid, services }: NearbyServicesProps) {
             {hasMore && !isExpanded && (
               <button
                 type="button"
-                className="text-xs text-emerald-400 hover:text-emerald-300"
+                className="text-xs text-primary hover:text-primary/80"
                 onClick={() =>
                   setExpanded((prev) => ({ ...prev, [catKey]: true }))
                 }

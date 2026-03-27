@@ -4,14 +4,14 @@ export default function MetodologiaPage() {
   return (
     <>
       <div className="mx-auto max-w-3xl px-4 py-10">
-        <h1 className="mb-2 text-2xl font-bold text-zinc-100">Metodologia</h1>
-        <p className="mb-8 text-sm text-zinc-400">
+        <h1 className="mb-2 text-2xl font-bold text-foreground">Metodologia</h1>
+        <p className="mb-8 text-sm text-muted-foreground">
           Entenda como calculamos o índice de qualidade de vida de cada bairro.
         </p>
 
         {/* Sumário */}
-        <nav className="mb-10 rounded-lg border border-zinc-800 bg-zinc-900/60 px-5 py-4">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-zinc-500">
+        <nav className="mb-10 rounded-lg border border-border bg-card/60 px-5 py-4">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
             Índice
           </p>
           <ol className="space-y-1 text-sm">
@@ -31,7 +31,7 @@ export default function MetodologiaPage() {
               <li key={href}>
                 <a
                   href={href}
-                  className="text-emerald-400 underline-offset-2 hover:underline"
+                  className="text-primary underline-offset-2 hover:underline"
                 >
                   {label}
                 </a>
@@ -40,7 +40,7 @@ export default function MetodologiaPage() {
           </ol>
         </nav>
 
-        <div className="space-y-12 text-sm leading-relaxed text-zinc-300">
+        <div className="space-y-12 text-sm leading-relaxed text-foreground/80">
           {/* Introdução */}
           <section id="introducao">
             <SectionTitle>Introdução</SectionTitle>
@@ -53,7 +53,7 @@ export default function MetodologiaPage() {
             </p>
             <p className="mt-3">
               O objetivo é responder uma pergunta simples:{' '}
-              <strong className="text-zinc-100">
+              <strong className="text-foreground">
                 &quot;É um bom lugar para se viver?&quot;
               </strong>{' '}
               — com base em dados, não opiniões.
@@ -66,10 +66,10 @@ export default function MetodologiaPage() {
             <p className="mb-4">
               O índice geral é a média ponderada das sete categorias:
             </p>
-            <div className="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-900/60">
+            <div className="overflow-x-auto rounded-lg border border-border bg-card/60">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-zinc-800">
+                  <tr className="border-b border-border">
                     <Th>Categoria</Th>
                     <Th>Peso</Th>
                   </tr>
@@ -84,10 +84,10 @@ export default function MetodologiaPage() {
                     ['Cultura & Esporte', '8%'],
                     ['Diversidade de Serviços', '7%'],
                   ].map(([cat, peso]) => (
-                    <tr key={cat} className="border-b border-zinc-800/50">
+                    <tr key={cat} className="border-b border-border/50">
                       <Td>{cat}</Td>
                       <Td>
-                        <span className="font-semibold text-emerald-400">
+                        <span className="font-semibold text-primary">
                           {peso}
                         </span>
                       </Td>
@@ -106,7 +106,9 @@ export default function MetodologiaPage() {
   (cultura × 0,08) +
   (diversidade × 0,07)`}
             </CodeBlock>
-            <p className="mt-4 mb-2 text-zinc-400">Classificação do índice:</p>
+            <p className="mt-4 mb-2 text-muted-foreground">
+              Classificação do índice:
+            </p>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {[
                 ['85–100', 'Excelente', '#10b981'],
@@ -118,15 +120,17 @@ export default function MetodologiaPage() {
               ].map(([range, label, color]) => (
                 <div
                   key={label}
-                  className="flex items-center gap-2 rounded-md border border-zinc-800 px-3 py-2"
+                  className="flex items-center gap-2 rounded-md border border-border px-3 py-2"
                 >
                   <span
                     className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
                     style={{ backgroundColor: color }}
                   />
                   <span className="text-xs">
-                    <span className="font-semibold text-zinc-100">{range}</span>{' '}
-                    <span className="text-zinc-400">{label}</span>
+                    <span className="font-semibold text-foreground">
+                      {range}
+                    </span>{' '}
+                    <span className="text-muted-foreground">{label}</span>
                   </span>
                 </div>
               ))}
@@ -231,15 +235,19 @@ export default function MetodologiaPage() {
               Segurança <WeightBadge>17%</WeightBadge>
             </SectionTitle>
             <p className="mb-4">
-              Combina <strong className="text-zinc-100">dados reais de ocorrências</strong>{' '}
-              da Guarda Municipal com a proximidade a Polícia Militar, delegacias
-              e Corpo de Bombeiros.
+              Combina{' '}
+              <strong className="text-foreground">
+                dados reais de ocorrências
+              </strong>{' '}
+              da Guarda Municipal com a proximidade a Polícia Militar,
+              delegacias e Corpo de Bombeiros.
             </p>
-            <div className="mb-4 rounded-lg border border-emerald-900/50 bg-emerald-950/30 px-4 py-3 text-xs text-emerald-300">
-              <strong>Fonte de dados:</strong> SiGesGuarda — Guarda Municipal de Curitiba
-              (dados abertos, licença CC BY 4.0). As ocorrências são ponderadas por gravidade:
-              crimes contra pessoa (peso 3×), contra patrimônio (2×), perturbação (1×),
-              trânsito e outros (0,5×). O score é calculado por percentil entre os 75 bairros.
+            <div className="mb-4 rounded-lg border border-emerald-900/50 bg-emerald-950/30 px-4 py-3 text-xs text-primary/80">
+              <strong>Fonte de dados:</strong> SiGesGuarda — Guarda Municipal de
+              Curitiba (dados abertos, licença CC BY 4.0). As ocorrências são
+              ponderadas por gravidade: crimes contra pessoa (peso 3×), contra
+              patrimônio (2×), perturbação (1×), trânsito e outros (0,5×). O
+              score é calculado por percentil entre os 75 bairros.
             </div>
             <ThresholdTable
               rows={[
@@ -293,10 +301,11 @@ export default function MetodologiaPage() {
                 },
               ]}
             />
-            <p className="mt-3 text-xs text-zinc-500">
-              Limitação: os dados cobrem apenas ocorrências atendidas pela Guarda Municipal.
-              Boletins de ocorrência da Polícia Militar e Polícia Civil não estão incluídos
-              por falta de dados públicos com granularidade por bairro.
+            <p className="mt-3 text-xs text-muted-foreground">
+              Limitação: os dados cobrem apenas ocorrências atendidas pela
+              Guarda Municipal. Boletins de ocorrência da Polícia Militar e
+              Polícia Civil não estão incluídos por falta de dados públicos com
+              granularidade por bairro.
             </p>
           </section>
 
@@ -434,10 +443,10 @@ export default function MetodologiaPage() {
               Mede quantas <em>categorias diferentes</em> de serviços essenciais
               estão acessíveis — não a quantidade, mas a variedade.
             </p>
-            <div className="mb-4 overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-900/60">
+            <div className="mb-4 overflow-x-auto rounded-lg border border-border bg-card/60">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-zinc-800">
+                  <tr className="border-b border-border">
                     <Th>Categoria verificada</Th>
                     <Th>Raio considerado</Th>
                   </tr>
@@ -451,7 +460,7 @@ export default function MetodologiaPage() {
                     ['Área verde (parque)', '1 km'],
                     ['Cultura / esporte', '2 km'],
                   ].map(([cat, raio]) => (
-                    <tr key={cat} className="border-b border-zinc-800/50">
+                    <tr key={cat} className="border-b border-border/50">
                       <Td>{cat}</Td>
                       <Td>{raio}</Td>
                     </tr>
@@ -481,7 +490,7 @@ export default function MetodologiaPage() {
             <SectionTitle>Fontes de Dados</SectionTitle>
             <ul className="list-disc space-y-2 pl-5">
               <li>
-                <strong className="text-zinc-100">
+                <strong className="text-foreground">
                   Limites dos Bairros (GeoJSON):
                 </strong>{' '}
                 IPPUC GeoCuritiba — MapaCadastral Layer 2.{' '}
@@ -489,13 +498,13 @@ export default function MetodologiaPage() {
                   href="https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_GeoCuritiba_MapaCadastral/MapServer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-400 hover:underline"
+                  className="text-primary hover:underline"
                 >
                   ArcGIS REST API
                 </a>
               </li>
               <li>
-                <strong className="text-zinc-100">
+                <strong className="text-foreground">
                   Equipamentos Urbanos (saúde, educação, segurança, cultura):
                 </strong>{' '}
                 IPPUC GeoCuritiba —{' '}
@@ -503,13 +512,13 @@ export default function MetodologiaPage() {
                   href="https://geocuritiba.ippuc.org.br/server/rest/services/Publico_GeoCuritiba_Equipamentos_Urbanos/MapServer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-400 hover:underline"
+                  className="text-primary hover:underline"
                 >
                   Equipamentos Urbanos MapServer
                 </a>
               </li>
               <li>
-                <strong className="text-zinc-100">
+                <strong className="text-foreground">
                   Transporte Público (paradas, terminais, linhas):
                 </strong>{' '}
                 URBS / IPPUC —{' '}
@@ -517,13 +526,13 @@ export default function MetodologiaPage() {
                   href="https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/URBS_Transporte_Publico/MapServer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-400 hover:underline"
+                  className="text-primary hover:underline"
                 >
                   URBS Transporte Público MapServer
                 </a>
               </li>
               <li>
-                <strong className="text-zinc-100">
+                <strong className="text-foreground">
                   Unidades de Conservação (áreas verdes):
                 </strong>{' '}
                 IPPUC —{' '}
@@ -531,13 +540,13 @@ export default function MetodologiaPage() {
                   href="https://geocuritiba.ippuc.org.br/server/rest/services/GeoCuritiba/Publico_Sistema_Municipal_de_Unidades_de_Conservacao/FeatureServer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-400 hover:underline"
+                  className="text-primary hover:underline"
                 >
                   Sistema Municipal de Unidades de Conservação
                 </a>
               </li>
               <li>
-                <strong className="text-zinc-100">
+                <strong className="text-foreground">
                   Ocorrências — Guarda Municipal (segurança):
                 </strong>{' '}
                 SiGesGuarda — Dados Abertos de Curitiba (CC BY 4.0).{' '}
@@ -545,25 +554,25 @@ export default function MetodologiaPage() {
                   href="https://dadosabertos.curitiba.pr.gov.br/conjuntodado/detalhe?chave=b16ead9d-835e-41e8-a4d7-dcc4f2b4b627"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-400 hover:underline"
+                  className="text-primary hover:underline"
                 >
                   Portal de Dados Abertos
                 </a>
               </li>
               <li>
-                <strong className="text-zinc-100">Geocodificação:</strong>{' '}
+                <strong className="text-foreground">Geocodificação:</strong>{' '}
                 <a
                   href="https://nominatim.openstreetmap.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-emerald-400 hover:underline"
+                  className="text-primary hover:underline"
                 >
                   Nominatim / OpenStreetMap
                 </a>{' '}
                 (busca de endereços)
               </li>
             </ul>
-            <p className="mt-4 text-xs text-zinc-500">
+            <p className="mt-4 text-xs text-muted-foreground">
               Todos os dados são públicos e não requerem autenticação. O app
               consulta as APIs diretamente no navegador do usuário.
             </p>
@@ -575,16 +584,18 @@ export default function MetodologiaPage() {
             <ul className="list-disc space-y-2 pl-5">
               <li>
                 As distâncias são calculadas a partir do{' '}
-                <strong className="text-zinc-100">centroide do bairro</strong>{' '}
+                <strong className="text-foreground">centroide do bairro</strong>{' '}
                 (ponto central geométrico), não da borda mais próxima. Bairros
                 grandes podem ter partes que estão mais próximas de um
                 equipamento do que o centroide sugere.
               </li>
               <li>
                 Os dados refletem os equipamentos públicos{' '}
-                <strong className="text-zinc-100">cadastrados no IPPUC</strong>.
-                Estabelecimentos privados (clínicas, escolas particulares, etc.)
-                não são considerados.
+                <strong className="text-foreground">
+                  cadastrados no IPPUC
+                </strong>
+                . Estabelecimentos privados (clínicas, escolas particulares,
+                etc.) não são considerados.
               </li>
               <li>
                 A data de atualização dos dados depende do IPPUC / GeoCuritiba.
@@ -617,7 +628,7 @@ export default function MetodologiaPage() {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-zinc-100 border-b border-zinc-800 pb-2">
+    <h2 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground border-b border-border pb-2">
       {children}
     </h2>
   )
@@ -625,7 +636,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 function WeightBadge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="rounded bg-emerald-900/50 px-2 py-0.5 text-xs font-semibold text-emerald-400">
+    <span className="rounded bg-primary/20 px-2 py-0.5 text-xs font-semibold text-primary">
       {children}
     </span>
   )
@@ -633,14 +644,14 @@ function WeightBadge({ children }: { children: React.ReactNode }) {
 
 function Th({ children }: { children: React.ReactNode }) {
   return (
-    <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
+    <th className="px-4 py-2 text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
       {children}
     </th>
   )
 }
 
 function Td({ children }: { children: React.ReactNode }) {
-  return <td className="px-4 py-2.5 text-zinc-300">{children}</td>
+  return <td className="px-4 py-2.5 text-foreground/80">{children}</td>
 }
 
 interface ThresholdTableProps {
@@ -656,19 +667,19 @@ function ThresholdTable({ rows }: ThresholdTableProps) {
       {rows.map(({ factor, thresholds }) => (
         <div
           key={factor}
-          className="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-900/60"
+          className="overflow-x-auto rounded-lg border border-border bg-card/60"
         >
           <table className="w-full text-sm">
             <thead>
-              <tr className="border-b border-zinc-800">
+              <tr className="border-b border-border">
                 <th
                   colSpan={2}
-                  className="px-4 py-2 text-left text-xs font-semibold text-zinc-400"
+                  className="px-4 py-2 text-left text-xs font-semibold text-muted-foreground"
                 >
                   {factor}
                 </th>
               </tr>
-              <tr className="border-b border-zinc-800">
+              <tr className="border-b border-border">
                 <Th>Condição</Th>
                 <Th>Pontos</Th>
               </tr>
@@ -677,7 +688,7 @@ function ThresholdTable({ rows }: ThresholdTableProps) {
               {thresholds.map(([cond, pts]) => (
                 <tr
                   key={cond}
-                  className="border-b border-zinc-800/50 last:border-0"
+                  className="border-b border-border/50 last:border-0"
                 >
                   <Td>{cond}</Td>
                   <Td>
@@ -700,7 +711,7 @@ function ThresholdTable({ rows }: ThresholdTableProps) {
 
 function CodeBlock({ children }: { children: React.ReactNode }) {
   return (
-    <pre className="mt-4 overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-900/80 px-5 py-4 text-xs leading-relaxed text-emerald-300">
+    <pre className="mt-4 overflow-x-auto rounded-lg border border-border bg-card/80 px-5 py-4 text-xs leading-relaxed text-primary/80">
       {children}
     </pre>
   )

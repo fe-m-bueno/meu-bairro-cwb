@@ -45,17 +45,17 @@ export function RadarChart({ categoryScores, cityAverage }: RadarChartProps) {
     <div className="w-full" style={{ height: 260 }}>
       <ResponsiveContainer width="100%" height="100%">
         <RechartsRadarChart data={data} cx="50%" cy="50%" outerRadius="72%">
-          <PolarGrid stroke="#3f3f46" />
+          <PolarGrid stroke="rgba(100,160,120,0.2)" />
           <PolarAngleAxis
             dataKey="category"
-            tick={{ fill: '#a1a1aa', fontSize: 11 }}
+            tick={{ fill: '#8a9a8e', fontSize: 11 }}
           />
           {cityAverage && (
             <Radar
               name="Média"
               dataKey="media"
-              stroke="#6b7280"
-              fill="#6b7280"
+              stroke="#8a9a8e"
+              fill="#8a9a8e"
               fillOpacity={0.1}
               strokeDasharray="4 3"
               strokeWidth={1.5}
@@ -64,8 +64,8 @@ export function RadarChart({ categoryScores, cityAverage }: RadarChartProps) {
           <Radar
             name="Bairro"
             dataKey="bairro"
-            stroke="#10b981"
-            fill="#10b981"
+            stroke="#2d8a5e"
+            fill="#2d8a5e"
             fillOpacity={0.3}
             strokeWidth={2}
           />

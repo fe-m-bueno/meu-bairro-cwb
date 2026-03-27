@@ -35,9 +35,9 @@ export function CategoryCard({
 
   return (
     <Collapsible open={open} onOpenChange={setOpen}>
-      <CollapsibleTrigger className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-zinc-800/50">
+      <CollapsibleTrigger className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors hover:bg-accent/50">
         {icon && <span className="text-base">{icon}</span>}
-        <span className="flex-1 text-sm font-medium text-zinc-200">
+        <span className="flex-1 text-sm font-medium text-foreground">
           {categoryName}
         </span>
         <span
@@ -46,7 +46,7 @@ export function CategoryCard({
         >
           {Math.round(categoryScore.score)}
         </span>
-        <div className="h-2 w-16 overflow-hidden rounded-full bg-zinc-800">
+        <div className="h-2 w-16 overflow-hidden rounded-full bg-muted">
           <div
             className="h-full rounded-full transition-all duration-500"
             style={{
@@ -56,7 +56,7 @@ export function CategoryCard({
           />
         </div>
         <svg
-          className={`h-4 w-4 text-zinc-500 transition-transform ${open ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 text-muted-foreground transition-transform ${open ? 'rotate-180' : ''}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -79,10 +79,12 @@ export function CategoryCard({
             return (
               <div
                 key={factor.name}
-                className="flex items-center gap-2 rounded-md bg-zinc-900/50 px-2.5 py-1.5 text-xs"
+                className="flex items-center gap-2 rounded-md bg-muted/50 px-2.5 py-1.5 text-xs"
               >
-                <span className="flex-1 text-zinc-400">{factor.name}</span>
-                <span className="text-zinc-300">{factor.description}</span>
+                <span className="flex-1 text-muted-foreground">
+                  {factor.name}
+                </span>
+                <span className="text-foreground/80">{factor.description}</span>
                 <span
                   className="min-w-[1.75rem] text-right font-semibold tabular-nums"
                   style={{ color: factorColor }}

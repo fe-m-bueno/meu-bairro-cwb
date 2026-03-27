@@ -42,7 +42,7 @@ export function CompareView({
     <div className="space-y-4">
       <div className="grid grid-cols-2 gap-4">
         <div className="flex flex-col items-center gap-1">
-          <h3 className="text-sm font-semibold text-zinc-200">
+          <h3 className="text-sm font-semibold text-foreground">
             {bairroA.nome}
           </h3>
           <ScoreGauge
@@ -53,7 +53,7 @@ export function CompareView({
           />
         </div>
         <div className="flex flex-col items-center gap-1">
-          <h3 className="text-sm font-semibold text-zinc-200">
+          <h3 className="text-sm font-semibold text-foreground">
             {bairroB.nome}
           </h3>
           <ScoreGauge
@@ -80,12 +80,12 @@ export function CompareView({
           return (
             <div
               key={key}
-              className="flex items-center gap-2 rounded-md bg-zinc-900/50 px-2.5 py-1.5 text-xs"
+              className="flex items-center gap-2 rounded-md bg-muted/50 px-2.5 py-1.5 text-xs"
             >
-              <span className="flex-1 text-zinc-300">
+              <span className="flex-1 text-foreground/80">
                 {CATEGORY_NAMES[key]}
               </span>
-              <span className="w-8 text-right tabular-nums text-zinc-400">
+              <span className="w-8 text-right tabular-nums text-muted-foreground">
                 {Math.round(a)}
               </span>
               <span
@@ -94,7 +94,7 @@ export function CompareView({
                     ? 'text-emerald-400'
                     : diff < 0
                       ? 'text-orange-400'
-                      : 'text-zinc-500'
+                      : 'text-muted-foreground'
                 }`}
               >
                 {diff > 0
@@ -103,7 +103,7 @@ export function CompareView({
                     ? Math.round(diff)
                     : '='}
               </span>
-              <span className="w-8 text-right tabular-nums text-zinc-400">
+              <span className="w-8 text-right tabular-nums text-muted-foreground">
                 {Math.round(b)}
               </span>
             </div>
@@ -111,7 +111,7 @@ export function CompareView({
         })}
       </div>
 
-      <p className="text-center text-xs text-zinc-400">
+      <p className="text-center text-xs text-muted-foreground">
         {winsA > winsB
           ? `${bairroA.nome} é melhor em ${winsA}/7 categorias`
           : winsB > winsA

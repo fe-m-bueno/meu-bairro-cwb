@@ -1,11 +1,19 @@
 'use client'
 
-import { CircleMarker, Popup } from 'react-leaflet'
+import { CircleMarker, Popup, Tooltip } from 'react-leaflet'
 import type { ServiceFacility } from '@/lib/types'
 
 interface ServiceMarkersProps {
   services: Record<string, ServiceFacility[]>
   visibleLayers: Set<string>
+}
+
+const CATEGORY_LABELS: Record<string, string> = {
+  saude: 'Saúde',
+  educacao: 'Educação',
+  seguranca: 'Segurança',
+  transporte: 'Transporte',
+  cultura: 'Cultura & Esporte',
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -65,10 +73,51 @@ export function ServiceMarkers({
             fillColor={color}
             fillOpacity={0.8}
           >
-            <Popup>
-              <strong>{facility.name}</strong>
+            <Tooltip direction="top" offset={[0, -5]}>
+              <span style={{ fontSize: '12px', fontWeight: 600 }}>{facility.name}</span>
               <br />
-              <span>{facility.subcategory}</span>
+              <span style={{ fontSize: '11px', color: '#888' }}>
+                {CATEGORY_LABELS[category] || category} — {facility.subcategory}
+              </span>
+            </Tooltip>
+            <Popup>
+              <div style={{ minWidth: '150px' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    marginBottom: '4px',
+                  }}
+                >
+                  <span
+                    style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      background: color,
+                      display: 'inline-block',
+                      flexShrink: 0,
+                    }}
+                  />
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      color: '#888',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    {CATEGORY_LABELS[category] || category}
+                  </span>
+                </div>
+                <strong style={{ fontSize: '13px' }}>{facility.name}</strong>
+                <div
+                  style={{ fontSize: '12px', color: '#666', marginTop: '2px' }}
+                >
+                  {facility.subcategory}
+                </div>
+              </div>
             </Popup>
           </CircleMarker>
         ))

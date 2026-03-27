@@ -27,7 +27,7 @@ export function StrengthsWeaknesses({ categories }: StrengthsWeaknessesProps) {
         {strengths.map((s) => (
           <Badge
             key={s.category}
-            className="bg-emerald-500/15 text-emerald-400 ring-1 ring-emerald-500/20"
+            className="bg-primary/15 text-primary ring-1 ring-primary/20"
           >
             + {CATEGORY_NAMES[s.category]}
           </Badge>
@@ -35,13 +35,13 @@ export function StrengthsWeaknesses({ categories }: StrengthsWeaknessesProps) {
         {weaknesses.map((w) => (
           <Badge
             key={w.category}
-            className="bg-orange-500/15 text-orange-400 ring-1 ring-orange-500/20"
+            className="bg-destructive/15 text-destructive ring-1 ring-destructive/20"
           >
             - {CATEGORY_NAMES[w.category]}
           </Badge>
         ))}
       </div>
-      <p className="text-xs text-zinc-400">
+      <p className="text-xs text-muted-foreground">
         Destaque em {top1} e {top2}, mas precisa melhorar {bottom1} e {bottom2}.
       </p>
     </div>

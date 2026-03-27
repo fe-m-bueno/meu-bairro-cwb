@@ -21,12 +21,17 @@ export function ScoreGauge({
   const offset = CIRCUMFERENCE - (score / 100) * CIRCUMFERENCE
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-3">
       <div className="relative" style={{ width: SIZE, height: SIZE }}>
+        {/* Glow effect */}
+        <div
+          className="absolute inset-0 rounded-full opacity-20 blur-xl"
+          style={{ backgroundColor: color }}
+        />
         <svg
           width={SIZE}
           height={SIZE}
-          className="-rotate-90"
+          className="-rotate-90 relative"
           aria-hidden="true"
         >
           <circle
@@ -36,7 +41,7 @@ export function ScoreGauge({
             fill="none"
             stroke="currentColor"
             strokeWidth={STROKE_WIDTH}
-            className="text-zinc-800"
+            className="text-muted/30"
           />
           <circle
             cx={SIZE / 2}
@@ -52,17 +57,22 @@ export function ScoreGauge({
           />
         </svg>
         <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-4xl font-bold tabular-nums" style={{ color }}>
+          <span
+            className="font-heading text-4xl font-bold tabular-nums"
+            style={{ color }}
+          >
             {Math.round(score)}
           </span>
         </div>
       </div>
-      <span className="text-sm font-medium" style={{ color }}>
-        {label}
-      </span>
-      <span className="text-xs text-zinc-400">
-        Melhor que {Math.round(percentile)}% dos bairros
-      </span>
+      <div className="text-center">
+        <span className="font-heading text-sm font-semibold" style={{ color }}>
+          {label}
+        </span>
+        <p className="mt-0.5 text-xs text-muted-foreground">
+          Melhor que {Math.round(percentile)}% dos bairros
+        </p>
+      </div>
     </div>
   )
 }

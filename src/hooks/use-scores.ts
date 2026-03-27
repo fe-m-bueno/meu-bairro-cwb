@@ -1,8 +1,8 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { cacheGet, cacheSet } from '@/lib/cache'
 import { fetchCrimeData } from '@/lib/api/crime-data'
+import { cacheGet, cacheSet } from '@/lib/cache'
 import { calculateAllScores } from '@/lib/score'
 import type { BairroCrimeData, BairroScore, CategoryKey } from '@/lib/types'
 import { useBairros } from './use-bairros'
@@ -23,22 +23,24 @@ export function useScores() {
   } = useServices()
 
   const [crimeData, setCrimeData] = useState<BairroCrimeData[]>([])
-  const [crimeLoading, setCrimeLoading] = useState(true)
 
   useEffect(() => {
     let cancelled = false
-    fetchCrimeData().then((data) => {
-      if (!cancelled) {
-        setCrimeData(data)
-        setCrimeLoading(false)
-      }
-    })
+    fetchCrimeData()
+      .then((data) => {
+        if (!cancelled) {
+          setCrimeData(data)
+        }
+      })
+      .catch(() => {
+        // Crime data is non-blocking; scores compute without it
+      })
     return () => {
       cancelled = true
     }
   }, [])
 
-  const isLoading = bairrosLoading || servicesLoading || crimeLoading
+  const isLoading = bairrosLoading || servicesLoading
   const error = bairrosError || servicesError
 
   const prevFingerprintRef = useRef('')

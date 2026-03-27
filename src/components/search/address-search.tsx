@@ -83,7 +83,7 @@ export function AddressSearch({ onSelect, onClear }: AddressSearchProps) {
     >
       <div className="relative">
         <div className="pointer-events-none absolute inset-y-0 left-3 flex items-center">
-          <Search className="h-4 w-4 text-zinc-400" />
+          <Search className="h-4 w-4 text-muted-foreground" />
         </div>
 
         <Input
@@ -92,18 +92,18 @@ export function AddressSearch({ onSelect, onClear }: AddressSearchProps) {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => results.length > 0 && setIsOpen(true)}
           placeholder="Buscar endereço em Curitiba..."
-          className="h-10 rounded-xl border-zinc-700 bg-zinc-900 pl-9 pr-9 text-sm text-zinc-100 placeholder:text-zinc-500 focus-visible:border-zinc-500 focus-visible:ring-zinc-500/30"
+          className="h-10 rounded-xl border-border bg-card pl-9 pr-9 text-sm text-foreground placeholder:text-muted-foreground focus-visible:border-primary focus-visible:ring-primary/30"
         />
 
         <div className="absolute inset-y-0 right-3 flex items-center">
           {isSearching ? (
-            <Loader2 className="h-4 w-4 animate-spin text-zinc-400" />
+            <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
           ) : query.length > 0 ? (
             <button
               type="button"
               onClick={handleClear}
               aria-label="Limpar busca"
-              className="text-zinc-400 transition-colors hover:text-zinc-200"
+              className="text-muted-foreground transition-colors hover:text-foreground"
             >
               <X className="h-4 w-4" />
             </button>
@@ -112,13 +112,13 @@ export function AddressSearch({ onSelect, onClear }: AddressSearchProps) {
       </div>
 
       {isOpen && results.length > 0 && (
-        <ul className="mt-1 overflow-hidden rounded-xl border border-zinc-700 bg-zinc-900 shadow-lg">
+        <ul className="mt-1 overflow-hidden rounded-xl border border-border bg-card shadow-lg">
           {results.map((result) => (
             <li key={`${result.lat},${result.lng}`}>
               <button
                 type="button"
                 onClick={() => handleSelect(result)}
-                className="w-full px-4 py-2.5 text-left text-sm text-zinc-200 transition-colors hover:bg-zinc-800 focus:bg-zinc-800 focus:outline-none"
+                className="w-full px-4 py-2.5 text-left text-sm text-foreground transition-colors hover:bg-accent focus:bg-accent focus:outline-none"
               >
                 <span className="block truncate" title={result.displayName}>
                   {result.displayName}
