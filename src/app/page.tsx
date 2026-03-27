@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Suspense, useCallback, useEffect, useState } from 'react'
 import { MapControls } from '@/components/map/map-controls'
+import { MapFooter } from '@/components/layout/map-footer'
 import { CompareView } from '@/components/panel/compare-view'
 import { NeighborhoodPanel } from '@/components/panel/neighborhood-panel'
 import { AddressSearch } from '@/components/search/address-search'
@@ -185,6 +186,8 @@ function HomeContent() {
           <span className="text-[10px] text-muted-foreground">100</span>
         </div>
       </div>
+
+      <MapFooter />
 
       <CityMap
         bairros={bairros}
