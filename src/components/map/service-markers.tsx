@@ -73,7 +73,7 @@ export function ServiceMarkers({
         const color = CATEGORY_COLORS[category] ?? '#6b7280'
         const icon = getCategoryIcon(category)
 
-        return facilities.map((facility) => {
+        return facilities.map((facility, idx) => {
           const dist =
             selectedCentroid != null
               ? haversine(selectedCentroid[0], selectedCentroid[1], facility.coordinates[0], facility.coordinates[1])
@@ -99,7 +99,7 @@ export function ServiceMarkers({
 
           return (
             <Marker
-              key={facility.id}
+              key={`${category}-${idx}-${facility.id}`}
               position={[facility.coordinates[0], facility.coordinates[1]]}
               icon={icon}
               eventHandlers={{

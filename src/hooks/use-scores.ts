@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { fetchCrimeData } from '@/lib/api/crime-data'
 import { cacheGet, cacheSet } from '@/lib/cache'
-import { calculateAllScores } from '@/lib/score'
+import { calculateAllScoresAsync } from '@/lib/score'
 import type { BairroCrimeData, BairroScore, CategoryKey } from '@/lib/types'
 import { useBairros } from './use-bairros'
 import { useServices } from './use-services'
@@ -23,6 +23,8 @@ export function useScores() {
   } = useServices()
 
   const [crimeData, setCrimeData] = useState<BairroCrimeData[]>([])
+  const [scores, setScores] = useState<BairroScore[]>([])
+  const [computing, setComputing] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -44,16 +46,12 @@ export function useScores() {
   const error = bairrosError || servicesError
 
   const prevFingerprintRef = useRef('')
-  const prevScoresRef = useRef<BairroScore[]>([])
 
-  const scores = useMemo(() => {
-    // CRITICAL: Wait for ALL data to load before computing scores.
-    // Computing with partial data (empty greenAreas/busLines) produces
-    // wrong scores that get cached and persist across navigation.
-    if (isLoading) return prevScoresRef.current
-    if (bairros.length === 0 || Object.keys(services).length === 0) return []
+  useEffect(() => {
+    // Wait for ALL data to load before computing scores.
+    if (isLoading) return
+    if (bairros.length === 0 || Object.keys(services).length === 0) return
 
-    // Build fingerprint that includes ALL data sources
     const fingerprint = [
       `b:${bairros.length}`,
       ...Object.entries(services).map(([k, v]) => `${k}:${v.length}`),
@@ -62,36 +60,36 @@ export function useScores() {
       `c:${crimeData.length}`,
     ].join('|')
 
-    // Skip recomputation if fingerprint unchanged
-    if (
-      fingerprint === prevFingerprintRef.current &&
-      prevScoresRef.current.length > 0
-    ) {
-      return prevScoresRef.current
-    }
+    if (fingerprint === prevFingerprintRef.current) return
+    prevFingerprintRef.current = fingerprint
 
-    // Try localStorage cache with fingerprint validation
+    // Try localStorage cache first
     const cacheKey = `scores:${fingerprint}`
     const cached = cacheGet<BairroScore[]>(cacheKey)
     if (cached && cached.length === bairros.length) {
-      prevFingerprintRef.current = fingerprint
-      prevScoresRef.current = cached
-      return cached
+      setScores(cached)
+      return
     }
 
-    const computed = calculateAllScores(
+    const controller = new AbortController()
+    setComputing(true)
+
+    calculateAllScoresAsync(
       bairros,
       services,
       greenAreas,
       busLines,
       crimeData.length > 0 ? crimeData : undefined,
-    )
-    cacheSet(cacheKey, computed)
-    // Also save under generic key for quick navigation reads
-    cacheSet('scores', computed)
-    prevFingerprintRef.current = fingerprint
-    prevScoresRef.current = computed
-    return computed
+      controller.signal,
+    ).then((computed) => {
+      if (controller.signal.aborted || computed.length === 0) return
+      cacheSet(cacheKey, computed)
+      cacheSet('scores', computed)
+      setScores(computed)
+      setComputing(false)
+    })
+
+    return () => controller.abort()
   }, [bairros, services, greenAreas, busLines, crimeData, isLoading])
 
   const cityAverage = useMemo(() => {
@@ -118,5 +116,5 @@ export function useScores() {
     return avg
   }, [scores])
 
-  return { scores, cityAverage, bairros, services, greenAreas, crimeData, isLoading, error }
+  return { scores, cityAverage, bairros, services, greenAreas, crimeData, isLoading: isLoading || computing, error }
 }

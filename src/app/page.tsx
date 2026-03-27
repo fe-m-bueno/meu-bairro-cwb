@@ -134,7 +134,7 @@ function HomeContent() {
   return (
     <div className="relative h-[calc(100vh-3.5rem)] overflow-hidden">
       {isLoading && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-background/70">
+        <div className="pointer-events-none absolute inset-0 z-[2000] flex items-center justify-center bg-background/70">
           <div className="flex flex-col items-center gap-3">
             <div className="h-8 w-8 animate-spin rounded-full border-2 border-muted-foreground border-t-emerald-500" />
             <p className="text-sm text-muted-foreground">
@@ -145,7 +145,7 @@ function HomeContent() {
       )}
 
       {error && (
-        <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center bg-background/70">
+        <div className="pointer-events-none absolute inset-0 z-[2000] flex items-center justify-center bg-background/70">
           <div className="pointer-events-auto rounded-lg border border-red-800 bg-card px-6 py-4">
             <p className="text-sm text-red-400">Erro ao carregar dados</p>
           </div>

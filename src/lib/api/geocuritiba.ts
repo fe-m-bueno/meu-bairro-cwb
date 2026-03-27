@@ -112,6 +112,7 @@ async function fetchLayerFeaturesWithRetry(
       try {
         return await fetchAllFeatures(baseUrl, layerId, controller.signal)
       } catch (err) {
+        if (outerSignal?.aborted) return []
         const message = err instanceof Error ? err.message : String(err)
         console.warn(`[fetchGreenAreas] Layer ${layerId} failed: ${message}`)
         if (attempt < 1) {

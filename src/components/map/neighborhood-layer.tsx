@@ -2,8 +2,8 @@
 
 import type L from 'leaflet'
 import type { Layer, LeafletMouseEvent } from 'leaflet'
-import { useEffect, useMemo, useRef } from 'react'
-import { GeoJSON } from 'react-leaflet'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { GeoJSON, useMap } from 'react-leaflet'
 import { getScoreLabel } from '@/lib/score/weights'
 import type { Bairro, BairroScore, CategoryKey } from '@/lib/types'
 
@@ -77,6 +77,20 @@ export function NeighborhoodLayer({
   scores,
   onSelectBairro,
 }: NeighborhoodLayerProps) {
+  const map = useMap()
+  const [paneReady, setPaneReady] = useState(false)
+
+  useEffect(() => {
+    if (map.getPane('neighborhoodPane')) {
+      setPaneReady(true)
+      return
+    }
+    const timer = setTimeout(() => {
+      if (map.getPane('neighborhoodPane')) setPaneReady(true)
+    }, 50)
+    return () => clearTimeout(timer)
+  }, [map])
+
   const scoreMap = useMemo(() => {
     const map = new Map<string, BairroScore>()
     for (const score of scores) {
@@ -181,7 +195,7 @@ export function NeighborhoodLayer({
     })
   }
 
-  if (bairros.length === 0) return null
+  if (!paneReady || bairros.length === 0) return null
 
   return (
     <GeoJSON

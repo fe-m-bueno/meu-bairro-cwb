@@ -81,6 +81,7 @@ export default function CityMap({
 }: CityMapProps) {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const mapId = useRef(`map-${Date.now()}`).current
 
   useEffect(() => {
     setMounted(true)
@@ -91,6 +92,7 @@ export default function CityMap({
 
   return (
     <MapContainer
+      key={mapId}
       center={CURITIBA_CENTER}
       zoom={DEFAULT_ZOOM}
       zoomControl={false}

@@ -71,6 +71,18 @@ export function calculateBairroScore(
   }
 }
 
+function rankScores(scores: BairroScore[]): BairroScore[] {
+  scores.sort((a, b) => b.overall - a.overall)
+  const total = scores.length
+  for (let i = 0; i < total; i++) {
+    scores[i].rank = i + 1
+    scores[i].percentile = Math.round(
+      ((total - i - 1) / (total - 1 || 1)) * 100,
+    )
+  }
+  return scores
+}
+
 export function calculateAllScores(
   bairros: Bairro[],
   services: Record<string, ServiceFacility[]>,
@@ -78,10 +90,8 @@ export function calculateAllScores(
   busLines: BusLine[],
   crimeDataList?: BairroCrimeData[],
 ): BairroScore[] {
-  // Pre-compute green area centroids once for all bairros
   const greenCentroids = precomputeGreenCentroids(greenAreas)
 
-  // Build a lookup map for crime data by bairro name (case-insensitive)
   const crimeMap = new Map<string, BairroCrimeData>()
   if (crimeDataList) {
     for (const cd of crimeDataList) {
@@ -101,15 +111,48 @@ export function calculateAllScores(
     )
   })
 
-  scores.sort((a, b) => b.overall - a.overall)
+  return rankScores(scores)
+}
 
-  const total = scores.length
-  for (let i = 0; i < total; i++) {
-    scores[i].rank = i + 1
-    scores[i].percentile = Math.round(
-      ((total - i - 1) / (total - 1 || 1)) * 100,
-    )
+const CHUNK_SIZE = 10
+
+function yieldToMain(): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, 0))
+}
+
+export async function calculateAllScoresAsync(
+  bairros: Bairro[],
+  services: Record<string, ServiceFacility[]>,
+  greenAreas: GreenArea[],
+  busLines: BusLine[],
+  crimeDataList?: BairroCrimeData[],
+  signal?: AbortSignal,
+): Promise<BairroScore[]> {
+  const greenCentroids = precomputeGreenCentroids(greenAreas)
+
+  const crimeMap = new Map<string, BairroCrimeData>()
+  if (crimeDataList) {
+    for (const cd of crimeDataList) {
+      crimeMap.set(cd.bairro.toLowerCase(), cd)
+    }
   }
 
-  return scores
+  const scores: BairroScore[] = []
+
+  for (let i = 0; i < bairros.length; i += CHUNK_SIZE) {
+    if (signal?.aborted) return []
+    const chunk = bairros.slice(i, i + CHUNK_SIZE)
+    for (const b of chunk) {
+      const crimeData = crimeMap.get(b.nome.toLowerCase())
+      scores.push(
+        calculateBairroScore(b, services, greenAreas, busLines, greenCentroids, crimeData),
+      )
+    }
+    if (i + CHUNK_SIZE < bairros.length) {
+      await yieldToMain()
+    }
+  }
+
+  if (signal?.aborted) return []
+  return rankScores(scores)
 }

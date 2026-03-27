@@ -1,4 +1,4 @@
-export { calculateAllScores, calculateBairroScore } from './calculator'
+export { calculateAllScores, calculateAllScoresAsync, calculateBairroScore } from './calculator'
 export { calculateCultureScore } from './culture'
 export { calculateEducationScore } from './education'
 export { calculateGreenScore } from './green'
