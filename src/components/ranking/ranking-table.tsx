@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { useMemo, useState } from 'react'
 import { CATEGORY_NAMES } from '@/components/panel/category-card'
+import { CategoryDetailModal } from '@/components/ranking/category-detail-modal'
 import {
   Select,
   SelectContent,
@@ -19,13 +20,24 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { getScoreLabel } from '@/lib/score/weights'
-import type { Bairro, BairroScore, CategoryKey } from '@/lib/types'
+import type {
+  BairroCrimeData,
+  Bairro,
+  BairroScore,
+  CategoryKey,
+  CategoryScore,
+  GreenArea,
+  ServiceFacility,
+} from '@/lib/types'
 
 type SortColumn = 'rank' | 'nome' | 'regional' | 'overall' | CategoryKey
 
 interface RankingTableProps {
   scores: BairroScore[]
   bairros: Bairro[]
+  services: Record<string, ServiceFacility[]>
+  greenAreas: GreenArea[]
+  crimeData: BairroCrimeData[]
 }
 
 const CATEGORY_KEYS: CategoryKey[] = [
@@ -103,12 +115,17 @@ function SortIcon({
   )
 }
 
-export function RankingTable({ scores, bairros }: RankingTableProps) {
+export function RankingTable({ scores, bairros, services, greenAreas, crimeData }: RankingTableProps) {
   const router = useRouter()
   const [sortCol, setSortCol] = useState<SortColumn>('rank')
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc')
   const [search, setSearch] = useState('')
   const [regionalFilter, setRegionalFilter] = useState('all')
+  const [modalState, setModalState] = useState<{
+    bairro: Bairro
+    categoryKey: CategoryKey
+    categoryScore: CategoryScore
+  } | null>(null)
 
   const bairroMap = useMemo(
     () => new Map(bairros.map((b) => [b.codigo, b])),
@@ -320,7 +337,19 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
                     </div>
                   </TableCell>
                   {CATEGORY_KEYS.map((key) => (
-                    <TableCell key={key}>
+                    <TableCell
+                      key={key}
+                      className="cursor-pointer hover:bg-primary/10 transition-colors"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        setModalState({
+                          bairro,
+                          categoryKey: key,
+                          categoryScore: score.categories[key],
+                        })
+                      }}
+                      title={`Ver detalhes de ${CATEGORY_NAMES[key]} para ${bairro.nome}`}
+                    >
                       <ScoreBar score={score.categories[key]?.score ?? 0} />
                     </TableCell>
                   ))}
@@ -340,6 +369,21 @@ export function RankingTable({ scores, bairros }: RankingTableProps) {
           </TableBody>
         </Table>
       </div>
+
+      {modalState && (
+        <CategoryDetailModal
+          open={!!modalState}
+          onClose={() => setModalState(null)}
+          bairro={modalState.bairro}
+          categoryKey={modalState.categoryKey}
+          categoryScore={modalState.categoryScore}
+          services={services}
+          greenAreas={greenAreas}
+          crimeData={crimeData.find(
+            (c) => c.bairro.toLowerCase() === modalState.bairro.nome.toLowerCase(),
+          )}
+        />
+      )}
     </div>
   )
 }
