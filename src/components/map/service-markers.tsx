@@ -7,6 +7,7 @@ import type { ServiceFacility } from '@/lib/types'
 import { getFacilityIcon } from './marker-icons'
 import {
   DEFAULT_RENDER_CAPS,
+  getFacilityMarkerKey,
   getRenderableFacilities,
 } from './renderable-facilities'
 
@@ -92,7 +93,7 @@ export function ServiceMarkers({
 
           return (
             <Marker
-              key={`${category}-${facility.id}`}
+              key={getFacilityMarkerKey(category, facility)}
               position={[facility.coordinates[0], facility.coordinates[1]]}
               icon={icon}
               eventHandlers={{
