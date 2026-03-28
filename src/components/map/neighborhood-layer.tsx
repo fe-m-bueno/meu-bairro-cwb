@@ -79,6 +79,11 @@ export function NeighborhoodLayer({
 }: NeighborhoodLayerProps) {
   const map = useMap()
   const [paneReady, setPaneReady] = useState(false)
+  const onSelectBairroRef = useRef(onSelectBairro)
+
+  useEffect(() => {
+    onSelectBairroRef.current = onSelectBairro
+  }, [onSelectBairro])
 
   useEffect(() => {
     if (map.getPane('neighborhoodPane')) {
@@ -190,7 +195,7 @@ export function NeighborhoodLayer({
         })
       },
       click: () => {
-        onSelectBairro(codigo)
+        onSelectBairroRef.current(codigo)
       },
     })
   }

@@ -1,15 +1,24 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { MapFooter } from '@/components/layout/map-footer'
 import { MapControls } from '@/components/map/map-controls'
-import { CompareView } from '@/components/panel/compare-view'
+import { ComparePanel } from '@/components/panel/compare-panel'
+import { CompareSelectionPanel } from '@/components/panel/compare-selection-panel'
 import { NeighborhoodPanel } from '@/components/panel/neighborhood-panel'
 import { AddressSearch } from '@/components/search/address-search'
 import { findBairroForPoint } from '@/lib/geo/point-in-polygon'
 import type { HomePageDataPayload } from '@/lib/types'
+import {
+  getBairroHref,
+  getCompareHref,
+  getCompareSelectionHref,
+  getNormalizedHrefFromLegacyPathname,
+  getSearchParamsFromLegacyPathname,
+  getSelectionFromSearchParams,
+} from './home-page-state'
 
 const CityMap = dynamic(() => import('@/components/map/city-map'), {
   ssr: false,
@@ -29,30 +38,53 @@ interface HomePageClientProps {
 }
 
 export function HomePageClient({ data, error }: HomePageClientProps) {
+  const pathname = usePathname()
   const router = useRouter()
   const searchParams = useSearchParams()
-  const [selectedBairro, setSelectedBairro] = useState<string | null>(null)
   const [searchedPoint, setSearchedPoint] = useState<[number, number] | null>(
     null,
   )
   const [visibleLayers, setVisibleLayers] = useState<Set<string>>(new Set())
-  const [compareMode, setCompareMode] = useState(false)
-  const [compareBairro, setCompareBairro] = useState<string | null>(null)
 
   const bairros = data?.bairros ?? []
   const scores = data?.scores ?? []
   const services = data?.services ?? {}
   const cityAverage = data?.cityAverage ?? null
 
-  useEffect(() => {
-    const bairroParam = searchParams.get('bairro')
-    if (bairroParam && bairros.length > 0) {
-      const exists = bairros.some((bairro) => bairro.codigo === bairroParam)
-      if (exists) {
-        setSelectedBairro(bairroParam)
-      }
+  const validBairros = useMemo(
+    () => new Set(bairros.map((bairro) => bairro.codigo)),
+    [bairros],
+  )
+
+  const legacySearchParams = useMemo(
+    () => getSearchParamsFromLegacyPathname(pathname),
+    [pathname],
+  )
+
+  const { selectedBairro, compareBairro, isSelectingCompareBairro } = useMemo(() => {
+    const primarySelection = getSelectionFromSearchParams(
+      searchParams,
+      validBairros,
+    )
+
+    if (
+      primarySelection.selectedBairro ||
+      primarySelection.compareBairro ||
+      primarySelection.isSelectingCompareBairro ||
+      !legacySearchParams
+    ) {
+      return primarySelection
     }
-  }, [searchParams, bairros])
+
+    return getSelectionFromSearchParams(legacySearchParams, validBairros)
+  }, [searchParams, validBairros, legacySearchParams])
+
+  useEffect(() => {
+    const normalizedHref = getNormalizedHrefFromLegacyPathname(pathname)
+    if (normalizedHref) {
+      router.replace(normalizedHref, { scroll: false })
+    }
+  }, [pathname, router])
 
   const selectedScore = selectedBairro
     ? (scores.find((score) => score.bairroCode === selectedBairro) ?? null)
@@ -72,16 +104,18 @@ export function HomePageClient({ data, error }: HomePageClientProps) {
 
   const handleSelectBairro = useCallback(
     (codigo: string) => {
-      if (compareMode && selectedBairro && codigo !== selectedBairro) {
-        setCompareBairro(codigo)
-        setCompareMode(false)
+      if (isSelectingCompareBairro && selectedBairro) {
+        if (codigo === selectedBairro) return
+
+        router.replace(getCompareHref(selectedBairro, codigo), {
+          scroll: false,
+        })
         return
       }
-      setSelectedBairro(codigo)
-      setCompareBairro(null)
-      router.replace(`/?bairro=${codigo}`, { scroll: false })
+
+      router.replace(getBairroHref(codigo), { scroll: false })
     },
-    [compareMode, selectedBairro, router],
+    [isSelectingCompareBairro, selectedBairro, router],
   )
 
   const handleSearchSelect = useCallback(
@@ -90,9 +124,7 @@ export function HomePageClient({ data, error }: HomePageClientProps) {
       setSearchedPoint(point)
       const bairro = findBairroForPoint(point, bairros)
       if (bairro) {
-        setSelectedBairro(bairro.codigo)
-        setCompareBairro(null)
-        router.replace(`/?bairro=${bairro.codigo}`, { scroll: false })
+        router.replace(getBairroHref(bairro.codigo), { scroll: false })
       }
     },
     [bairros, router],
@@ -115,21 +147,22 @@ export function HomePageClient({ data, error }: HomePageClientProps) {
   }, [])
 
   const handleClosePanel = useCallback(() => {
-    setSelectedBairro(null)
-    setCompareBairro(null)
-    setCompareMode(false)
     router.replace('/', { scroll: false })
   }, [router])
 
   const handleStartCompare = useCallback(() => {
-    setCompareMode(true)
-    setCompareBairro(null)
-  }, [])
+    if (!selectedBairro) return
+    router.replace(getCompareSelectionHref(selectedBairro), { scroll: false })
+  }, [selectedBairro, router])
 
   const handleExitCompare = useCallback(() => {
-    setCompareMode(false)
-    setCompareBairro(null)
-  }, [])
+    if (selectedBairro) {
+      router.replace(getBairroHref(selectedBairro), { scroll: false })
+      return
+    }
+
+    router.replace('/', { scroll: false })
+  }, [selectedBairro, router])
 
   return (
     <div className="relative h-[calc(100vh-3.5rem)] overflow-hidden">
@@ -137,23 +170,6 @@ export function HomePageClient({ data, error }: HomePageClientProps) {
         <div className="pointer-events-none absolute inset-0 z-[2000] flex items-center justify-center bg-background/70">
           <div className="pointer-events-auto rounded-lg border border-red-800 bg-card px-6 py-4">
             <p className="text-sm text-red-400">{error}</p>
-          </div>
-        </div>
-      )}
-
-      {compareMode && !compareBairro && (
-        <div className="pointer-events-auto absolute top-16 left-1/2 z-30 -translate-x-1/2 rounded-lg border border-emerald-700 bg-card/95 px-4 py-2.5 shadow-lg backdrop-blur-sm">
-          <div className="flex items-center gap-3">
-            <p className="text-sm text-foreground">
-              Clique em outro bairro para comparar
-            </p>
-            <button
-              type="button"
-              onClick={handleExitCompare}
-              className="rounded-md px-2 py-1 text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-            >
-              Cancelar
-            </button>
           </div>
         </div>
       )}
@@ -195,7 +211,9 @@ export function HomePageClient({ data, error }: HomePageClientProps) {
         onSelectBairro={handleSelectBairro}
         searchedPoint={searchedPoint}
         visibleLayers={visibleLayers}
-        panelOpen={!!selectedBairro || !!compareBairro}
+        panelOpen={
+          !!selectedBairro || !!compareBairro || isSelectingCompareBairro
+        }
         selectedCentroid={selectedBairroData?.centroid ?? null}
       />
 
@@ -204,44 +222,19 @@ export function HomePageClient({ data, error }: HomePageClientProps) {
       selectedScore &&
       compareBairroData &&
       compareScore ? (
-        <div className="fixed top-14 right-0 z-[1001] flex h-[calc(100vh-3.5rem)] w-[400px] flex-col border-l border-border bg-background/95 backdrop-blur-sm">
-          <div className="flex items-center justify-between border-b border-border px-4 py-3">
-            <span className="text-sm font-semibold text-foreground">
-              Comparando bairros
-            </span>
-            <button
-              type="button"
-              onClick={handleExitCompare}
-              className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-              aria-label="Fechar comparação"
-            >
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-                aria-hidden="true"
-              >
-                <title>Fechar</title>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-          <div className="flex-1 overflow-y-auto p-4">
-            <CompareView
-              bairroA={selectedBairroData}
-              scoreA={selectedScore}
-              bairroB={compareBairroData}
-              scoreB={compareScore}
-              cityAverage={cityAverage}
-            />
-          </div>
-        </div>
+        <ComparePanel
+          bairroA={selectedBairroData}
+          scoreA={selectedScore}
+          bairroB={compareBairroData}
+          scoreB={compareScore}
+          cityAverage={cityAverage}
+          onClose={handleExitCompare}
+        />
+      ) : isSelectingCompareBairro && selectedBairroData ? (
+        <CompareSelectionPanel
+          bairro={selectedBairroData}
+          onClose={handleExitCompare}
+        />
       ) : (
         selectedScore &&
         selectedBairroData && (

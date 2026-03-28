@@ -109,7 +109,7 @@ function PanelContent({
           <button
             type="button"
             onClick={onStartCompare}
-            className="w-full rounded-lg border border-emerald-600 bg-emerald-500/10 px-4 py-2.5 text-sm font-medium text-emerald-600 transition-colors hover:bg-emerald-500/20 dark:border-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50"
+            className="w-full cursor-pointer rounded-lg border border-emerald-600 bg-emerald-500/10 px-4 py-2.5 text-sm font-medium text-emerald-600 transition-colors hover:bg-emerald-500/20 dark:border-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 dark:hover:bg-emerald-900/50"
           >
             Comparar com outro bairro
           </button>
@@ -167,7 +167,7 @@ export function NeighborhoodPanel({
         <button
           type="button"
           onClick={onClose}
-          className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          className="cursor-pointer rounded-md p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           aria-label="Fechar painel"
         >
           <svg

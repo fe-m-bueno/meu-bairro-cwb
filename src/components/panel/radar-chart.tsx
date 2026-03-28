@@ -42,7 +42,7 @@ export function RadarChart({ categoryScores, cityAverage }: RadarChartProps) {
   }))
 
   return (
-    <div className="w-full" style={{ height: 260 }}>
+    <div className="min-h-[260px] min-w-0 w-full" style={{ height: 260 }}>
       <ResponsiveContainer width="100%" height="100%">
         <RechartsRadarChart data={data} cx="50%" cy="50%" outerRadius="72%">
           <PolarGrid stroke="rgba(100,160,120,0.2)" />
