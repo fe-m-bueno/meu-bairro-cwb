@@ -1,6 +1,9 @@
-import L from 'leaflet';
+import L from 'leaflet'
 
-export const CATEGORY_ICONS: Record<string, { svg: string; color: string; bg: string }> = {
+export const CATEGORY_ICONS: Record<
+  string,
+  { svg: string; color: string; bg: string }
+> = {
   saude: {
     color: '#ef4444',
     bg: 'rgba(239,68,68,0.15)',
@@ -26,22 +29,40 @@ export const CATEGORY_ICONS: Record<string, { svg: string; color: string; bg: st
     bg: 'rgba(236,72,153,0.15)',
     svg: '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
   },
-};
+}
 
-export function getCategoryIcon(category: string): L.DivIcon {
-  const config = CATEGORY_ICONS[category];
+const TRANSPORT_SUBCATEGORY_ICONS: Record<
+  string,
+  { svg: string; color: string; bg: string }
+> = {
+  Terminal: {
+    color: '#7c3aed',
+    bg: 'rgba(124,58,237,0.22)',
+    svg: '<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h8M9 17h6"/>',
+  },
+  Parada: {
+    color: '#a855f7',
+    bg: 'rgba(168,85,247,0.16)',
+    svg: '<path d="M12 3v18"/><path d="M12 5h6l-1.5 4L18 13h-6"/>',
+  },
+}
 
+function createDivIcon(config?: {
+  svg: string
+  color: string
+  bg: string
+}): L.DivIcon {
   if (!config) {
     return L.divIcon({
       className: '',
       iconSize: [28, 28] as L.PointExpression,
       iconAnchor: [14, 14] as L.PointExpression,
       popupAnchor: [0, -14] as L.PointExpression,
-      html: `<div class="category-marker" style="width:28px;height:28px;border-radius:8px;background:rgba(156,163,175,0.15);border:1.5px solid #9ca3af;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.3);font-size:16px;color:#9ca3af;">•</div>`,
-    });
+      html: '<div class="category-marker" style="width:28px;height:28px;border-radius:8px;background:rgba(156,163,175,0.15);border:1.5px solid #9ca3af;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.3);font-size:16px;color:#9ca3af;">•</div>',
+    })
   }
 
-  const { color, bg, svg } = config;
+  const { color, bg, svg } = config
 
   return L.divIcon({
     className: '',
@@ -49,5 +70,22 @@ export function getCategoryIcon(category: string): L.DivIcon {
     iconAnchor: [14, 14] as L.PointExpression,
     popupAnchor: [0, -14] as L.PointExpression,
     html: `<div class="category-marker" style="width:28px;height:28px;border-radius:8px;background:${bg};border:1.5px solid ${color};display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.3);"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${svg}</svg></div>`,
-  });
+  })
+}
+
+export function getCategoryIcon(category: string): L.DivIcon {
+  return createDivIcon(CATEGORY_ICONS[category])
+}
+
+export function getFacilityIcon(
+  category: string,
+  subcategory: string,
+): L.DivIcon {
+  if (category === 'transporte') {
+    return createDivIcon(
+      TRANSPORT_SUBCATEGORY_ICONS[subcategory] ?? CATEGORY_ICONS[category],
+    )
+  }
+
+  return getCategoryIcon(category)
 }

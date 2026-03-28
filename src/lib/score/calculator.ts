@@ -14,7 +14,7 @@ import { calculateEducationScore } from './education'
 import { calculateGreenScore, precomputeGreenCentroids } from './green'
 import { calculateHealthScore } from './health'
 import { calculateSafetyScore } from './safety'
-import { calculateTransportScore } from './transport'
+import { calculateTransportScore, precomputeBusLineCounts } from './transport'
 import { calculateVarietyScore } from './variety'
 import { CATEGORY_WEIGHTS, getScoreLabel } from './weights'
 
@@ -25,6 +25,7 @@ export function calculateBairroScore(
   busLines: BusLine[],
   greenCentroids?: Map<string, [number, number]>,
   crimeData?: BairroCrimeData,
+  precomputedBusLineCount?: number,
 ): BairroScore {
   const centroid = bairro.centroid ?? calculateCentroid(bairro.geometry)
 
@@ -41,6 +42,7 @@ export function calculateBairroScore(
       services.transporte ?? [],
       bairro.geometry,
       busLines,
+      precomputedBusLineCount,
     ),
     areasVerdes: calculateGreenScore(
       centroid,
@@ -91,6 +93,7 @@ export function calculateAllScores(
   crimeDataList?: BairroCrimeData[],
 ): BairroScore[] {
   const greenCentroids = precomputeGreenCentroids(greenAreas)
+  const busLineCounts = precomputeBusLineCounts(bairros, busLines)
 
   const crimeMap = new Map<string, BairroCrimeData>()
   if (crimeDataList) {
@@ -108,6 +111,7 @@ export function calculateAllScores(
       busLines,
       greenCentroids,
       crimeData,
+      busLineCounts.get(b.codigo),
     )
   })
 
@@ -129,6 +133,7 @@ export async function calculateAllScoresAsync(
   signal?: AbortSignal,
 ): Promise<BairroScore[]> {
   const greenCentroids = precomputeGreenCentroids(greenAreas)
+  const busLineCounts = precomputeBusLineCounts(bairros, busLines)
 
   const crimeMap = new Map<string, BairroCrimeData>()
   if (crimeDataList) {
@@ -145,7 +150,15 @@ export async function calculateAllScoresAsync(
     for (const b of chunk) {
       const crimeData = crimeMap.get(b.nome.toLowerCase())
       scores.push(
-        calculateBairroScore(b, services, greenAreas, busLines, greenCentroids, crimeData),
+        calculateBairroScore(
+          b,
+          services,
+          greenAreas,
+          busLines,
+          greenCentroids,
+          crimeData,
+          busLineCounts.get(b.codigo),
+        ),
       )
     }
     if (i + CHUNK_SIZE < bairros.length) {
