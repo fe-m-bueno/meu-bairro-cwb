@@ -81,3 +81,25 @@ export interface BairroCrimeData {
   tendencia: 'subindo' | 'estavel' | 'descendo'
   scorePercentil: number // 0-100 score based on percentile ranking (higher = safer)
 }
+
+export interface TransportMeta {
+  total: number
+  paradas: number
+  terminais: number
+}
+
+export type ServiceCounts = Record<string, number>
+
+export interface HomePageDataPayload {
+  bairros: Bairro[]
+  scores: BairroScore[]
+  cityAverage: Record<string, number> | null
+  services: Record<string, ServiceFacility[]>
+  serviceCounts: ServiceCounts
+  transportMeta: TransportMeta
+}
+
+export interface RankingPageDataPayload extends HomePageDataPayload {
+  greenAreas: GreenArea[]
+  crimeData: BairroCrimeData[]
+}

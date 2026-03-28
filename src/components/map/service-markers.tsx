@@ -4,7 +4,11 @@ import type L from 'leaflet'
 import { Marker, Popup, Tooltip } from 'react-leaflet'
 import { haversine } from '@/lib/geo/haversine'
 import type { ServiceFacility } from '@/lib/types'
-import { getCategoryIcon } from './marker-icons'
+import { getFacilityIcon } from './marker-icons'
+import {
+  DEFAULT_RENDER_CAPS,
+  getRenderableFacilities,
+} from './renderable-facilities'
 
 interface ServiceMarkersProps {
   services: Record<string, ServiceFacility[]>
@@ -28,17 +32,6 @@ const CATEGORY_COLORS: Record<string, string> = {
   cultura: '#ec4899',
 }
 
-const MAX_MARKERS_PER_CATEGORY: Record<string, number> = {
-  saude: 200,
-  educacao: 200,
-  seguranca: 100,
-  transporte: 300,
-  cultura: 150,
-}
-
-const MAX_TOTAL_MARKERS = 500
-const DEFAULT_CAP = 100
-
 function formatDist(meters: number): string {
   if (meters < 1000) return `${Math.round(meters)}m`
   return `${(meters / 1000).toFixed(1)}km`
@@ -52,31 +45,31 @@ export function ServiceMarkers({
   const visibleCategories = Object.keys(services).filter((cat) =>
     visibleLayers.has(cat),
   )
-
-  let totalBudget = MAX_TOTAL_MARKERS
-  const renderGroups: { category: string; facilities: ServiceFacility[] }[] = []
-
-  for (const category of visibleCategories) {
-    const facilities = services[category] ?? []
-    const categoryCap = MAX_MARKERS_PER_CATEGORY[category] ?? DEFAULT_CAP
-    const cap = Math.min(categoryCap, totalBudget)
-    if (cap <= 0) break
-
-    const capped = facilities.slice(0, cap)
-    renderGroups.push({ category, facilities: capped })
-    totalBudget -= capped.length
-  }
+  const renderGroups = visibleCategories.map((category) => ({
+    category,
+    facilities: getRenderableFacilities(
+      category,
+      services[category] ?? [],
+      selectedCentroid ?? null,
+      DEFAULT_RENDER_CAPS,
+    ),
+  }))
 
   return (
     <>
       {renderGroups.map(({ category, facilities }) => {
         const color = CATEGORY_COLORS[category] ?? '#6b7280'
-        const icon = getCategoryIcon(category)
 
-        return facilities.map((facility, idx) => {
+        return facilities.map((facility) => {
+          const icon = getFacilityIcon(category, facility.subcategory)
           const dist =
             selectedCentroid != null
-              ? haversine(selectedCentroid[0], selectedCentroid[1], facility.coordinates[0], facility.coordinates[1])
+              ? haversine(
+                  selectedCentroid[0],
+                  selectedCentroid[1],
+                  facility.coordinates[0],
+                  facility.coordinates[1],
+                )
               : null
 
           // Build tooltip content with specific subcategory info
@@ -94,27 +87,32 @@ export function ServiceMarkers({
             null
           const lineInfo =
             category === 'transporte' && facility.subcategory === 'Parada'
-              ? (props.nr_linha as string) ?? null
+              ? ((props.nr_linha as string) ?? null)
               : null
 
           return (
             <Marker
-              key={`${category}-${idx}-${facility.id}`}
+              key={`${category}-${facility.id}`}
               position={[facility.coordinates[0], facility.coordinates[1]]}
               icon={icon}
               eventHandlers={{
                 mouseover: (e) => {
                   const el = (e.target as L.Marker).getElement()
-                  const inner = el?.querySelector('.category-marker') as HTMLElement | null
+                  const inner = el?.querySelector(
+                    '.category-marker',
+                  ) as HTMLElement | null
                   if (inner) {
                     inner.style.transform = 'scale(1.35)'
-                    inner.style.transition = 'transform 0.15s ease, box-shadow 0.15s ease'
+                    inner.style.transition =
+                      'transform 0.15s ease, box-shadow 0.15s ease'
                     inner.style.boxShadow = `0 4px 12px ${color}80`
                   }
                 },
                 mouseout: (e) => {
                   const el = (e.target as L.Marker).getElement()
-                  const inner = el?.querySelector('.category-marker') as HTMLElement | null
+                  const inner = el?.querySelector(
+                    '.category-marker',
+                  ) as HTMLElement | null
                   if (inner) {
                     inner.style.transform = 'scale(1)'
                     inner.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3)'
@@ -124,12 +122,27 @@ export function ServiceMarkers({
             >
               <Tooltip direction="top" offset={[0, -16]}>
                 <div style={{ minWidth: '120px' }}>
-                  <div style={{ fontSize: '12px', fontWeight: 600 }}>{tooltipLabel}</div>
-                  <div style={{ fontSize: '11px', opacity: 0.75, marginTop: '2px' }}>
-                    {CATEGORY_LABELS[category] || category} — {facility.subcategory}
+                  <div style={{ fontSize: '12px', fontWeight: 600 }}>
+                    {tooltipLabel}
+                  </div>
+                  <div
+                    style={{
+                      fontSize: '11px',
+                      opacity: 0.75,
+                      marginTop: '2px',
+                    }}
+                  >
+                    {CATEGORY_LABELS[category] || category} —{' '}
+                    {facility.subcategory}
                   </div>
                   {dist != null && (
-                    <div style={{ fontSize: '11px', opacity: 0.6, marginTop: '2px' }}>
+                    <div
+                      style={{
+                        fontSize: '11px',
+                        opacity: 0.6,
+                        marginTop: '2px',
+                      }}
+                    >
                       {formatDist(dist)} do bairro
                     </div>
                   )}
@@ -160,7 +173,13 @@ export function ServiceMarkers({
                   </div>
 
                   {/* Facility name */}
-                  <strong style={{ fontSize: '13px', display: 'block', marginBottom: '4px' }}>
+                  <strong
+                    style={{
+                      fontSize: '13px',
+                      display: 'block',
+                      marginBottom: '4px',
+                    }}
+                  >
                     {facility.name}
                   </strong>
 
@@ -182,14 +201,26 @@ export function ServiceMarkers({
 
                   {/* Distance from selected neighborhood */}
                   {dist != null && (
-                    <div style={{ fontSize: '12px', opacity: 0.7, marginBottom: '4px' }}>
+                    <div
+                      style={{
+                        fontSize: '12px',
+                        opacity: 0.7,
+                        marginBottom: '4px',
+                      }}
+                    >
                       📍 {formatDist(dist)} do bairro selecionado
                     </div>
                   )}
 
                   {/* Address if available */}
                   {address && (
-                    <div style={{ fontSize: '11px', opacity: 0.65, marginBottom: '3px' }}>
+                    <div
+                      style={{
+                        fontSize: '11px',
+                        opacity: 0.65,
+                        marginBottom: '3px',
+                      }}
+                    >
                       {address}
                     </div>
                   )}

@@ -1,6 +1,11 @@
 import { countWithinRadius, findNearest } from '@/lib/geo/nearest'
 import { pointInPolygon } from '@/lib/geo/point-in-polygon'
-import type { BusLine, CategoryScore, ServiceFacility } from '@/lib/types'
+import type {
+  Bairro,
+  BusLine,
+  CategoryScore,
+  ServiceFacility,
+} from '@/lib/types'
 
 function scoreDistance(
   distance: number,
@@ -38,11 +43,123 @@ function scoreLineVariety(count: number): number {
   return 0
 }
 
+interface BoundingBox {
+  minLat: number
+  maxLat: number
+  minLng: number
+  maxLng: number
+}
+
+function createBoundingBox(points: [number, number][]): BoundingBox {
+  let minLat = Number.POSITIVE_INFINITY
+  let maxLat = Number.NEGATIVE_INFINITY
+  let minLng = Number.POSITIVE_INFINITY
+  let maxLng = Number.NEGATIVE_INFINITY
+
+  for (const [lat, lng] of points) {
+    if (lat < minLat) minLat = lat
+    if (lat > maxLat) maxLat = lat
+    if (lng < minLng) minLng = lng
+    if (lng > maxLng) maxLng = lng
+  }
+
+  return { minLat, maxLat, minLng, maxLng }
+}
+
+function getGeometryBoundingBoxes(
+  geometry: GeoJSON.Polygon | GeoJSON.MultiPolygon,
+): BoundingBox[] {
+  const rings =
+    geometry.type === 'MultiPolygon'
+      ? geometry.coordinates.map((polygon) => polygon[0])
+      : [geometry.coordinates[0]]
+
+  return rings.map((ring) =>
+    createBoundingBox(ring.map(([lng, lat]) => [lat, lng])),
+  )
+}
+
+function boundingBoxesOverlap(a: BoundingBox, b: BoundingBox): boolean {
+  return !(
+    a.maxLat < b.minLat ||
+    a.minLat > b.maxLat ||
+    a.maxLng < b.minLng ||
+    a.minLng > b.maxLng
+  )
+}
+
+function pointWithinBoundingBox(
+  point: [number, number],
+  boundingBox: BoundingBox,
+): boolean {
+  return (
+    point[0] >= boundingBox.minLat &&
+    point[0] <= boundingBox.maxLat &&
+    point[1] >= boundingBox.minLng &&
+    point[1] <= boundingBox.maxLng
+  )
+}
+
+export function countBusLinesInBairro(
+  bairroGeometry: GeoJSON.Polygon | GeoJSON.MultiPolygon,
+  busLines: BusLine[],
+  lineBoundingBoxes = busLines.map((line) =>
+    createBoundingBox(line.coordinates),
+  ),
+): number {
+  const bairroBoundingBoxes = getGeometryBoundingBoxes(bairroGeometry)
+  let lineCount = 0
+
+  for (let index = 0; index < busLines.length; index++) {
+    const line = busLines[index]
+    const lineBoundingBox = lineBoundingBoxes[index]
+
+    if (
+      !bairroBoundingBoxes.some((bbox) =>
+        boundingBoxesOverlap(bbox, lineBoundingBox),
+      )
+    ) {
+      continue
+    }
+
+    const hasPointInBairro = line.coordinates.some(
+      (coordinate) =>
+        bairroBoundingBoxes.some((bbox) =>
+          pointWithinBoundingBox(coordinate, bbox),
+        ) && pointInPolygon(coordinate, bairroGeometry),
+    )
+
+    if (hasPointInBairro) lineCount++
+  }
+
+  return lineCount
+}
+
+export function precomputeBusLineCounts(
+  bairros: Bairro[],
+  busLines: BusLine[],
+): Map<string, number> {
+  const lineBoundingBoxes = busLines.map((line) =>
+    createBoundingBox(line.coordinates),
+  )
+  const counts = new Map<string, number>()
+
+  for (const bairro of bairros) {
+    counts.set(
+      bairro.codigo,
+      countBusLinesInBairro(bairro.geometry, busLines, lineBoundingBoxes),
+    )
+  }
+
+  return counts
+}
+
 export function calculateTransportScore(
   centroid: [number, number],
   facilities: ServiceFacility[],
   bairroGeometry: GeoJSON.Polygon | GeoJSON.MultiPolygon,
   busLines: BusLine[],
+  precomputedLineCount?: number,
 ): CategoryScore {
   const stops = facilities.filter(
     (f) => f.category === 'transporte' && f.subcategory === 'Parada',
@@ -55,13 +172,8 @@ export function calculateTransportScore(
   const nearestTerminal = findNearest(centroid, terminals)
   const terminalDistance = nearestTerminal?.distance ?? Number.POSITIVE_INFINITY
 
-  let lineCount = 0
-  for (const line of busLines) {
-    const hasPointInBairro = line.coordinates.some((coord) =>
-      pointInPolygon(coord, bairroGeometry),
-    )
-    if (hasPointInBairro) lineCount++
-  }
+  const lineCount =
+    precomputedLineCount ?? countBusLinesInBairro(bairroGeometry, busLines)
 
   const stopScore = scoreStopDensity(stopCount)
   const terminalScore = scoreDistance(terminalDistance, TERMINAL_THRESHOLDS)
